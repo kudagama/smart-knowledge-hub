@@ -59,6 +59,7 @@ const FTTH_TILES = [
     desc: 'FTTH Telephone voice service, SIP registration on ONT TEL port, Rule 11 exchange MDF routing, and physical drop wire repairs.',
     ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
     targetGroup: 'MDF / AREA-MTCE',
+    domainUrl: '/knowledge-hub/ftth/voice',
     keyFeatures: ['No Dial Tone (MDF Rule 11)', 'Drop Wire Cut (AREA-MTCE)', 'PSTN to FTTH Migration'],
     ttTemplate: 'SERVICE: FTTH Voice\nFAULT: No Dial Tone / Voice Line Inoperable\nONT PON STATUS: Steady Green (Normal Transmission)\nDIAGNOSIS: Optical signal healthy. Voice line inactive on SIP port.\nRULE: Rule 11 (Voice Line Fault on Fiber)\nACTION: Dispatch TT to MDF for SIP port reactivation.'
   },
@@ -75,6 +76,7 @@ const FTTH_TILES = [
     desc: 'GPON optical fiber transmission, Wi-Fi 2.4/5GHz dual band, LOS Red fiber cut triage, and browsing speed drop resolution.',
     ruleCode: 'RULE_LOS_RED / RULE_UNLIMITED_SLOWNESS',
     targetGroup: 'AREA-CPE-MTCE / CEN-CSC-TECH',
+    domainUrl: '/knowledge-hub/ftth/broadband',
     keyFeatures: ['Wi-Fi Not Working (PON Steady)', 'Browsing Slow / Speed Drop', 'PON / LOS Indicator (Red Cut)', 'ONT Power Cycle & ACS'],
     ttTemplate: 'SERVICE: FTTH Broadband\nFAULT: LOS Indicator Red / Optical Signal Lost\nPRE-CHECKS: Verified subscriber account on LDAP. GB Portal Rx power unavailable.\nACTION: Direct TT dispatched to AREA-CPE-MTCE for outdoor fiber cut restoration.'
   },
@@ -91,6 +93,7 @@ const FTTH_TILES = [
     desc: 'High-Definition digital IPTV over Fiber, ONT LAN Port 4 VLAN 30 binding, STB hardware triage, and 6-month remote warranty.',
     ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
     targetGroup: 'AREA-MTCE / Teleshop',
+    domainUrl: '/knowledge-hub/ftth/peo-tv',
     keyFeatures: ['LAN 4 VLAN 30 Port Binding', 'STB Hardware Defect / Boot Loop', 'Remote Warranty (Teleshop)', 'CAS Error & IGMP Snooping'],
     ttTemplate: 'SERVICE: PEO TV on FTTH\nFAULT: STB Hardware Defect / Continual Red LED Boot Loop\nONT CONFIG: LAN 4 bound to VLAN 30. IGMP Snooping enabled.\nACTION: Dispatch TT to AREA-MTCE for premises visit and STB replacement.'
   },
@@ -107,6 +110,7 @@ const FTTH_TILES = [
     desc: 'Interactive step-by-step visual decision trees, official SharePoint PDF flowcharts, and high-frequency call center scenarios.',
     ruleCode: 'INTERACTIVE_DECISION_TREES',
     targetGroup: 'ALL WORK GROUPS',
+    domainUrl: '/knowledge-hub/faq/ftth',
     keyFeatures: ['General Questions SOP', 'ONT Power Diagnostics', 'PON / LOS Indicator Matrix', 'Wi-Fi & Speed Drop SOPs'],
     ttTemplate: 'KNOWLEDGE BASE: FTTH Interactive SOPs & Decision Trees\nURL: /knowledge-hub/faq/ftth\nACTION: Follow step-by-step visual resolution flowcharts.'
   },
@@ -123,6 +127,7 @@ const FTTH_TILES = [
     desc: 'Extra GB booster allocation, Data Add-on PCRF rating errors, Private to Public Dynamic IP, and Port Forwarding policies.',
     ruleCode: 'RULE_DATA_CONSUMPTION_ADDON_MISMATCH',
     targetGroup: 'CEN-CSC-UI / INT-NW-SYS-ADMIN',
+    domainUrl: '/knowledge-hub/ftth/vas',
     keyFeatures: ['Extra GB Top-up via MySLT', 'Data Add-on PCRF Bucket Sync', 'Private IP to Public Dynamic IP', 'Port Forwarding (Customer Managed)'],
     ttTemplate: 'SERVICE: FTTH VAS\nFAULT: Extra GB Data Add-on Purchased but not deducting from PCRF bucket\nACTION: Escalate Trouble Ticket to CEN-CSC-UI / INT-NW-SYS-ADMIN for quota bucket sync.'
   }
@@ -645,13 +650,15 @@ export default function FTTHFAQPage() {
       {/* 3. BREADCRUMB SUB-HEADER */}
       <div className="bg-white border-b border-slate-200 px-6 py-2 flex items-center justify-between text-xs text-slate-600">
         <div className="flex items-center gap-2">
-          <Link href="/knowledge-hub/faq" className="text-[#005696] font-bold hover:underline flex items-center gap-1">
-            <ArrowLeft className="w-3 h-3" /> Back to FAQs
+          <Link href="/knowledge-hub/ftth" className="text-[#005696] font-bold hover:underline flex items-center gap-1">
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to FTTH Services
           </Link>
           <span className="text-slate-300">/</span>
-          <span className="font-semibold text-slate-800">Knowledge Hub</span>
+          <Link href="/knowledge-hub" className="hover:underline">Knowledge Hub</Link>
           <span className="text-slate-300">/</span>
-          <span className="font-bold text-[#005696]">SLT Fibre (FTTH)</span>
+          <Link href="/knowledge-hub/ftth" className="hover:underline">SLT Fibre</Link>
+          <span className="text-slate-300">/</span>
+          <span className="font-bold text-[#005696]">FAQs &amp; Complaint Matrix</span>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-slate-500">
           <span>Private group</span>
@@ -675,10 +682,10 @@ export default function FTTHFAQPage() {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white drop-shadow-md">
-            SLT Fibre (FTTH) - Core Services &amp; SOPs
+            SLT Fibre (FTTH) - FAQs &amp; Complaint Matrix
           </h1>
           <p className="text-xs text-cyan-100/90 max-w-2xl font-medium">
-            Dedicated service triage for Voice, Broadband, PEO TV, FAQ Decision Trees, and Value Added Services (VAS).
+            Interactive triage decision trees, official SharePoint PDF flowcharts, and high-frequency call center SOPs.
           </p>
 
           {/* Publisher Metadata matching screenshot */}
@@ -696,21 +703,29 @@ export default function FTTHFAQPage() {
 
       {/* 5. NAVIGATION PILL BUTTONS */}
       <div className="bg-white px-6 py-3 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto flex items-center gap-3">
+        <div className="max-w-6xl mx-auto flex items-center gap-3 flex-wrap">
+          <Link
+            href="/knowledge-hub/ftth"
+            className="px-4 py-2 rounded-md border border-[#005696] bg-[#005696] hover:bg-[#004780] text-white font-bold text-xs flex items-center gap-2 transition-all shadow-2xs"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>FTTH Services (5 Core Cards)</span>
+          </Link>
+
           <Link
             href="/knowledge-hub"
-            className="px-5 py-2 rounded-md border border-[#005696]/40 hover:border-[#005696] bg-white hover:bg-slate-50 text-[#005696] font-bold text-xs flex items-center gap-2 transition-all shadow-2xs"
+            className="px-4 py-2 rounded-md border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs"
           >
             <Home className="w-4 h-4 text-[#005696]" />
-            <span>Home</span>
+            <span>Hub Home</span>
           </Link>
 
           <Link
             href="/knowledge-hub/faq"
-            className="px-5 py-2 rounded-md border border-[#005696]/40 hover:border-[#005696] bg-white hover:bg-slate-50 text-[#005696] font-bold text-xs flex items-center gap-2 transition-all shadow-2xs"
+            className="px-4 py-2 rounded-md border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs"
           >
             <FileText className="w-4 h-4 text-[#005696]" />
-            <span>FAQs</span>
+            <span>FAQs Home</span>
           </Link>
         </div>
       </div>
@@ -825,7 +840,7 @@ export default function FTTHFAQPage() {
                     </div>
 
                     {/* Bottom Action bar */}
-                    <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                    <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] gap-1">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -840,18 +855,32 @@ export default function FTTHFAQPage() {
                         className="font-bold text-[#005696] hover:underline flex items-center gap-1"
                       >
                         <FileText className="w-3 h-3" />
-                        <span>TT Template</span>
+                        <span>TT</span>
                       </button>
 
-                      <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors ${
-                          isSelected
-                            ? 'bg-[#005696] text-white shadow-2xs'
-                            : 'bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-[#005696]'
-                        }`}
-                      >
-                        {isSelected ? 'Filtered' : 'Filter'}
-                      </span>
+                      <div className="flex items-center gap-1">
+                        {tile.id !== 'faq' && tile.domainUrl && (
+                          <Link
+                            href={tile.domainUrl}
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-[10px] font-bold text-slate-500 hover:text-[#005696] hover:underline flex items-center gap-0.5 px-1 py-0.5"
+                            title={`Open dedicated ${tile.title} page`}
+                          >
+                            <span>Open</span>
+                            <ArrowUpRight className="w-2.5 h-2.5" />
+                          </Link>
+                        )}
+
+                        <span
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors ${
+                            isSelected
+                              ? 'bg-[#005696] text-white shadow-2xs'
+                              : 'bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-[#005696]'
+                          }`}
+                        >
+                          {isSelected ? 'Filtered' : 'Filter'}
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 );
