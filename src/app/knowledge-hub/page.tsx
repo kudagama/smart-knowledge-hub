@@ -103,6 +103,7 @@ const QUICK_SOPS = [
 ];
 
 // 4 Main SLT Product Pillars (Fiber, Megaline, PEO TV, Trio)
+// Each Main Card contains 5 Inner Sub-Cards: Voice, Broadband, PEO TV, VAS, and FAQ
 const MAIN_PRODUCT_TILES = [
   {
     id: 'fiber',
@@ -112,8 +113,6 @@ const MAIN_PRODUCT_TILES = [
     icon: Wifi,
     gradient: 'from-[#003B66] via-[#005696] to-cyan-600',
     cardBorder: 'border-cyan-300 shadow-cyan-500/10 hover:border-cyan-500 hover:shadow-cyan-500/20',
-    accentColor: 'text-cyan-600',
-    bgLight: 'bg-cyan-50/50',
     badge: '1Gbps FTTH Optical',
     badgeStyle: 'bg-cyan-100 text-cyan-900 border-cyan-200',
     desc: 'Ultra high-speed optical fiber connectivity, GPON ONT router triage, Wi-Fi 6 diagnostics, LOS red alarms, and direct Trouble Ticket dispatch to AREA-MTCE.',
@@ -121,13 +120,68 @@ const MAIN_PRODUCT_TILES = [
     ruleCode: 'RULE_LOS_RED',
     route: '/knowledge-hub/faq/ftth',
     ctaText: 'Open Fiber Decision Trees',
-    features: [
-      { label: 'LOS Red Alarm (Optical Fiber Cut)', path: '/knowledge-hub/faq/ftth/pon-los-indicator', icon: Zap },
-      { label: 'Wi-Fi Not Working (PON Steady ON)', path: '/knowledge-hub/faq/ftth/wifi-not-working', icon: Wifi },
-      { label: 'Browsing Slow (FUP & Speed Drops)', path: '/knowledge-hub/faq/ftth/browsing-slow', icon: Globe },
-      { label: 'ONT Router Dead / Power Fault', path: '/knowledge-hub/faq/ftth/ont-not-working', icon: Server },
-    ],
-    highlights: ['Optical Power Check (GB Portal)', 'VLAN 20/30 Config', 'Wi-Fi 2.4/5GHz Dual-Band', 'Direct TT to AREA-MTCE']
+    subCards: [
+      {
+        id: 'fiber-voice',
+        title: 'Voice',
+        badge: 'SIP / Dial Tone',
+        badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+        icon: Phone,
+        iconBg: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+        desc: 'ONT Phone LED status, SIP registration, dial tone loss, and exchange MDF dispatch (Rule 11).',
+        ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
+        ttTemplate: 'SERVICE: FTTH Voice\nFAULT: No Dial Tone / Voice Line Inoperable\nONT PON STATUS: Steady Green (Normal Transmission)\nDIAGNOSIS: Optical signal healthy. Voice line inactive on SIP port.\nACTION: Dispatch TT to MDF for SIP port reactivation.',
+        route: '/knowledge-hub/faq/ftth'
+      },
+      {
+        id: 'fiber-broadband',
+        title: 'Broadband',
+        badge: '1Gbps / GPON & Wi-Fi',
+        badgeStyle: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+        icon: Globe,
+        iconBg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+        desc: 'LOS Red fiber cut alarm, Wi-Fi 2.4/5GHz disconnects, ONT replacement, and speed drop triage.',
+        ruleCode: 'RULE_LOS_RED',
+        ttTemplate: 'SERVICE: FTTH Broadband\nFAULT: LOS Indicator Red / Optical Signal Lost\nPRE-CHECKS: Verified subscriber account on LDAP. GB Portal Rx power unavailable.\nACTION: Dispatch Direct TT to AREA-MTCE for outdoor fiber cut restoration.',
+        route: '/knowledge-hub/faq/ftth'
+      },
+      {
+        id: 'fiber-peotv',
+        title: 'PEO TV',
+        badge: 'VLAN 30 / Port 4',
+        badgeStyle: 'bg-purple-50 text-purple-800 border-purple-200',
+        icon: Tv,
+        iconBg: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+        desc: 'ONT LAN Port 4 binding, IGMP Snooping, STB pixelation, HDMI handshakes, and HD channel streams.',
+        ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
+        ttTemplate: 'SERVICE: PEO TV on FTTH\nFAULT: STB Hardware Defect / Screen Freezing\nONT CONFIG: LAN 4 bound to VLAN 30. IGMP Snooping enabled.\nACTION: Dispatch TT to AREA-MTCE for premises visit and STB replacement.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'fiber-vas',
+        title: 'VAS',
+        badge: 'Addons & Static IP',
+        badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+        icon: Sparkles,
+        iconBg: 'bg-gradient-to-br from-amber-500 to-orange-600',
+        desc: 'Extra GB booster add-on errors, Static IP configuration, Caller Ring Back Tunes (CRBT), and Webmail.',
+        ruleCode: 'RULE_ADDON_PROVISIONING_ERROR',
+        ttTemplate: 'SERVICE: FTTH VAS\nFAULT: Extra GB Data Addon Purchased but not deducting from PCRF bucket\nACTION: Escalate Trouble Ticket to INT-NW-SYS-ADMIN for quota bucket sync.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'fiber-faq',
+        title: 'FAQ',
+        badge: 'Interactive SOPs',
+        badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        icon: HelpCircle,
+        iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+        desc: 'Visual decision trees for Wi-Fi, LOS Red, Speed drop, and ONT dead hardware triage.',
+        ruleCode: null,
+        ttTemplate: 'KNOWLEDGE BASE: FTTH Interactive SOPs & Decision Trees\nURL: /knowledge-hub/faq/ftth\nACTION: Follow step-by-step visual resolution flowcharts.',
+        route: '/knowledge-hub/faq/ftth'
+      }
+    ]
   },
   {
     id: 'megaline',
@@ -137,8 +191,6 @@ const MAIN_PRODUCT_TILES = [
     icon: Phone,
     gradient: 'from-emerald-700 via-teal-700 to-cyan-800',
     cardBorder: 'border-teal-300 shadow-teal-500/10 hover:border-teal-500 hover:shadow-teal-500/20',
-    accentColor: 'text-teal-600',
-    bgLight: 'bg-teal-50/50',
     badge: 'Copper Wireline Voice',
     badgeStyle: 'bg-teal-100 text-teal-900 border-teal-200',
     desc: 'Traditional copper wireline voice telephone, ADSL broadband double-play, line noise / crackling, SNR & loop resistance diagnostics, and MDF exchange dispatch.',
@@ -146,13 +198,68 @@ const MAIN_PRODUCT_TILES = [
     ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
     route: '/knowledge-hub/faq',
     ctaText: 'Open Megaline SOPs',
-    features: [
-      { label: 'No Dial Tone / MDF Dispatch (Rule 11)', path: '/knowledge-hub/faq', icon: Phone },
-      { label: 'ADSL Double Play Router Fault (Rule 3)', path: '/knowledge-hub/faq', icon: Server },
-      { label: 'Line Noise & Rainy Weather Disconnects', path: '/knowledge-hub/faq', icon: AlertCircle },
-      { label: 'Copper Loop Resistance & SNR Testing', path: '/knowledge-hub/faq', icon: Wrench },
-    ],
-    highlights: ['PSTN MDF Exchange Dispatch', 'ADSL RTO Device Replacement', 'Copper Line Rehabilitation', 'Dial Tone Voltage Test']
+    subCards: [
+      {
+        id: 'megaline-voice',
+        title: 'Voice',
+        badge: 'PSTN / MDF',
+        badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+        icon: Phone,
+        iconBg: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+        desc: 'No dial tone on copper pair, heavy line noise / crackling, loop resistance testing, and MDF frame dispatch.',
+        ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
+        ttTemplate: 'SERVICE: Megaline PSTN\nFAULT: No dial tone / Line noise detected\nLINE TEST: DC Loop resistance abnormal.\nACTION: Dispatch TT to MDF / AREA-MTCE for copper pair restoration.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'megaline-broadband',
+        title: 'Broadband',
+        badge: 'ADSL2+ Copper',
+        badgeStyle: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+        icon: Globe,
+        iconBg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+        desc: 'ADSL router faulty (Rule 3: RTO walk-in replacement), SNR margin drop, and copper speed degradation.',
+        ruleCode: 'RULE_ADSL_ROUTER_FAULTY',
+        ttTemplate: 'SERVICE: Megaline ADSL Broadband\nFAULT: Defective ADSL Modem / Power failure\nRULE: RULE_ADSL_ROUTER_FAULTY\nADVICE: DO NOT LOG TT. Customer advised to bring modem + adapter to nearest RTO.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'megaline-peotv',
+        title: 'PEO TV',
+        badge: 'Copper IPTV',
+        badgeStyle: 'bg-purple-50 text-purple-800 border-purple-200',
+        icon: Tv,
+        iconBg: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+        desc: 'Copper ADSL IPTV synchronization, channel freeze due to SNR margin, and 6-month remote warranty.',
+        ruleCode: 'RULE_REMOTE_CONTROLLER_WARRANTY',
+        ttTemplate: 'SERVICE: PEO TV (Copper Double Play)\nFAULT: STB Remote Controller Defective\nRULE: RULE_REMOTE_CONTROLLER_WARRANTY\nADVICE: Customer directed to Regional Telecom Office with faulty remote & STB.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'megaline-vas',
+        title: 'VAS',
+        badge: 'Calling Features',
+        badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+        icon: Sparkles,
+        iconBg: 'bg-gradient-to-br from-amber-500 to-orange-600',
+        desc: 'Call waiting, call forwarding, CLI, 3-way conference, and telephone ring tones on copper wire.',
+        ruleCode: 'RULE_CQMS_VAS_AND_PROMOS',
+        ttTemplate: 'SERVICE: Megaline VAS\nFAULT: PSTN Calling Feature (CLI / Call Waiting) activation inquiry\nACTION: Query subscriber profile on MINT CRM and escalate to CQMS.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'megaline-faq',
+        title: 'FAQ',
+        badge: 'PSTN SOPs',
+        badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        icon: HelpCircle,
+        iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+        desc: 'Copper line testing protocols, ADSL modem VPI/VCI settings (8/35), and rainy season outage rules.',
+        ruleCode: null,
+        ttTemplate: 'KNOWLEDGE BASE: Megaline PSTN & ADSL Guides\nURL: /knowledge-hub/faq\nACTION: Follow official copper line triage guidelines.',
+        route: '/knowledge-hub/faq'
+      }
+    ]
   },
   {
     id: 'peo_tv',
@@ -162,8 +269,6 @@ const MAIN_PRODUCT_TILES = [
     icon: Tv,
     gradient: 'from-indigo-800 via-purple-700 to-pink-700',
     cardBorder: 'border-purple-300 shadow-purple-500/10 hover:border-purple-400 hover:shadow-purple-500/20',
-    accentColor: 'text-purple-600',
-    bgLight: 'bg-purple-50/50',
     badge: 'Digital IPTV & VOD',
     badgeStyle: 'bg-purple-100 text-purple-900 border-purple-200',
     desc: 'High-definition digital IPTV streaming, Set-Top Box (STB) hardware failure triage, remote controller 6-month warranty checks, VLAN 30 port binding, and PEO Mobile.',
@@ -171,13 +276,68 @@ const MAIN_PRODUCT_TILES = [
     ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
     route: '/knowledge-hub/faq',
     ctaText: 'Open PEO TV Guides',
-    features: [
-      { label: 'STB Hardware & Power Fault (Rule 2)', path: '/knowledge-hub/faq', icon: Tv },
-      { label: 'Remote Controller 6M Warranty (Rule 5)', path: '/knowledge-hub/faq', icon: Award },
-      { label: 'VLAN 30 & Port 4 Binding Config', path: '/knowledge-hub/faq', icon: Server },
-      { label: 'Channel Subscriptions & PEO Mobile', path: '/knowledge-hub/faq', icon: Smartphone },
-    ],
-    highlights: ['STB Physical Replacement', '6-Month Remote Warranty', 'IGMP Snooping on Port 4', 'VOD & Catch-Up TV Guides']
+    subCards: [
+      {
+        id: 'peotv-voice',
+        title: 'Voice',
+        badge: 'Tandem Voice',
+        badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+        icon: Phone,
+        iconBg: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+        desc: 'Tandem voice line verification when PEO TV operates alongside landline voice.',
+        ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
+        ttTemplate: 'SERVICE: PEO TV / Voice Tandem\nFAULT: Voice line disturbance while PEO TV is streaming\nACTION: Microfilter check & dispatch to MDF.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'peotv-broadband',
+        title: 'Broadband',
+        badge: 'Multicast QoS',
+        badgeStyle: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+        icon: Globe,
+        iconBg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+        desc: 'Multicast QoS bandwidth reservation, IGMP snooping packet loss, and video buffering checks.',
+        ruleCode: 'RULE_UNLIMITED_SLOWNESS',
+        ttTemplate: 'SERVICE: Broadband & PEO TV\nFAULT: Video buffering due to bandwidth saturation\nACTION: Re-verify QoS profile and advise bandwidth booster.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'peotv-core',
+        title: 'PEO TV',
+        badge: 'STB & Remote',
+        badgeStyle: 'bg-purple-50 text-purple-800 border-purple-200',
+        icon: Tv,
+        iconBg: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+        desc: 'STB power failure, blinking red LED, HDMI handshaking, remote controller warranty, and channel packages.',
+        ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
+        ttTemplate: 'SERVICE: PEO TV Core\nFAULT: STB Hardware Failure / Red Power Light\nACTION: Dispatch TT to AREA-MTCE for premises hardware replacement.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'peotv-vas',
+        title: 'VAS',
+        badge: 'VOD & PEO Mobile',
+        badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+        icon: Sparkles,
+        iconBg: 'bg-gradient-to-br from-amber-500 to-orange-600',
+        desc: 'Video-on-Demand purchases, PEO Mobile multi-screen subscription, and SVOD channel add-ons.',
+        ruleCode: 'RULE_CQMS_VAS_AND_PROMOS',
+        ttTemplate: 'SERVICE: PEO TV VAS\nFAULT: PEO Mobile App Authentication / Channel Subscription not active\nACTION: Dispatch to Digital Services Support.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'peotv-faq',
+        title: 'FAQ',
+        badge: 'Error Matrix',
+        badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        icon: HelpCircle,
+        iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+        desc: 'Decoder error codes (CAS error, 101, 102), factory reset, and remote pairing codes.',
+        ruleCode: null,
+        ttTemplate: 'KNOWLEDGE BASE: PEO TV Error Matrix & Decoder Diagnostics\nURL: /knowledge-hub/faq\nACTION: Reference CAS error codes and STB reboot sequences.',
+        route: '/knowledge-hub/faq'
+      }
+    ]
   },
   {
     id: 'trio',
@@ -187,8 +347,6 @@ const MAIN_PRODUCT_TILES = [
     icon: Layers,
     gradient: 'from-amber-600 via-orange-600 to-rose-600',
     cardBorder: 'border-amber-300 shadow-amber-500/10 hover:border-amber-400 hover:shadow-amber-500/20',
-    accentColor: 'text-amber-600',
-    bgLight: 'bg-amber-50/50',
     badge: 'Voice + Data + IPTV (3-in-1)',
     badgeStyle: 'bg-amber-100 text-amber-900 border-amber-200',
     desc: 'Unified 3-in-1 Triple Play package combining Megaline/Fiber Telephone Voice + High Speed Broadband + PEO TV on a single consolidated bill with bundled savings.',
@@ -196,13 +354,68 @@ const MAIN_PRODUCT_TILES = [
     ruleCode: 'RULE_UNLIMITED_SLOWNESS',
     route: '/knowledge-hub/faq',
     ctaText: 'Open Trio Solutions',
-    features: [
-      { label: 'Trio Package Bundles & Tariffs', path: '/knowledge-hub/faq', icon: CreditCard },
-      { label: 'Multi-Service Unified Triage', path: '/knowledge-hub/faq', icon: Sparkles },
-      { label: 'Consolidated Billing & Bill-Com', path: '/knowledge-hub/faq', icon: FileText },
-      { label: 'Triple Play Migration & Upgrades', path: '/knowledge-hub/faq', icon: ArrowUpRight },
-    ],
-    highlights: ['Single Consolidated Bill', 'All-in-One Multi-Service SLA', 'Fibre & Megaline Trio Plans', 'Special Bundle Discounts']
+    subCards: [
+      {
+        id: 'trio-voice',
+        title: 'Voice',
+        badge: 'Trio Landline',
+        badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+        icon: Phone,
+        iconBg: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+        desc: 'Unified telephone line diagnostics bundled under Trio triple-play consolidated package.',
+        ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
+        ttTemplate: 'SERVICE: Trio Triple Play (Voice)\nFAULT: Landline Inactive / Outgoing calls blocked\nACTION: Check Trio package status and route to MDF.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'trio-broadband',
+        title: 'Broadband',
+        badge: 'Trio High-Speed',
+        badgeStyle: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+        icon: Globe,
+        iconBg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+        desc: 'Dedicated broadband data quota, FUP management, and concurrent streaming checks.',
+        ruleCode: 'RULE_UNLIMITED_SLOWNESS',
+        ttTemplate: 'SERVICE: Trio Broadband\nFAULT: Speed Drop / FUP Limit Exceeded\nACTION: Advised extra GB booster or package upgrade via QED.',
+        route: '/knowledge-hub/faq/ftth/browsing-slow'
+      },
+      {
+        id: 'trio-peotv',
+        title: 'PEO TV',
+        badge: 'Trio TV Stream',
+        badgeStyle: 'bg-purple-50 text-purple-800 border-purple-200',
+        icon: Tv,
+        iconBg: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+        desc: 'Integrated PEO TV service on Trio bundle, multi-room decoders, and premium packages.',
+        ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
+        ttTemplate: 'SERVICE: Trio PEO TV\nFAULT: Channel Authorization Failure on Trio Bundle\nACTION: Resend CAS entitlement signal.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'trio-vas',
+        title: 'VAS',
+        badge: 'Trio Perks',
+        badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+        icon: Sparkles,
+        iconBg: 'bg-gradient-to-br from-amber-500 to-orange-600',
+        desc: 'Trio exclusive VAS discounts, family sharing, free OTT bundles (HBO, SonyLIV).',
+        ruleCode: 'RULE_CQMS_VAS_AND_PROMOS',
+        ttTemplate: 'SERVICE: Trio VAS Perks\nFAULT: OTT App Bundle Access not synchronized\nACTION: Escalate to Digital Channels Team.',
+        route: '/knowledge-hub/faq'
+      },
+      {
+        id: 'trio-faq',
+        title: 'FAQ',
+        badge: 'Consolidated Bill',
+        badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        icon: HelpCircle,
+        iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+        desc: 'Trio single bill dispute resolution, bundle discounts, migration & upgrade SOPs.',
+        ruleCode: null,
+        ttTemplate: 'KNOWLEDGE BASE: Trio Consolidated Billing & Service Rules\nURL: /knowledge-hub/faq\nACTION: Verify single invoice allocation and dispute policies.',
+        route: '/knowledge-hub/faq'
+      }
+    ]
   },
 ];
 
@@ -334,7 +547,12 @@ export default function KnowledgeHubPage() {
       c.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (c.badge && c.badge.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      c.features.some((f) => f.label.toLowerCase().includes(searchQuery.toLowerCase()));
+      c.subCards.some(
+        (sc) =>
+          sc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          sc.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          sc.badge.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
     const matchesPillar = selectedPillar === 'all' || c.pillar === selectedPillar;
 
@@ -618,23 +836,64 @@ export default function KnowledgeHubPage() {
                         {tile.desc}
                       </p>
 
-                      {/* Interactive Triage & SOPs Sub-Links */}
-                      <div className="space-y-1.5 pt-3 border-t border-slate-100">
-                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
-                          Interactive Triage &amp; SOPs:
-                        </span>
+                      {/* 5 Distinct Sub-Cards (Voice, Broadband, PEO TV, VAS, FAQ) */}
+                      <div className="space-y-2 pt-3 border-t border-slate-100">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-slate-500">
+                            Service Cards (5 Domains):
+                          </span>
+                          <span className="text-[9px] font-bold text-[#005696] bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
+                            Click to inspect &amp; TT
+                          </span>
+                        </div>
+
                         <div className="flex flex-col gap-1.5">
-                          {tile.features.map((feat, fIdx) => {
-                            const FeatIcon = feat.icon;
+                          {tile.subCards.map((sc, scIdx) => {
+                            const ScIcon = sc.icon;
                             return (
-                              <Link
-                                key={fIdx}
-                                href={feat.path}
-                                className="p-2 rounded-lg bg-slate-50 hover:bg-blue-50/80 border border-slate-200/60 hover:border-blue-300 text-[11px] font-bold text-slate-700 hover:text-[#005696] flex items-center gap-2 transition-all group/feat"
+                              <div
+                                key={scIdx}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedItem({
+                                    name: `${tile.title} - ${sc.title}`,
+                                    title: `${tile.title} - ${sc.title}`,
+                                    category: `${tile.title} Core Domain`,
+                                    desc: sc.desc,
+                                    ruleCode: sc.ruleCode,
+                                    ttTemplate: sc.ttTemplate,
+                                    route: sc.route,
+                                    badge: sc.badge,
+                                    badgeStyle: sc.badgeStyle,
+                                    type: 'subcard'
+                                  });
+                                }}
+                                className="p-2 rounded-xl bg-slate-50 hover:bg-white border border-slate-200/90 hover:border-[#005696]/60 hover:shadow-md transition-all cursor-pointer group/sc flex items-center justify-between gap-2"
                               >
-                                <FeatIcon className="w-3.5 h-3.5 text-slate-400 group-hover/feat:text-[#005696] shrink-0" />
-                                <span className="truncate">{feat.label}</span>
-                              </Link>
+                                <div className="flex items-center gap-2 min-w-0">
+                                  <div
+                                    className={`w-6 h-6 rounded-lg ${sc.iconBg} text-white flex items-center justify-center shadow-2xs group-hover/sc:scale-110 transition-transform shrink-0`}
+                                  >
+                                    <ScIcon className="w-3 h-3" />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="font-bold text-xs text-slate-800 group-hover/sc:text-[#005696] transition-colors truncate">
+                                        {sc.title}
+                                      </span>
+                                      <span
+                                        className={`text-[8px] font-black uppercase px-1.5 py-0.2 rounded border ${sc.badgeStyle} shrink-0`}
+                                      >
+                                        {sc.badge}
+                                      </span>
+                                    </div>
+                                    <p className="text-[10px] text-slate-500 font-medium truncate leading-tight mt-0.5">
+                                      {sc.desc}
+                                    </p>
+                                  </div>
+                                </div>
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/sc:text-[#005696] group-hover/sc:translate-x-0.5 transition-all shrink-0" />
+                              </div>
                             );
                           })}
                         </div>
@@ -685,9 +944,40 @@ export default function KnowledgeHubPage() {
                       <p className="text-[10px] text-slate-400 font-bold mb-2 truncate">
                         {tile.fullName}
                       </p>
-                      <p className="text-xs text-slate-500 font-medium line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-slate-500 font-medium line-clamp-2 leading-relaxed mb-3">
                         {tile.desc}
                       </p>
+
+                      {/* 5 Sub-Cards Quick Bar in Compact Mode */}
+                      <div className="grid grid-cols-2 gap-1.5 pt-2 border-t border-slate-100">
+                        {tile.subCards.map((sc, scIdx) => {
+                          const ScIcon = sc.icon;
+                          return (
+                            <button
+                              key={scIdx}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedItem({
+                                  name: `${tile.title} - ${sc.title}`,
+                                  title: `${tile.title} - ${sc.title}`,
+                                  category: `${tile.title} Core Domain`,
+                                  desc: sc.desc,
+                                  ruleCode: sc.ruleCode,
+                                  ttTemplate: sc.ttTemplate,
+                                  route: sc.route,
+                                  badge: sc.badge,
+                                  badgeStyle: sc.badgeStyle,
+                                  type: 'subcard'
+                                });
+                              }}
+                              className="px-2 py-1 rounded-md bg-slate-100 hover:bg-blue-50 border border-slate-200 text-left flex items-center gap-1.5 transition-colors"
+                            >
+                              <ScIcon className="w-3 h-3 text-[#005696] shrink-0" />
+                              <span className="text-[10px] font-bold text-slate-700 truncate">{sc.title}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
 
                     <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between">
@@ -884,6 +1174,25 @@ export default function KnowledgeHubPage() {
                     <p className="text-[11px] text-indigo-900 leading-relaxed">
                       This service domain is automatically analyzed by Gemini Voice Triage for instant trouble ticket creation and dispatch.
                     </p>
+                  </div>
+                )}
+
+                {/* If Trouble Ticket Template is present */}
+                {selectedItem.ttTemplate && (
+                  <div className="p-3.5 bg-slate-900 border border-slate-700 rounded-xl space-y-2 text-white font-mono text-[11px]">
+                    <div className="flex items-center justify-between text-slate-400 border-b border-slate-800 pb-1.5">
+                      <span className="font-bold text-cyan-300">Standard Trouble Ticket Draft</span>
+                      <button
+                        onClick={() => copyToClipboard(selectedItem.ttTemplate, 'modal-tt-copy')}
+                        className="px-2.5 py-1 bg-[#005696] hover:bg-[#0070ba] text-white text-[10px] rounded-md font-sans font-bold flex items-center gap-1 transition-all"
+                      >
+                        {copiedLink === 'modal-tt-copy' ? <Check className="w-3 h-3 text-emerald-300" /> : <Copy className="w-3 h-3" />}
+                        <span>{copiedLink === 'modal-tt-copy' ? 'Copied TT!' : 'Copy TT'}</span>
+                      </button>
+                    </div>
+                    <pre className="whitespace-pre-wrap leading-relaxed text-lime-300 font-mono text-[10px]">
+                      {selectedItem.ttTemplate}
+                    </pre>
                   </div>
                 )}
 
