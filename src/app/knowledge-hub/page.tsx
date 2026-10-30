@@ -131,7 +131,7 @@ const MAIN_PRODUCT_TILES = [
         desc: 'ONT Phone LED status, SIP registration, dial tone loss, and exchange MDF dispatch (Rule 11).',
         ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
         ttTemplate: 'SERVICE: FTTH Voice\nFAULT: No Dial Tone / Voice Line Inoperable\nONT PON STATUS: Steady Green (Normal Transmission)\nDIAGNOSIS: Optical signal healthy. Voice line inactive on SIP port.\nACTION: Dispatch TT to MDF for SIP port reactivation.',
-        route: '/knowledge-hub/faq/ftth'
+        route: '/knowledge-hub/faq/ftth?category=voice'
       },
       {
         id: 'fiber-broadband',
@@ -143,7 +143,7 @@ const MAIN_PRODUCT_TILES = [
         desc: 'LOS Red fiber cut alarm, Wi-Fi 2.4/5GHz disconnects, ONT replacement, and speed drop triage.',
         ruleCode: 'RULE_LOS_RED',
         ttTemplate: 'SERVICE: FTTH Broadband\nFAULT: LOS Indicator Red / Optical Signal Lost\nPRE-CHECKS: Verified subscriber account on LDAP. GB Portal Rx power unavailable.\nACTION: Dispatch Direct TT to AREA-MTCE for outdoor fiber cut restoration.',
-        route: '/knowledge-hub/faq/ftth'
+        route: '/knowledge-hub/faq/ftth?category=broadband'
       },
       {
         id: 'fiber-peotv',
@@ -155,7 +155,7 @@ const MAIN_PRODUCT_TILES = [
         desc: 'ONT LAN Port 4 binding, IGMP Snooping, STB pixelation, HDMI handshakes, and HD channel streams.',
         ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
         ttTemplate: 'SERVICE: PEO TV on FTTH\nFAULT: STB Hardware Defect / Screen Freezing\nONT CONFIG: LAN 4 bound to VLAN 30. IGMP Snooping enabled.\nACTION: Dispatch TT to AREA-MTCE for premises visit and STB replacement.',
-        route: '/knowledge-hub/faq'
+        route: '/knowledge-hub/faq/ftth?category=peo_tv'
       },
       {
         id: 'fiber-vas',
@@ -167,7 +167,7 @@ const MAIN_PRODUCT_TILES = [
         desc: 'Extra GB booster add-on errors, Static IP configuration, Caller Ring Back Tunes (CRBT), and Webmail.',
         ruleCode: 'RULE_ADDON_PROVISIONING_ERROR',
         ttTemplate: 'SERVICE: FTTH VAS\nFAULT: Extra GB Data Addon Purchased but not deducting from PCRF bucket\nACTION: Escalate Trouble Ticket to INT-NW-SYS-ADMIN for quota bucket sync.',
-        route: '/knowledge-hub/faq'
+        route: '/knowledge-hub/faq/ftth?category=vas'
       },
       {
         id: 'fiber-faq',
@@ -179,7 +179,7 @@ const MAIN_PRODUCT_TILES = [
         desc: 'Visual decision trees for Wi-Fi, LOS Red, Speed drop, and ONT dead hardware triage.',
         ruleCode: null,
         ttTemplate: 'KNOWLEDGE BASE: FTTH Interactive SOPs & Decision Trees\nURL: /knowledge-hub/faq/ftth\nACTION: Follow step-by-step visual resolution flowcharts.',
-        route: '/knowledge-hub/faq/ftth'
+        route: '/knowledge-hub/faq/ftth?category=faq'
       }
     ]
   },

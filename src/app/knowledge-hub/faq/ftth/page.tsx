@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -33,13 +33,106 @@ import {
   Maximize2,
   Printer,
   ZoomIn,
-  ZoomOut
+  ZoomOut,
+  Globe,
+  Tv,
+  Sparkles,
+  Layers,
+  ArrowRight,
+  Filter,
+  SlidersHorizontal,
+  ArrowUpRight
 } from 'lucide-react';
+
+// 5 Core FTTH Service Tiles: Voice, Broadband, PEO TV, FAQ, VAS
+const FTTH_TILES = [
+  {
+    id: 'voice',
+    title: 'Voice',
+    subtitle: 'SIP / Dial Tone / RJ11',
+    badge: 'Telephone Line',
+    badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+    icon: Phone,
+    gradient: 'from-teal-600 to-emerald-700',
+    cardBorder: 'border-teal-200 hover:border-teal-400 hover:shadow-teal-500/15',
+    activeBg: 'bg-gradient-to-br from-teal-50/80 to-white ring-2 ring-teal-600 shadow-md',
+    desc: 'FTTH Telephone voice service, SIP registration on ONT TEL port, Rule 11 exchange MDF routing, and physical drop wire repairs.',
+    ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
+    targetGroup: 'MDF / AREA-MTCE',
+    keyFeatures: ['No Dial Tone (MDF Rule 11)', 'Drop Wire Cut (AREA-MTCE)', 'PSTN to FTTH Migration'],
+    ttTemplate: 'SERVICE: FTTH Voice\nFAULT: No Dial Tone / Voice Line Inoperable\nONT PON STATUS: Steady Green (Normal Transmission)\nDIAGNOSIS: Optical signal healthy. Voice line inactive on SIP port.\nRULE: Rule 11 (Voice Line Fault on Fiber)\nACTION: Dispatch TT to MDF for SIP port reactivation.'
+  },
+  {
+    id: 'broadband',
+    title: 'Broadband',
+    subtitle: '1Gbps / GPON & Wi-Fi',
+    badge: 'Optical High-Speed',
+    badgeStyle: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+    icon: Globe,
+    gradient: 'from-cyan-600 to-blue-700',
+    cardBorder: 'border-cyan-200 hover:border-cyan-400 hover:shadow-cyan-500/15',
+    activeBg: 'bg-gradient-to-br from-cyan-50/80 to-white ring-2 ring-cyan-600 shadow-md',
+    desc: 'GPON optical fiber transmission, Wi-Fi 2.4/5GHz dual band, LOS Red fiber cut triage, and browsing speed drop resolution.',
+    ruleCode: 'RULE_LOS_RED / RULE_UNLIMITED_SLOWNESS',
+    targetGroup: 'AREA-CPE-MTCE / CEN-CSC-TECH',
+    keyFeatures: ['Wi-Fi Not Working (PON Steady)', 'Browsing Slow / Speed Drop', 'PON / LOS Indicator (Red Cut)', 'ONT Power Cycle & ACS'],
+    ttTemplate: 'SERVICE: FTTH Broadband\nFAULT: LOS Indicator Red / Optical Signal Lost\nPRE-CHECKS: Verified subscriber account on LDAP. GB Portal Rx power unavailable.\nACTION: Direct TT dispatched to AREA-CPE-MTCE for outdoor fiber cut restoration.'
+  },
+  {
+    id: 'peo_tv',
+    title: 'PEO TV',
+    subtitle: 'VLAN 30 / Port 4 IPTV',
+    badge: 'Digital IPTV Platform',
+    badgeStyle: 'bg-purple-50 text-purple-800 border-purple-200',
+    icon: Tv,
+    gradient: 'from-purple-600 to-indigo-700',
+    cardBorder: 'border-purple-200 hover:border-purple-400 hover:shadow-purple-500/15',
+    activeBg: 'bg-gradient-to-br from-purple-50/80 to-white ring-2 ring-purple-600 shadow-md',
+    desc: 'High-Definition digital IPTV over Fiber, ONT LAN Port 4 VLAN 30 binding, STB hardware triage, and 6-month remote warranty.',
+    ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
+    targetGroup: 'AREA-MTCE / Teleshop',
+    keyFeatures: ['LAN 4 VLAN 30 Port Binding', 'STB Hardware Defect / Boot Loop', 'Remote Warranty (Teleshop)', 'CAS Error & IGMP Snooping'],
+    ttTemplate: 'SERVICE: PEO TV on FTTH\nFAULT: STB Hardware Defect / Continual Red LED Boot Loop\nONT CONFIG: LAN 4 bound to VLAN 30. IGMP Snooping enabled.\nACTION: Dispatch TT to AREA-MTCE for premises visit and STB replacement.'
+  },
+  {
+    id: 'faq',
+    title: 'FAQ',
+    subtitle: 'Interactive SOPs & Decision Trees',
+    badge: 'Triage Guides',
+    badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    icon: HelpCircle,
+    gradient: 'from-emerald-600 to-teal-700',
+    cardBorder: 'border-emerald-200 hover:border-emerald-400 hover:shadow-emerald-500/15',
+    activeBg: 'bg-gradient-to-br from-emerald-50/80 to-white ring-2 ring-emerald-600 shadow-md',
+    desc: 'Interactive step-by-step visual decision trees, official SharePoint PDF flowcharts, and high-frequency call center scenarios.',
+    ruleCode: 'INTERACTIVE_DECISION_TREES',
+    targetGroup: 'ALL WORK GROUPS',
+    keyFeatures: ['General Questions SOP', 'ONT Power Diagnostics', 'PON / LOS Indicator Matrix', 'Wi-Fi & Speed Drop SOPs'],
+    ttTemplate: 'KNOWLEDGE BASE: FTTH Interactive SOPs & Decision Trees\nURL: /knowledge-hub/faq/ftth\nACTION: Follow step-by-step visual resolution flowcharts.'
+  },
+  {
+    id: 'vas',
+    title: 'VAS',
+    subtitle: 'Data Add-ons & Static IP',
+    badge: 'Value Added Services',
+    badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+    icon: Sparkles,
+    gradient: 'from-amber-600 to-orange-700',
+    cardBorder: 'border-amber-200 hover:border-amber-400 hover:shadow-amber-500/15',
+    activeBg: 'bg-gradient-to-br from-amber-50/80 to-white ring-2 ring-amber-600 shadow-md',
+    desc: 'Extra GB booster allocation, Data Add-on PCRF rating errors, Private to Public Dynamic IP, and Port Forwarding policies.',
+    ruleCode: 'RULE_DATA_CONSUMPTION_ADDON_MISMATCH',
+    targetGroup: 'CEN-CSC-UI / INT-NW-SYS-ADMIN',
+    keyFeatures: ['Extra GB Top-up via MySLT', 'Data Add-on PCRF Bucket Sync', 'Private IP to Public Dynamic IP', 'Port Forwarding (Customer Managed)'],
+    ttTemplate: 'SERVICE: FTTH VAS\nFAULT: Extra GB Data Add-on Purchased but not deducting from PCRF bucket\nACTION: Escalate Trouble Ticket to CEN-CSC-UI / INT-NW-SYS-ADMIN for quota bucket sync.'
+  }
+];
 
 // Official FTTH Complaints & Symptoms/Action Matrix Data matching screenshot
 const FTTH_FAQ_ROWS = [
   {
     id: 'general',
+    category: ['faq', 'broadband'],
     complaint: {
       title: 'General Questions',
       updated: null,
@@ -61,6 +154,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'ont_pon',
+    category: ['broadband', 'faq'],
     complaint: {
       title: 'ONT - PON indicator issue',
       note: '(When the customer is not available at the location, to check the ONT indicators to report the fault, Create the TT for the Default WG.)',
@@ -96,6 +190,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'wifi_not_working',
+    category: ['broadband', 'faq'],
     complaint: {
       title: 'Wi-Fi not working',
       updated: 'Reviewed and updated on 12/02/2026',
@@ -119,6 +214,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'browsing_slow',
+    category: ['broadband', 'faq', 'vas'],
     complaint: {
       title: 'Browsing slow',
       updated: 'Reviewed and updated on 23/10/2024\nReviewed and updated on 24/10/2024',
@@ -167,6 +263,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'voice_issues',
+    category: ['voice', 'faq'],
     complaint: {
       title: 'Voice Issues',
       updated: 'Reviewed and updated on 24/10/2024',
@@ -211,6 +308,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'password_reset',
+    category: ['broadband', 'faq'],
     complaint: {
       title: 'Password Reset',
       updated: 'Reviewed and updated on 25/10/2024',
@@ -251,6 +349,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'change_ip',
+    category: ['vas', 'broadband'],
     complaint: {
       title: 'Change IP',
       updated: 'Reviewed and updated on 25/10/2024',
@@ -271,6 +370,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'pstn_to_ftth',
+    category: ['voice'],
     complaint: {
       title: 'How PSTN number is transferred to FTTH?',
       updated: 'Reviewed and updated on 25/10/2024',
@@ -290,6 +390,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'port_forwarding',
+    category: ['vas', 'broadband'],
     complaint: {
       title: 'Port Forwarding',
       updated: 'Reviewed and updated on 28/04/2025',
@@ -311,6 +412,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'data_usage_issues',
+    category: ['broadband', 'vas'],
     complaint: {
       title: 'Data Usage Issues',
       updated: 'Reviewed and updated on 23/02/2026',
@@ -331,6 +433,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'data_addon_issues',
+    category: ['vas'],
     complaint: {
       title: 'Data Add-on Issues',
       updated: 'Reviewed and updated on 23/02/2026',
@@ -353,6 +456,7 @@ const FTTH_FAQ_ROWS = [
   },
   {
     id: 'online_topup_unavailability',
+    category: ['vas'],
     complaint: {
       title: 'Unavailability of online top up ( Temporary )',
       updated: 'Updated 05-13-2026',
@@ -371,11 +475,77 @@ const FTTH_FAQ_ROWS = [
         }
       }
     ]
+  },
+  {
+    id: 'peotv_fiber_stb',
+    category: ['peo_tv', 'faq'],
+    complaint: {
+      title: 'PEO TV - STB Hardware & Port 4 Configuration',
+      updated: 'Reviewed and updated on 20/02/2026',
+      note: '(ONT Port 4 binding to VLAN 30 is required for IPTV service)'
+    },
+    actions: [
+      {
+        text: '• PEO TV STB Hardware Failure / Blinking Red LED',
+        linkText: 'Click Here',
+        type: 'peotv_stb_flowchart',
+        content: {
+          title: 'PEO TV on FTTH - STB Hardware Triage',
+          ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
+          targetGroup: 'AREA-MTCE',
+          guidance: 'For STB hardware failures or non-responsive decoders on Fiber, verify power supply and HDMI. If red LED blinks continuously or device does not boot, dispatch Trouble Ticket to AREA-MTCE for premises STB replacement.',
+          sop: '1. Verify ONT LAN 4 link LED is ON and solid green.\n2. Confirm LAN cable connects ONT LAN 4 to STB WAN/Ethernet port.\n3. Check VLAN 30 tag in ONT Web GUI.\n4. If STB power LED is red/unresponsive, create TT to AREA-MTCE.'
+        }
+      },
+      {
+        text: '• PEO TV Remote Controller Warranty (Within 6 months)',
+        linkText: 'Policy',
+        type: 'pdf',
+        content: {
+          title: 'PEO TV Remote Controller 6-Month Warranty',
+          ruleCode: 'RULE_REMOTE_CONTROLLER_WARRANTY',
+          guidance: 'DO NOT create Trouble Ticket for defective remote controllers within 6 months of purchase. Advise subscriber to bring faulty remote with purchase invoice/bill to nearest Teleshop for free replacement.',
+          sop: '1. Check STB / remote purchase date in IBSIB.\n2. If <= 6 months, advise customer to visit Teleshop with remote.\n3. If > 6 months, remote can be purchased at Teleshop for nominal fee.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'peotv_channel_freezing',
+    category: ['peo_tv'],
+    complaint: {
+      title: 'PEO TV - Pixelation, Freezing & CAS Errors',
+      updated: 'Reviewed and updated on 15/01/2026',
+      note: null
+    },
+    actions: [
+      {
+        text: '• CAS Error / Channel Authorization Not Active',
+        linkText: 'Resolution',
+        type: 'pdf',
+        content: {
+          title: 'PEO TV CAS Entitlement & Channel Error Resolution',
+          guidance: 'CAS Error 101/102 indicates conditional access authorization timeout. Re-send entitlement signal via PEO TV Admin console.',
+          sop: '1. Access PEO TV Admin console -> Query subscriber STB MAC.\n2. Send CAS Refresh / Re-authorization command.\n3. Keep STB on Channel 1 (SLT Promo) for 5 minutes until channels refresh.'
+        }
+      },
+      {
+        text: '• Video Pixelation / Screen Stuttering (ONT IGMP Snooping)',
+        linkText: 'Checklist',
+        type: 'pdf',
+        content: {
+          title: 'FTTH IPTV Multicast & IGMP Snooping Checklist',
+          guidance: 'Pixelation on FTTH PEO TV is typically caused by disabled IGMP Snooping or optical packet loss (Rx < -26 dBm).',
+          sop: '1. Check Optical Rx power in GB Portal (must be between -8 and -25 dBm).\n2. Login to ONT (192.168.1.1) -> Application -> IGMP -> Enable IGMP Snooping.\n3. If optical power is normal and IGMP enabled, reboot ONT and STB in sequence.'
+        }
+      }
+    ]
   }
 ];
 
 export default function FTTHFAQPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeModalData, setActiveModalData] = useState<any | null>(null);
   const [sampleCallData, setSampleCallData] = useState<any | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -387,6 +557,17 @@ export default function FTTHFAQPage() {
   const [zoomLevel, setZoomLevel] = useState(100);
   const [ttCopied, setTtCopied] = useState(false);
 
+  // Sync category query param from URL on client mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat && ['voice', 'broadband', 'peo_tv', 'faq', 'vas'].includes(cat)) {
+        setSelectedCategory(cat);
+      }
+    }
+  }, []);
+
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
@@ -397,7 +578,9 @@ export default function FTTHFAQPage() {
     const q = searchQuery.toLowerCase();
     const titleMatch = row.complaint.title.toLowerCase().includes(q);
     const actionMatch = row.actions.some(a => a.text.toLowerCase().includes(q));
-    return titleMatch || actionMatch;
+    const searchMatch = !searchQuery || titleMatch || actionMatch;
+    const categoryMatch = selectedCategory === 'all' || (row.category && row.category.includes(selectedCategory));
+    return searchMatch && categoryMatch;
   });
 
   return (
@@ -522,11 +705,202 @@ export default function FTTHFAQPage() {
         </div>
       </div>
 
-      {/* 6. COMPLAINT / REQUEST VS SYMPTOMS/ACTION TABLE */}
+      {/* 6. COMPLAINT / REQUEST VS SYMPTOMS/ACTION TABLE & 5 CORE SERVICE TILES */}
       <div className="flex-1 p-6 md:p-8 bg-slate-50">
-        <div className="max-w-6xl mx-auto bg-white rounded-md border border-slate-300 shadow-sm overflow-hidden">
-          
-          <div className="overflow-x-auto">
+        <div className="max-w-6xl mx-auto space-y-6">
+
+          {/* ======================================================== */}
+          {/* A. 5 CORE SERVICE TILES (Voice, Broadband, PEO TV, FAQ, VAS) */}
+          {/* ======================================================== */}
+          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-100 text-[#005696] border border-cyan-200">
+                    5 Service Domains
+                  </span>
+                  <span className="text-xs text-slate-500 font-semibold">
+                    Interactive FTTH Service Pillars &amp; Fault Classification
+                  </span>
+                </div>
+                <h2 className="text-lg font-black text-slate-900 mt-1">
+                  FTTH Service Domains: Voice, Broadband, PEO TV, FAQ &amp; VAS
+                </h2>
+              </div>
+
+              {/* Reset filter / active badge */}
+              <div className="flex items-center gap-2">
+                {selectedCategory !== 'all' ? (
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className="px-3 py-1 rounded-lg bg-[#005696] text-white text-xs font-bold flex items-center gap-1.5 hover:bg-[#004172] transition-colors shadow-2xs"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                    <span>Clear Filter ({FTTH_TILES.find(t => t.id === selectedCategory)?.title} Active)</span>
+                  </button>
+                ) : (
+                  <span className="text-xs text-slate-400 font-semibold">
+                    Click any tile to filter triage complaints below
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* 5 Tiles Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+              {FTTH_TILES.map((tile) => {
+                const TileIcon = tile.icon;
+                const isSelected = selectedCategory === tile.id;
+                const matchingRowCount = FTTH_FAQ_ROWS.filter(r => r.category && r.category.includes(tile.id)).length;
+
+                return (
+                  <motion.div
+                    key={tile.id}
+                    whileHover={{ y: -3, scale: 1.01 }}
+                    onClick={() => setSelectedCategory(isSelected ? 'all' : tile.id)}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between shadow-2xs relative overflow-hidden group ${
+                      isSelected
+                        ? tile.activeBg
+                        : `bg-white ${tile.cardBorder}`
+                    }`}
+                  >
+                    <div>
+                      {/* Top icon and badge */}
+                      <div className="flex items-start justify-between gap-1.5 mb-2.5">
+                        <div
+                          className={`w-9 h-9 rounded-lg bg-gradient-to-br ${tile.gradient} text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0`}
+                        >
+                          <TileIcon className="w-4 h-4" />
+                        </div>
+                        <span
+                          className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border truncate ${tile.badgeStyle}`}
+                        >
+                          {tile.badge}
+                        </span>
+                      </div>
+
+                      {/* Title & Subtitle */}
+                      <div className="flex items-center justify-between mb-0.5">
+                        <h3 className="font-black text-base text-slate-900 group-hover:text-[#005696] transition-colors">
+                          {tile.title}
+                        </h3>
+                        {isSelected ? (
+                          <span className="px-1.5 py-0.2 rounded bg-[#005696] text-white text-[9px] font-black uppercase">
+                            Active
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-bold text-slate-400">
+                            {matchingRowCount} SOPs
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 truncate">
+                        {tile.subtitle}
+                      </p>
+
+                      <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed mb-3 font-medium">
+                        {tile.desc}
+                      </p>
+
+                      {/* Key features bullet points */}
+                      <div className="space-y-1 pt-2 border-t border-slate-100">
+                        {tile.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                          <div key={fIdx} className="flex items-center gap-1.5 text-[10px] text-slate-600 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#005696] shrink-0"></span>
+                            <span className="truncate">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Bottom Action bar */}
+                    <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveModalData({
+                            title: `FTTH ${tile.title} - Triage & Trouble Ticket Standard`,
+                            ruleCode: tile.ruleCode,
+                            targetGroup: tile.targetGroup,
+                            guidance: tile.desc,
+                            sop: tile.ttTemplate
+                          });
+                        }}
+                        className="font-bold text-[#005696] hover:underline flex items-center gap-1"
+                      >
+                        <FileText className="w-3 h-3" />
+                        <span>TT Template</span>
+                      </button>
+
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors ${
+                          isSelected
+                            ? 'bg-[#005696] text-white shadow-2xs'
+                            : 'bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-[#005696]'
+                        }`}
+                      >
+                        {isSelected ? 'Filtered' : 'Filter'}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ======================================================== */}
+          {/* B. COMPLAINT / REQUEST VS SYMPTOMS/ACTION TABLE          */}
+          {/* ======================================================== */}
+          <div className="bg-white rounded-xl border border-slate-300 shadow-sm overflow-hidden">
+            
+            {/* Filter Bar above table */}
+            <div className="bg-slate-100/90 border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-slate-700">Displaying:</span>
+                <span className="px-2.5 py-0.5 rounded-full font-black text-xs bg-[#005696] text-white">
+                  {selectedCategory === 'all'
+                    ? 'All FTTH Services'
+                    : FTTH_TILES.find(t => t.id === selectedCategory)?.title}
+                </span>
+                <span className="text-slate-500 font-semibold text-xs">
+                  ({filteredRows.length} complaint {filteredRows.length === 1 ? 'type' : 'types'} listed)
+                </span>
+              </div>
+
+              {/* Quick Filter Switcher Pills */}
+              <div className="flex items-center gap-1 overflow-x-auto">
+                <button
+                  onClick={() => setSelectedCategory('all')}
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
+                    selectedCategory === 'all'
+                      ? 'bg-[#005696] text-white shadow-2xs'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  All ({FTTH_FAQ_ROWS.length})
+                </button>
+                {FTTH_TILES.map((t) => {
+                  const isCur = selectedCategory === t.id;
+                  const count = FTTH_FAQ_ROWS.filter(r => r.category && r.category.includes(t.id)).length;
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setSelectedCategory(t.id)}
+                      className={`px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
+                        isCur
+                          ? 'bg-[#005696] text-white shadow-2xs'
+                          : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      {t.title} ({count})
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
             <table className="w-full border-collapse text-xs">
               <thead>
                 <tr className="bg-slate-100/80 border-b border-slate-300 font-black text-slate-800 text-sm">
@@ -765,6 +1139,7 @@ export default function FTTHFAQPage() {
 
         </div>
       </div>
+    </div>
 
       {/* ======================================================== */}
       {/* 7. INTERACTIVE SOP / PDF DOCUMENT VIEWER MODAL          */}
