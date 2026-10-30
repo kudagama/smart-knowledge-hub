@@ -651,7 +651,7 @@ export default function FTTHFAQPage() {
           <span className="text-slate-300">/</span>
           <span className="font-semibold text-slate-800">Knowledge Hub</span>
           <span className="text-slate-300">/</span>
-          <span className="font-bold text-[#005696]">FAQs - FTTH</span>
+          <span className="font-bold text-[#005696]">SLT Fibre (FTTH)</span>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-slate-500">
           <span>Private group</span>
@@ -667,12 +667,22 @@ export default function FTTHFAQPage() {
         <div className="absolute right-0 top-0 bottom-0 w-2/3 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-600/15 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="max-w-6xl mx-auto relative z-10 space-y-3">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-400/20 text-cyan-300 border border-cyan-300/30">
+              FTTH Optical Fiber
+            </span>
+            <span className="text-xs text-blue-200">1Gbps High-Speed Triple Play Platform</span>
+          </div>
+
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white drop-shadow-md">
-            FAQs - FTTH
+            SLT Fibre (FTTH) - Core Services &amp; SOPs
           </h1>
+          <p className="text-xs text-cyan-100/90 max-w-2xl font-medium">
+            Dedicated service triage for Voice, Broadband, PEO TV, FAQ Decision Trees, and Value Added Services (VAS).
+          </p>
 
           {/* Publisher Metadata matching screenshot */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 pt-1">
             <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-700 border border-cyan-400 flex items-center justify-center font-bold text-xs text-white shadow-sm">
               CR
             </div>
