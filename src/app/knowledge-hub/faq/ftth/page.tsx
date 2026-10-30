@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
@@ -549,6 +550,7 @@ const FTTH_FAQ_ROWS = [
 ];
 
 export default function FTTHFAQPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeModalData, setActiveModalData] = useState<any | null>(null);
@@ -753,21 +755,15 @@ export default function FTTHFAQPage() {
                 </h2>
               </div>
 
-              {/* Reset filter / active badge */}
+              {/* Navigation button to FTTH Portal */}
               <div className="flex items-center gap-2">
-                {selectedCategory !== 'all' ? (
-                  <button
-                    onClick={() => setSelectedCategory('all')}
-                    className="px-3 py-1 rounded-lg bg-[#005696] text-white text-xs font-bold flex items-center gap-1.5 hover:bg-[#004172] transition-colors shadow-2xs"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                    <span>Clear Filter ({FTTH_TILES.find(t => t.id === selectedCategory)?.title} Active)</span>
-                  </button>
-                ) : (
-                  <span className="text-xs text-slate-400 font-semibold">
-                    Click any tile to filter triage complaints below
-                  </span>
-                )}
+                <Link
+                  href="/knowledge-hub/ftth"
+                  className="px-3 py-1 rounded-lg bg-[#005696] hover:bg-[#004172] text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>FTTH Hub Overview</span>
+                </Link>
               </div>
             </div>
 
@@ -775,16 +771,20 @@ export default function FTTHFAQPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
               {FTTH_TILES.map((tile) => {
                 const TileIcon = tile.icon;
-                const isSelected = selectedCategory === tile.id;
-                const matchingRowCount = FTTH_FAQ_ROWS.filter(r => r.category && r.category.includes(tile.id)).length;
+                const isCurrentFaq = tile.id === 'faq';
 
                 return (
                   <motion.div
                     key={tile.id}
-                    whileHover={{ y: -3, scale: 1.01 }}
-                    onClick={() => setSelectedCategory(isSelected ? 'all' : tile.id)}
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    transition={{ duration: 0.15 }}
+                    onClick={() => {
+                      if (tile.domainUrl) {
+                        router.push(tile.domainUrl);
+                      }
+                    }}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between shadow-2xs relative overflow-hidden group ${
-                      isSelected
+                      isCurrentFaq
                         ? tile.activeBg
                         : `bg-white ${tile.cardBorder}`
                     }`}
@@ -806,16 +806,17 @@ export default function FTTHFAQPage() {
 
                       {/* Title & Subtitle */}
                       <div className="flex items-center justify-between mb-0.5">
-                        <h3 className="font-black text-base text-slate-900 group-hover:text-[#005696] transition-colors">
-                          {tile.title}
+                        <h3 className="font-black text-base text-slate-900 group-hover:text-[#005696] transition-colors flex items-center gap-1">
+                          <span>{tile.title}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#005696]" />
                         </h3>
-                        {isSelected ? (
-                          <span className="px-1.5 py-0.2 rounded bg-[#005696] text-white text-[9px] font-black uppercase">
-                            Active
+                        {isCurrentFaq ? (
+                          <span className="px-1.5 py-0.2 rounded bg-emerald-700 text-white text-[9px] font-black uppercase">
+                            Active Page
                           </span>
                         ) : (
-                          <span className="text-[10px] font-bold text-slate-400">
-                            {matchingRowCount} SOPs
+                          <span className="text-[10px] font-bold text-[#005696] flex items-center gap-0.5">
+                            Open ➔
                           </span>
                         )}
                       </div>
@@ -855,30 +856,18 @@ export default function FTTHFAQPage() {
                         className="font-bold text-[#005696] hover:underline flex items-center gap-1"
                       >
                         <FileText className="w-3 h-3" />
-                        <span>TT</span>
+                        <span>TT Template</span>
                       </button>
 
                       <div className="flex items-center gap-1">
-                        {tile.id !== 'faq' && tile.domainUrl && (
-                          <Link
-                            href={tile.domainUrl}
-                            onClick={(e) => e.stopPropagation()}
-                            className="text-[10px] font-bold text-slate-500 hover:text-[#005696] hover:underline flex items-center gap-0.5 px-1 py-0.5"
-                            title={`Open dedicated ${tile.title} page`}
-                          >
-                            <span>Open</span>
-                            <ArrowUpRight className="w-2.5 h-2.5" />
-                          </Link>
-                        )}
-
                         <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors ${
-                            isSelected
-                              ? 'bg-[#005696] text-white shadow-2xs'
-                              : 'bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-[#005696]'
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors flex items-center gap-0.5 ${
+                            isCurrentFaq
+                              ? 'bg-emerald-700 text-white shadow-2xs'
+                              : 'bg-slate-100 text-slate-700 group-hover:bg-[#005696] group-hover:text-white'
                           }`}
                         >
-                          {isSelected ? 'Filtered' : 'Filter'}
+                          {isCurrentFaq ? 'FAQ Table Below' : 'Open Page ➔'}
                         </span>
                       </div>
                     </div>
