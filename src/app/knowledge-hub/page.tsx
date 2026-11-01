@@ -52,7 +52,8 @@ import {
   ChevronLeft,
   Clock,
   RotateCcw,
-  Volume2
+  Volume2,
+  Signal
 } from 'lucide-react';
 
 // Left Sidebar Menu Links
@@ -272,28 +273,28 @@ const MAIN_PRODUCT_TILES = [
     highlights: ['PSTN MDF Dispatch', 'Loop Resistance Testing', 'RTO Walk-in Replacement', 'ADSL 8/35 VPI/VCI']
   },
   {
-    id: 'peo_tv',
-    title: 'PEO TV',
-    fullName: 'SLT PEO TV (Interactive IPTV Platform)',
-    pillar: 'peo_tv',
-    icon: Tv,
-    gradient: 'from-indigo-800 via-purple-700 to-pink-700',
-    cardBorder: 'border-purple-300 shadow-purple-500/10 hover:border-purple-400 hover:shadow-purple-500/20',
-    accentColor: 'text-purple-600',
-    bgLight: 'bg-purple-50/50',
-    badge: 'Digital IPTV & VOD',
-    badgeStyle: 'bg-purple-100 text-purple-900 border-purple-200',
-    asset: 'PEOTV / IPTV',
-    ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
-    route: '/knowledge-hub/faq',
+    id: '4g_lte',
+    title: '4G LTE',
+    fullName: 'SLT-Mobitel 4G LTE (Fixed Wireless Broadband)',
+    pillar: '4g_lte',
+    icon: Radio,
+    gradient: 'from-blue-700 via-indigo-700 to-purple-800',
+    cardBorder: 'border-indigo-300 shadow-indigo-500/10 hover:border-indigo-500 hover:shadow-indigo-500/20',
+    accentColor: 'text-indigo-600',
+    bgLight: 'bg-indigo-50/50',
+    badge: 'Fixed Wireless Broadband',
+    badgeStyle: 'bg-indigo-100 text-indigo-900 border-indigo-200',
+    asset: '4G LTE / WIRELESS',
+    ruleCode: 'RULE_4G_RELOAD_DIRECT_CHANNELS',
+    route: '/knowledge-hub/4g-lte',
     ctaText: 'Open',
     features: [
-      { label: 'STB Hardware Defect (Red Power LED)', path: '/knowledge-hub/faq', icon: Tv },
-      { label: 'Remote Controller 6-Month Warranty', path: '/knowledge-hub/faq', icon: ShieldCheck },
-      { label: 'CAS Authorization & Error 403', path: '/knowledge-hub/faq', icon: AlertCircle },
-      { label: 'IGMP Snooping & VLAN 30 Multicast', path: '/knowledge-hub/faq', icon: Cpu },
+      { label: 'CPE Router Signal (Band 40 / Band 3)', path: '/knowledge-hub/4g-lte', icon: Signal },
+      { label: 'Prepaid Reloads & Banking SOP', path: '/knowledge-hub/4g-lte', icon: CreditCard },
+      { label: 'VoLTE Desk Phone & SIM Replacement', path: '/knowledge-hub/4g-lte', icon: Phone },
+      { label: 'Outdoor High-Gain Antenna Dispatch', path: '/knowledge-hub/4g-lte', icon: Wifi },
     ],
-    highlights: ['6-Month Remote Warranty', 'Huawei & Netgem STBs', 'VLAN 30 Binding', 'Teleshop Replacement']
+    highlights: ['Band 40 (2300MHz)', 'VoLTE Desk Phone', 'Prepaid Recharge SOP', 'Outdoor Antenna Extension']
   },
   {
     id: 'trio',
@@ -341,10 +342,10 @@ const SERVICE_PILLARS = [
     color: 'text-teal-600'
   },
   {
-    id: 'peo_tv',
-    label: 'PEO TV (IPTV)',
-    icon: Tv,
-    color: 'text-purple-600'
+    id: '4g_lte',
+    label: '4G LTE (Wireless)',
+    icon: Radio,
+    color: 'text-indigo-600'
   },
   {
     id: 'trio',
