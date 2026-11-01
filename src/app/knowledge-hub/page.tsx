@@ -195,15 +195,15 @@ const MAIN_PRODUCT_TILES = [
     desc: 'Unified 3-in-1 Triple Play package combining Megaline/Fiber Telephone Voice + High Speed Broadband + PEO TV on a single consolidated bill with bundled savings.',
     asset: 'TRIO / BUNDLE',
     ruleCode: 'RULE_UNLIMITED_SLOWNESS',
-    route: '/knowledge-hub/faq',
-    ctaText: 'Open Trio Solutions',
+    route: '/knowledge-hub/trio',
+    ctaText: 'Open Trio Bundled Packages',
     features: [
-      { label: 'Single Consolidated Bill Disputes', path: '/knowledge-hub/faq', icon: CreditCard },
-      { label: 'Triple Play Package Bandwidth QoS', path: '/knowledge-hub/faq', icon: Globe },
-      { label: 'Bundled VAS & Free OTT Perks', path: '/knowledge-hub/faq', icon: Sparkles },
-      { label: 'Trio Migration & Upgrade Matrix', path: '/knowledge-hub/faq', icon: ArrowUpRight },
+      { label: 'Trio Shine (100GB + 95 Ch + Free OTT)', path: '/knowledge-hub/trio', icon: Sparkles },
+      { label: 'Trio Vibe / Vibe+ (Entertainment)', path: '/knowledge-hub/trio', icon: Globe },
+      { label: 'Itemized Tax Breakdown (CESS, TL, SSCL, VAT)', path: '/knowledge-hub/trio', icon: CreditCard },
+      { label: 'Contact Centre 1212 SOP & Migration Rules', path: '/knowledge-hub/trio', icon: ArrowUpRight },
     ],
-    highlights: ['Single Monthly Bill', 'Free VAS Top-ups', 'Triple Service SLA', 'Consolidated Care']
+    highlights: ['Single Monthly Bill', 'Free Line Rental', '12-Month Commit', 'AI Bot Ready (RAG)']
   }
 ];
 

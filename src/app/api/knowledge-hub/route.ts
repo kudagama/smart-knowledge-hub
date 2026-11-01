@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { dummyContacts } from '@/data/contacts';
+import { TRIO_PACKAGES, TRIO_OPERATIONAL_SOPS, TRIO_FAQS } from '@/data/trioPackages';
 
 // Master 13 official triage rules dataset
 const MASTER_RULES_SEED = [
@@ -248,6 +249,40 @@ const MASTER_RULES_SEED = [
     priority: 125,
     is_active: true,
     created_at: '2026-10-15T08:30:00Z'
+  },
+  {
+    _id: "rule_14",
+    rule_code: 'RULE_TRIO_ACTIVATION_MIGRATION',
+    rule_name: 'Trio Bundled Triple Play Package Activation & Migration',
+    description: 'Migration from Single/Double play to Trio triple play bundle or new FTTH Trio provisioning.',
+    asset_type: 'PEOTV',
+    symptom_patterns: ['trio activation', 'activate trio', 'trio package', 'trio shine', 'trio vibe', 'trio fit', 'upgrade to trio', 'triple play activation'],
+    action_type: 'CUSTOMER_SELF_CARE',
+    target_group: 'CEN-CSC-UI',
+    validation_requirements: {
+      required_fields: ['customer_context.slt_number']
+    },
+    advice_instructions: 'Direct Contact Centre activation supported. Verify FTTH coverage (or initiate copper-to-fiber migration order). Configure VLAN 30 on ONT LAN Port 4 and provision selected Trio tier in CRM.',
+    priority: 135,
+    is_active: true,
+    created_at: '2026-11-01T08:00:00Z'
+  },
+  {
+    _id: "rule_15",
+    rule_code: 'RULE_TRIO_EARLY_TERMINATION',
+    rule_name: 'Trio 1-Year Commitment & Early Termination Fee Assessment',
+    description: 'Trio subscription termination or downward migration inquiry before 12-month commitment completes.',
+    asset_type: 'BILLING',
+    symptom_patterns: ['trio downgrade', 'disconnect trio', 'trio termination fee', 'cancel trio', 'trio to double play'],
+    action_type: 'INFORM_SUPERVISOR',
+    target_group: 'BSS-OPR-OCR',
+    validation_requirements: {
+      required_fields: ['customer_context.slt_number', 'technical_context.device_age_months']
+    },
+    advice_instructions: 'Mandatory 1-year (12-month) commitment applies. Forward to TCV Retention Desk first. If churn confirmed within 12 months, notify customer of Rs. 1,000/- + applicable statutory taxes early termination charge.',
+    priority: 145,
+    is_active: true,
+    created_at: '2026-11-01T08:00:00Z'
   }
 ];
 
@@ -565,7 +600,12 @@ export async function GET() {
       rules: rulesData,
       reports: reportsData,
       contacts: contactsData,
-      schemas: SCHEMA_DEFINITIONS
+      schemas: SCHEMA_DEFINITIONS,
+      trio: {
+        packages: TRIO_PACKAGES,
+        sops: TRIO_OPERATIONAL_SOPS,
+        faqs: TRIO_FAQS
+      }
     }
   });
 }

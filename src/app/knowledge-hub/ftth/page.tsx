@@ -124,6 +124,28 @@ const FTTH_CARDS = [
     ttTemplate: 'KNOWLEDGE BASE: FTTH Interactive SOPs & Decision Trees\nURL: /knowledge-hub/faq/ftth\nACTION: Follow step-by-step visual resolution flowcharts.'
   },
   {
+    id: 'trio',
+    title: 'Trio Bundles',
+    subtitle: 'Triple Play 3-in-1',
+    badge: 'Voice + BB + TV',
+    badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200',
+    icon: Layers,
+    gradient: 'from-amber-600 via-orange-600 to-rose-600',
+    cardBorder: 'border-amber-200 hover:border-amber-500 hover:shadow-amber-500/15',
+    route: '/knowledge-hub/trio',
+    ctaText: 'Open Trio Bundled Packages',
+    desc: 'Unified 3-in-1 Triple Play package bundling Voice Landline + GPON Broadband + PEO TV with itemized taxes, free line rental, and bundled savings.',
+    ruleCode: 'RULE_TRIO_ACTIVATION_MIGRATION',
+    targetGroup: 'CONTACT-CENTRE / CEN-CSC-UI',
+    keyFeatures: [
+      'Trio Shine (100GB + 95 Ch + Free OTT)',
+      'Trio Vibe & Vibe+ (Entertainment)',
+      'Itemized Tax Matrix (CESS, TL, SSCL, VAT)',
+      'Contact Centre 1212 SOP & Churn Rules'
+    ],
+    ttTemplate: 'SERVICE: SLT FTTH Trio Bundle\nREQUEST: Activate Trio Triple Play Package\nACTION: Provision selected package in MINT CRM and configure VLAN 30 on ONT Port 4.'
+  },
+  {
     id: 'vas',
     title: 'VAS',
     subtitle: 'Data Add-ons & Static IP',
