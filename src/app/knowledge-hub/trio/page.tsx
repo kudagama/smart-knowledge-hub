@@ -484,9 +484,7 @@ export default function TrioBundledPackagesPage() {
                             <span>Cannot be sold to new customers (Discontinued)</span>
                           </div>
                         )}
-                        <p className="text-xs text-slate-500 mt-1 min-h-[32px] line-clamp-2">
-                          {pkg.tagline}
-                        </p>
+
                       </div>
 
                       {/* Pricing Block */}

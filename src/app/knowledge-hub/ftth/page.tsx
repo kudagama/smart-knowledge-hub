@@ -390,9 +390,7 @@ export default function FTTHPage() {
                       {card.subtitle}
                     </p>
 
-                    <p className="text-xs text-slate-600 font-medium line-clamp-3 leading-relaxed mb-4">
-                      {card.desc}
-                    </p>
+
 
                     {/* Key Features List */}
                     <div className="space-y-1.5 pt-3 border-t border-slate-100 mb-4">

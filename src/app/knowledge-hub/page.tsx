@@ -45,7 +45,14 @@ import {
   LayoutGrid,
   LayoutList,
   SlidersHorizontal,
-  ArrowUpRight
+  ArrowUpRight,
+  Megaphone,
+  AlertTriangle,
+  Bell,
+  ChevronLeft,
+  Clock,
+  RotateCcw,
+  Volume2
 } from 'lucide-react';
 
 // Left Sidebar Menu Links
@@ -61,6 +68,117 @@ const SIDEBAR_ITEMS = [
   { id: 'bbpkg', label: 'Broadband Package Ca...' },
   { id: 'conv', label: 'Conversations' },
   { id: 'docs', label: 'Documents' },
+];
+
+
+// Operational Broadcasts & Common Issues Dataset (Incident Alerts & Circular Announcements)
+export interface OperationalBroadcast {
+  id: string;
+  type: 'INCIDENT' | 'ANNOUNCEMENT' | 'MAINTENANCE';
+  severity: 'CRITICAL' | 'HIGH' | 'INFO' | 'MEDIUM';
+  badge: string;
+  title: string;
+  category: string;
+  summary: string;
+  affectedScope: string;
+  actionAdvice: string;
+  agentScript: string;
+  ticketRef: string;
+  timestamp: string;
+  status: 'ACTIVE' | 'INVESTIGATING' | 'MONITORING' | 'SCHEDULED';
+  gradient: string;
+  borderColor: string;
+  accentColor: string;
+  badgeStyle: string;
+  linkText?: string;
+  linkUrl?: string;
+}
+
+export const OPERATIONAL_BROADCASTS: OperationalBroadcast[] = [
+  {
+    id: 'broadcast-smw5-cable',
+    type: 'INCIDENT',
+    severity: 'CRITICAL',
+    badge: 'CRITICAL COMMON ISSUE',
+    title: 'SMW-5 Submarine Optical Cable Degradation & International Latency',
+    category: 'International Gateway & Core IP',
+    summary: 'Undersea optical cable maintenance causing temporary latency and packet loss on European & Singapore cloud/gaming routes. NOC engineers are actively rerouting data traffic via secondary terrestrial links.',
+    affectedScope: 'Fibre Broadband, 4G LTE International Traffic, Microsoft 365, Online Gaming',
+    actionAdvice: 'Inform callers this is an international undersea cable incident under active restoration. Do NOT dispatch individual technician tickets. Full normalization expected within 3 to 4 hours.',
+    agentScript: 'Dear Customer, we are currently experiencing temporary international undersea transmission maintenance affecting certain global websites and servers. Our Network Operations Center is actively rerouting internet traffic through alternative routes. Full speed normalization is expected within 3-4 hours.',
+    ticketRef: 'NOC-INC-2026-94812',
+    timestamp: 'Live Alert • Updated 10 mins ago',
+    status: 'INVESTIGATING',
+    gradient: 'from-slate-950 via-rose-950/80 to-slate-900',
+    borderColor: 'border-rose-500/40 shadow-rose-950/30',
+    accentColor: 'text-rose-400',
+    badgeStyle: 'bg-rose-500 text-white animate-pulse',
+    linkText: 'Browsing Slow SOP',
+    linkUrl: '/knowledge-hub/faq/ftth/browsing-slow'
+  },
+  {
+    id: 'broadcast-trio-update',
+    type: 'ANNOUNCEMENT',
+    severity: 'INFO',
+    badge: 'COMMERCIAL CIRCULAR',
+    title: 'Trio Bundles: Trio Pet Officially Discontinued | Trio Shine & Vibe Active',
+    category: 'Product Portfolio & Pricing Circular',
+    summary: 'Trio Pet (Rs. 1,890/=) is officially DISCONTINUED and cannot be sold to new connections. Active packages: Trio Shine (Rs. 4,950/= | Rs. 6,372.47 with tax), Trio Vibe+ (Rs. 4,100/=), and Trio Vibe (Rs. 3,530/=). Note: "Trio Fit" does not exist.',
+    affectedScope: 'Contact Centre 1212, Teleshops, MINT CRM Triple Play Orders',
+    actionAdvice: 'When callers inquire about budget Triple Play, guide them to Trio Vibe (40GB + Free Night Data + 70 PEO TV Ch + Free Voice Line Rental). Single and Double Play customers can upgrade via 1212 without branch visit.',
+    agentScript: 'Sir/Madam, the Trio Pet package has been discontinued in our current commercial portfolio. We now offer the Trio Vibe package for Rs. 3,530/= (Rs. 4,618.51 with all statutory taxes), which includes 40GB anytime data, unlimited free night data, 70 PEO TV channels, and completely free monthly landline rental with free SLT-to-SLT calling.',
+    ticketRef: 'CIR-TRIO-2026/02',
+    timestamp: 'Commercial Circular • Active Policy',
+    status: 'ACTIVE',
+    gradient: 'from-slate-950 via-blue-950/80 to-slate-900',
+    borderColor: 'border-blue-500/40 shadow-blue-950/30',
+    accentColor: 'text-cyan-400',
+    badgeStyle: 'bg-blue-600 text-white',
+    linkText: 'View Trio Hub',
+    linkUrl: '/knowledge-hub/trio'
+  },
+  {
+    id: 'broadcast-peliyagoda-cut',
+    type: 'INCIDENT',
+    severity: 'HIGH',
+    badge: 'REGIONAL COMMON FAULT',
+    title: 'Western Province North: Optical Fiber Feeder Cable Snapped (Peliyagoda)',
+    category: 'Outside Plant (OSP) / Fiber Cut',
+    summary: 'Road widening construction machinery damaged an 96-core optical fiber trunk cable near Peliyagoda interchange. Splicing teams and emergency optical vans are deployed on-site.',
+    affectedScope: 'Kelaniya, Peliyagoda, Kiribathgoda sub-areas (FTTH Voice, BB & PEO TV LOS Red Alarms)',
+    actionAdvice: 'Do not log individual home premises maintenance visits. Inform customers that physical cable restoration is underway with ETA of 2 hours. Link customer complaints under Master Ticket.',
+    agentScript: 'We have identified an external optical fiber cable break near Peliyagoda caused by road development work. Our engineering repair team is currently on-site performing optical splicing. Services in your area will automatically restore within 2 hours without needing a home technician visit.',
+    ticketRef: 'OSP-CUT-WP-7721',
+    timestamp: 'Field Engineering • Splicing Active',
+    status: 'ACTIVE',
+    gradient: 'from-slate-950 via-amber-950/80 to-slate-900',
+    borderColor: 'border-amber-500/40 shadow-amber-950/30',
+    accentColor: 'text-amber-400',
+    badgeStyle: 'bg-amber-500 text-slate-950 font-black',
+    linkText: 'LOS Red Indicator SOP',
+    linkUrl: '/knowledge-hub/faq/ftth/pon-los-indicator'
+  },
+  {
+    id: 'broadcast-mint-crm',
+    type: 'MAINTENANCE',
+    severity: 'MEDIUM',
+    badge: 'SYSTEM MAINTENANCE NOTICE',
+    title: 'MINT CRM & C-Log Database Maintenance: Sunday 01:00 AM - 03:30 AM',
+    category: 'Enterprise IT & BSS Systems',
+    summary: 'Scheduled database optimization and cluster index rebuild. Order provisioning and trouble ticket creation will run in offline queuing mode during the maintenance window.',
+    affectedScope: 'MINT CRM, C-Log Trouble Ticket Dispatch, Clarity C12, GB Portal Sync',
+    actionAdvice: 'Use the offline triage draft sheet during the 2.5-hour maintenance window. Batch queue will process and commit orders automatically once database synchronization resumes.',
+    agentScript: 'Our central CRM system is undergoing scheduled routine performance maintenance until 03:30 AM. Your request has been securely queued and will be processed automatically first thing in the morning.',
+    ticketRef: 'SYS-MAINT-2026-088',
+    timestamp: 'Scheduled Maintenance • Sunday Window',
+    status: 'SCHEDULED',
+    gradient: 'from-slate-950 via-purple-950/80 to-slate-900',
+    borderColor: 'border-purple-500/40 shadow-purple-950/30',
+    accentColor: 'text-purple-300',
+    badgeStyle: 'bg-purple-600 text-white',
+    linkText: 'System Portals',
+    linkUrl: '#common-links'
+  }
 ];
 
 // Quick Access High-Frequency Interactive SOPs
@@ -119,7 +237,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'DATA / FTTH',
     ruleCode: 'RULE_LOS_RED',
     route: '/knowledge-hub/ftth',
-    ctaText: 'Open Fiber Services (Voice, BB, TV, VAS)',
+    ctaText: 'Open',
     features: [
       { label: 'Voice (SIP Dial Tone & Rule 11 MDF)', path: '/knowledge-hub/ftth/voice', icon: Phone },
       { label: 'Broadband (1Gbps, Wi-Fi & LOS Red)', path: '/knowledge-hub/ftth/broadband', icon: Globe },
@@ -143,13 +261,13 @@ const MAIN_PRODUCT_TILES = [
     badgeStyle: 'bg-teal-100 text-teal-900 border-teal-200',
     asset: 'VOICE / COPPER',
     ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
-    route: '/knowledge-hub/faq',
-    ctaText: 'Open Megaline SOPs',
+    route: '/knowledge-hub/megaline',
+    ctaText: 'Open',
     features: [
-      { label: 'No Dial Tone / MDF Dispatch (Rule 11)', path: '/knowledge-hub/faq', icon: Phone },
-      { label: 'ADSL Router Defect (Rule 3: RTO Walk-in)', path: '/knowledge-hub/faq', icon: Wrench },
-      { label: 'Line Noise & SNR Margin Degradation', path: '/knowledge-hub/faq', icon: Radio },
-      { label: 'Rainy Season Copper Cable Faults', path: '/knowledge-hub/faq', icon: AlertCircle },
+      { label: 'Voice (PSTN Dial Tone & MDF Rule 11)', path: '/knowledge-hub/megaline/voice', icon: Phone },
+      { label: 'Broadband (ADSL/ADSL2+ & Router Sync)', path: '/knowledge-hub/megaline/broadband', icon: Globe },
+      { label: 'PEO TV (Copper IPTV & Splitter Triage)', path: '/knowledge-hub/megaline/peo-tv', icon: Tv },
+      { label: 'Copper to FTTH Migration SOP', path: '/knowledge-hub/trio', icon: Sparkles },
     ],
     highlights: ['PSTN MDF Dispatch', 'Loop Resistance Testing', 'RTO Walk-in Replacement', 'ADSL 8/35 VPI/VCI']
   },
@@ -168,7 +286,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'PEOTV / IPTV',
     ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
     route: '/knowledge-hub/faq',
-    ctaText: 'Open PEO TV Guides',
+    ctaText: 'Open',
     features: [
       { label: 'STB Hardware Defect (Red Power LED)', path: '/knowledge-hub/faq', icon: Tv },
       { label: 'Remote Controller 6-Month Warranty', path: '/knowledge-hub/faq', icon: ShieldCheck },
@@ -192,7 +310,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'TRIO / BUNDLE',
     ruleCode: 'RULE_UNLIMITED_SLOWNESS',
     route: '/knowledge-hub/trio',
-    ctaText: 'Open Trio Bundled Packages',
+    ctaText: 'Open',
     features: [
       { label: 'Trio Shine (100GB + 95 Ch + Free OTT)', path: '/knowledge-hub/trio', icon: Sparkles },
       { label: 'Trio Vibe / Vibe+ (Entertainment)', path: '/knowledge-hub/trio', icon: Globe },
@@ -323,6 +441,44 @@ export default function KnowledgeHubPage() {
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
   const [activeCommonTab, setActiveCommonTab] = useState<'operational' | 'broadbandEmail' | 'billing' | 'internal'>('operational');
+  
+  // Operational Broadcast Banner State
+  const [activeBroadcastIndex, setActiveBroadcastIndex] = useState(0);
+  const [broadcastFilter, setBroadcastFilter] = useState<'ALL' | 'INCIDENTS' | 'ANNOUNCEMENTS'>('ALL');
+  const [isScriptExpanded, setIsScriptExpanded] = useState(false);
+  const [copiedScriptId, setCopiedScriptId] = useState<string | null>(null);
+  const [isBannerCollapsed, setIsBannerCollapsed] = useState(false);
+  const [activeAdvisoryModal, setActiveAdvisoryModal] = useState<OperationalBroadcast | null>(null);
+
+  // Filter broadcasts based on user selection
+  const filteredBroadcasts = React.useMemo(() => {
+    if (broadcastFilter === 'INCIDENTS') {
+      return OPERATIONAL_BROADCASTS.filter(b => b.type === 'INCIDENT');
+    }
+    if (broadcastFilter === 'ANNOUNCEMENTS') {
+      return OPERATIONAL_BROADCASTS.filter(b => b.type === 'ANNOUNCEMENT' || b.type === 'MAINTENANCE');
+    }
+    return OPERATIONAL_BROADCASTS;
+  }, [broadcastFilter]);
+
+  // Safe current broadcast pointer
+  const currentBroadcast = filteredBroadcasts[activeBroadcastIndex] || filteredBroadcasts[0] || OPERATIONAL_BROADCASTS[0];
+
+  const handleNextBroadcast = () => {
+    setActiveBroadcastIndex((prev) => (prev + 1) % filteredBroadcasts.length);
+    setIsScriptExpanded(false);
+  };
+
+  const handlePrevBroadcast = () => {
+    setActiveBroadcastIndex((prev) => (prev - 1 + filteredBroadcasts.length) % filteredBroadcasts.length);
+    setIsScriptExpanded(false);
+  };
+
+  const copyScriptText = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedScriptId(id);
+    setTimeout(() => setCopiedScriptId(null), 2500);
+  };
 
   // Filter 4 Main Pillars by search and active pillar
   const filteredCategories = MAIN_PRODUCT_TILES.filter((c) => {
@@ -493,54 +649,252 @@ export default function KnowledgeHubPage() {
         <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
 
           {/* ======================================================== */}
-          {/* A. HERO SOP QUICK-LAUNCH BAR                            */}
+          {/* A. OPERATIONAL BROADCAST & COMMON ISSUES BANNER          */}
           {/* ======================================================== */}
-          <div className="p-4 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 rounded-2xl text-white shadow-lg border border-blue-700/40 relative overflow-hidden">
-            <div className="relative z-10 space-y-3">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-400/20 text-cyan-300 border border-cyan-300/30">
-                      Top Call Center Scenarios
-                    </span>
-                    <span className="text-xs text-blue-200">Instant SOP &amp; Flowchart Resolution</span>
+          <div className="space-y-2">
+            <div className={`rounded-2xl text-white shadow-xl border bg-gradient-to-r transition-all duration-300 relative overflow-hidden ${currentBroadcast.gradient} ${currentBroadcast.borderColor}`}>
+              {/* Background ambient glow effect */}
+              <div className="absolute -right-16 -top-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+              <div className="relative z-10 p-4 md:p-5 space-y-4">
+                {/* 1. Banner Header Bar */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {/* Pulsing Live Operational Indicator */}
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-black tracking-wider uppercase">
+                      <span className={`w-2 h-2 rounded-full animate-pulse ${
+                        currentBroadcast.severity === 'CRITICAL' ? 'bg-rose-400 ring-4 ring-rose-500/30' :
+                        currentBroadcast.severity === 'HIGH' ? 'bg-amber-400 ring-4 ring-amber-500/30' :
+                        currentBroadcast.severity === 'INFO' ? 'bg-cyan-400 ring-4 ring-cyan-500/30' :
+                        'bg-purple-400 ring-4 ring-purple-500/30'
+                      }`}></span>
+                      <span className="text-white">
+                        {currentBroadcast.type === 'INCIDENT' ? 'LIVE COMMON ISSUE BROADCAST' :
+                         currentBroadcast.type === 'ANNOUNCEMENT' ? 'OFFICIAL CIRCULAR NOTICE' : 'PLANNED SYSTEM NOTICE'}
+                      </span>
+                    </div>
+
+                    {/* Filter Segmented Controls */}
+                    <div className="hidden sm:flex items-center bg-black/30 p-0.5 rounded-lg border border-white/10 text-[10px] font-bold">
+                      <button
+                        onClick={() => { setBroadcastFilter('ALL'); setActiveBroadcastIndex(0); }}
+                        className={`px-2 py-0.5 rounded ${broadcastFilter === 'ALL' ? 'bg-white/20 text-white' : 'text-slate-400 hover:text-white'}`}
+                      >
+                        All ({OPERATIONAL_BROADCASTS.length})
+                      </button>
+                      <button
+                        onClick={() => { setBroadcastFilter('INCIDENTS'); setActiveBroadcastIndex(0); }}
+                        className={`px-2 py-0.5 rounded ${broadcastFilter === 'INCIDENTS' ? 'bg-rose-500/40 text-rose-200' : 'text-slate-400 hover:text-white'}`}
+                      >
+                        Common Issues ({OPERATIONAL_BROADCASTS.filter(b => b.type === 'INCIDENT').length})
+                      </button>
+                      <button
+                        onClick={() => { setBroadcastFilter('ANNOUNCEMENTS'); setActiveBroadcastIndex(0); }}
+                        className={`px-2 py-0.5 rounded ${broadcastFilter === 'ANNOUNCEMENTS' ? 'bg-blue-500/40 text-cyan-200' : 'text-slate-400 hover:text-white'}`}
+                      >
+                        Announcements ({OPERATIONAL_BROADCASTS.filter(b => b.type !== 'INCIDENT').length})
+                      </button>
+                    </div>
                   </div>
-                  <h2 className="text-base font-black text-white mt-1">
-                    Instant Trouble Ticket &amp; Fault Resolution Quick-Launch
-                  </h2>
+
+                  {/* Navigation Controls & Collapse Toggle */}
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="text-[11px] font-mono text-slate-300 font-bold hidden md:inline">
+                      Advisory {activeBroadcastIndex + 1} of {filteredBroadcasts.length}
+                    </span>
+
+                    <div className="flex items-center bg-black/30 rounded-lg border border-white/15 p-0.5">
+                      <button
+                        onClick={handlePrevBroadcast}
+                        title="Previous Advisory"
+                        className="p-1 hover:bg-white/20 rounded text-slate-200 hover:text-white transition-colors"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <span className="px-2 font-mono text-[11px] font-bold text-cyan-300">
+                        {activeBroadcastIndex + 1}/{filteredBroadcasts.length}
+                      </span>
+                      <button
+                        onClick={handleNextBroadcast}
+                        title="Next Advisory"
+                        className="p-1 hover:bg-white/20 rounded text-slate-200 hover:text-white transition-colors"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => setIsBannerCollapsed(!isBannerCollapsed)}
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-slate-300 hover:text-white transition-all text-[11px] flex items-center gap-1 font-bold"
+                    >
+                      <span>{isBannerCollapsed ? 'Expand' : 'Minimize'}</span>
+                      {isBannerCollapsed ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5 rotate-180" />}
+                    </button>
+                  </div>
                 </div>
 
-                <Link
-                  href="/knowledge-hub/faq"
-                  className="px-3 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-lg text-xs font-black flex items-center gap-1.5 transition-all shadow-md"
-                >
-                  <BookOpen className="w-3.5 h-3.5" />
-                  <span>Browse All SOPs</span>
-                </Link>
-              </div>
+                {/* 2. Banner Main Body (Collapsible) */}
+                {!isBannerCollapsed && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-3"
+                  >
+                    {/* Metadata & Severity Tags */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider ${currentBroadcast.badgeStyle}`}>
+                        {currentBroadcast.badge}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-md bg-white/10 text-cyan-200 border border-white/15 text-[10px] font-bold">
+                        {currentBroadcast.category}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {currentBroadcast.timestamp}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-mono ml-auto">
+                        REF: <strong className="text-white">{currentBroadcast.ticketRef}</strong>
+                      </span>
+                    </div>
 
-              {/* 5 High-Frequency Scenario Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 pt-1">
-                {QUICK_SOPS.map((sop, idx) => {
-                  const SopIcon = sop.icon;
-                  return (
-                    <Link
-                      key={idx}
-                      href={sop.path}
-                      className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all group ${sop.color} shadow-xs hover:shadow-md hover:scale-[1.02]`}
-                    >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <SopIcon className="w-4 h-4" />
-                        <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-white/80">
-                          {sop.badge}
-                        </span>
-                      </div>
-                      <p className="text-xs font-bold leading-snug line-clamp-2 group-hover:underline">
-                        {sop.title}
+                    {/* Headline and Description */}
+                    <div>
+                      <h2 className="text-base md:text-lg font-black text-white leading-tight">
+                        {currentBroadcast.title}
+                      </h2>
+                      <p className="text-xs md:text-sm text-slate-200 mt-1 leading-relaxed">
+                        {currentBroadcast.summary}
                       </p>
+                    </div>
+
+                    {/* Operational Details Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1 text-xs">
+                      <div className="p-2.5 rounded-xl bg-black/25 border border-white/10 space-y-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1">
+                          <AlertTriangle className="w-3 h-3" />
+                          Affected Scope &amp; Services
+                        </span>
+                        <p className="text-[11px] text-slate-200 font-medium">
+                          {currentBroadcast.affectedScope}
+                        </p>
+                      </div>
+
+                      <div className="p-2.5 rounded-xl bg-black/25 border border-white/10 space-y-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" />
+                          Action Guidance for Contact Center 1212
+                        </span>
+                        <p className="text-[11px] text-slate-200 font-medium">
+                          {currentBroadcast.actionAdvice}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Expandable Agent Script Talking Point Box */}
+                    {isScriptExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="p-3 rounded-xl bg-blue-950/70 border border-cyan-400/30 text-xs space-y-2 text-cyan-100 font-sans"
+                      >
+                        <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+                          <span className="font-bold text-cyan-300 flex items-center gap-1.5 text-[11px]">
+                            <Volume2 className="w-3.5 h-3.5 text-cyan-300" />
+                            Official Customer Talking Point (Frontline Script)
+                          </span>
+                          <button
+                            onClick={() => copyScriptText(currentBroadcast.agentScript, currentBroadcast.id)}
+                            className="px-2.5 py-1 rounded-md bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-[10px] flex items-center gap-1 transition-all shadow-xs"
+                          >
+                            {copiedScriptId === currentBroadcast.id ? (
+                              <>
+                                <Check className="w-3 h-3 text-slate-950" />
+                                <span>Copied Script!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3 h-3" />
+                                <span>Copy Script</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <p className="text-xs italic leading-relaxed text-cyan-50 bg-black/20 p-2 rounded-lg border border-white/5">
+                          "{currentBroadcast.agentScript}"
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* Action Buttons Row */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-white/10">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setIsScriptExpanded(!isScriptExpanded)}
+                          className="px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs"
+                        >
+                          <Megaphone className="w-3.5 h-3.5 text-cyan-300" />
+                          <span>{isScriptExpanded ? 'Hide Customer Script' : 'Customer Talking Point / Script'}</span>
+                        </button>
+
+                        <button
+                          onClick={() => setActiveAdvisoryModal(currentBroadcast)}
+                          className="px-3 py-1.5 rounded-lg bg-black/30 hover:bg-black/50 border border-white/15 text-slate-200 hover:text-white font-bold text-xs flex items-center gap-1 transition-all"
+                        >
+                          <span>Full Advisory Briefing</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {currentBroadcast.linkUrl && (
+                        <Link
+                          href={currentBroadcast.linkUrl}
+                          className="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs flex items-center gap-1 transition-all shadow-md ml-auto"
+                        >
+                          <span>{currentBroadcast.linkText || 'Open Direct SOP'}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* 3. Direct Slide Indicator Dots */}
+                <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/10">
+                  <div className="flex items-center gap-1.5">
+                    {filteredBroadcasts.map((b, idx) => (
+                      <button
+                        key={b.id}
+                        onClick={() => { setActiveBroadcastIndex(idx); setIsScriptExpanded(false); }}
+                        title={b.title}
+                        className={`h-1.5 rounded-full transition-all ${
+                          idx === activeBroadcastIndex
+                            ? 'w-6 bg-cyan-400'
+                            : 'w-2 bg-white/30 hover:bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Compact Quick SOP Access Strip */}
+                  <div className="flex items-center gap-2 overflow-x-auto text-[11px] font-bold text-slate-300">
+                    <span className="text-slate-400 text-[10px] hidden lg:inline">Quick SOPs:</span>
+                    <Link href="/knowledge-hub/faq/ftth/wifi-not-working" className="hover:text-cyan-300 transition-colors whitespace-nowrap">Wi-Fi PON</Link>
+                    <span className="text-slate-600">•</span>
+                    <Link href="/knowledge-hub/faq/ftth/browsing-slow" className="hover:text-cyan-300 transition-colors whitespace-nowrap">Browsing Slow</Link>
+                    <span className="text-slate-600">•</span>
+                    <Link href="/knowledge-hub/faq/ftth/pon-los-indicator" className="hover:text-cyan-300 transition-colors whitespace-nowrap">LOS Red</Link>
+                    <span className="text-slate-600">•</span>
+                    <Link href="/knowledge-hub/faq/ftth/ont-not-working" className="hover:text-cyan-300 transition-colors whitespace-nowrap">ONT Dead</Link>
+                    <span className="text-slate-600">•</span>
+                    <Link href="/knowledge-hub/faq" className="text-cyan-300 hover:underline flex items-center gap-0.5 whitespace-nowrap">
+                      <span>All SOPs</span>
+                      <ArrowRight className="w-3 h-3" />
                     </Link>
-                  );
-                })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -612,9 +966,7 @@ export default function KnowledgeHubPage() {
                         <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#005696]" />
                       </h3>
 
-                      <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                        {tile.fullName}
-                      </p>
+
 
                       {/* Interactive Triage & Features */}
                       <div className="space-y-1.5 pt-3 border-t border-slate-100">
@@ -683,9 +1035,7 @@ export default function KnowledgeHubPage() {
                       <h4 className="font-black text-lg text-slate-900">
                         {tile.title}
                       </h4>
-                      <p className="text-[10px] text-slate-400 font-bold mb-2 truncate">
-                        {tile.fullName}
-                      </p>
+
 
                       {/* Feature Highlights */}
                       <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-100">
@@ -701,9 +1051,9 @@ export default function KnowledgeHubPage() {
                       <span className="text-[9px] font-bold text-slate-400 uppercase">
                         {tile.asset}
                       </span>
-                      <div className="text-xs font-bold text-[#005696] hover:underline flex items-center gap-1">
-                        <span>{tile.ctaText}</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                      <div className="px-3 py-1 rounded-md bg-[#005696] hover:bg-[#00407a] text-white font-bold text-xs flex items-center gap-1 transition-all shadow-2xs">
+                        <span>Open</span>
+                        <ArrowRight className="w-3 h-3" />
                       </div>
                     </div>
                   </motion.div>
@@ -773,9 +1123,7 @@ export default function KnowledgeHubPage() {
                     <h5 className="font-black text-xs text-slate-800 group-hover:text-[#005696] transition-colors">
                       {linkItem.name}
                     </h5>
-                    <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-relaxed font-medium">
-                      {linkItem.desc}
-                    </p>
+
                   </div>
                 </div>
               ))}
@@ -832,6 +1180,122 @@ export default function KnowledgeHubPage() {
       {/* INTERACTIVE DETAIL MODAL / DRAWER                        */}
       {/* ======================================================== */}
       <AnimatePresence>
+        {activeAdvisoryModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 space-y-4"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between pb-3 border-b border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-xl text-white flex items-center justify-center font-bold shadow-md ${
+                    activeAdvisoryModal.severity === 'CRITICAL' ? 'bg-rose-600' :
+                    activeAdvisoryModal.severity === 'HIGH' ? 'bg-amber-600' :
+                    activeAdvisoryModal.severity === 'INFO' ? 'bg-[#005696]' : 'bg-purple-600'
+                  }`}>
+                    <Megaphone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#005696]">
+                        {activeAdvisoryModal.category}
+                      </span>
+                      <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">
+                        {activeAdvisoryModal.ticketRef}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-black text-slate-900 leading-snug mt-0.5">
+                      {activeAdvisoryModal.title}
+                    </h3>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setActiveAdvisoryModal(null)}
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="space-y-3 text-xs">
+                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Full Incident / Announcement Summary
+                  </span>
+                  <p className="text-slate-800 font-medium leading-relaxed">
+                    {activeAdvisoryModal.summary}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div className="p-3 rounded-xl bg-blue-50/60 border border-blue-200/80">
+                    <span className="text-[10px] font-bold text-blue-900 uppercase">Impacted Services</span>
+                    <p className="text-blue-950 font-semibold mt-0.5">{activeAdvisoryModal.affectedScope}</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-emerald-50/60 border border-emerald-200/80">
+                    <span className="text-[10px] font-bold text-emerald-900 uppercase">Action Plan for Agents</span>
+                    <p className="text-emerald-950 font-semibold mt-0.5">{activeAdvisoryModal.actionAdvice}</p>
+                  </div>
+                </div>
+
+                {/* Copyable Frontline Call Center Script */}
+                <div className="p-3.5 bg-slate-900 border border-slate-700 rounded-xl space-y-2 text-white">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+                    <span className="font-bold text-cyan-300 text-[11px] flex items-center gap-1">
+                      <Volume2 className="w-3.5 h-3.5" />
+                      Frontline Customer Script (1212 / Teleshop)
+                    </span>
+                    <button
+                      onClick={() => copyScriptText(activeAdvisoryModal.agentScript, 'modal-' + activeAdvisoryModal.id)}
+                      className="px-2.5 py-1 bg-[#005696] hover:bg-[#0070ba] text-white text-[10px] rounded-md font-sans font-bold flex items-center gap-1 transition-all"
+                    >
+                      {copiedScriptId === 'modal-' + activeAdvisoryModal.id ? (
+                        <>
+                          <Check className="w-3 h-3 text-emerald-300" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3" />
+                          <span>Copy Script</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <p className="italic text-cyan-100 text-xs leading-relaxed font-sans">
+                    "{activeAdvisoryModal.agentScript}"
+                  </p>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="pt-2 flex justify-between items-center">
+                {activeAdvisoryModal.linkUrl ? (
+                  <Link
+                    href={activeAdvisoryModal.linkUrl}
+                    onClick={() => setActiveAdvisoryModal(null)}
+                    className="px-4 py-2 bg-[#005696] hover:bg-[#004780] text-white rounded-xl text-xs font-black shadow-xs flex items-center gap-1.5"
+                  >
+                    <span>{activeAdvisoryModal.linkText || 'Open Related SOP'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : <div></div>}
+
+                <button
+                  onClick={() => setActiveAdvisoryModal(null)}
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-colors"
+                >
+                  Close Advisory
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+
         {selectedItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
             <motion.div

@@ -157,11 +157,11 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           basePriceLkr: 600.96,
           percentageOfBundle: 12.14,
           cess: 12.26,
-          tl: 91.98,
-          sscl: 18.05,
-          vat: 130.19,
-          totalTaxLkr: 252.48,
-          priceWithTaxLkr: 853.44
+          tl: 90.14,
+          sscl: 18.06,
+          vat: 132.19,
+          totalTaxLkr: 252.65,
+          priceWithTaxLkr: 853.61
         },
         {
           service: 'PEO_TV',
@@ -169,11 +169,11 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           basePriceLkr: 801.28,
           percentageOfBundle: 16.19,
           cess: 16.35,
-          tl: 122.64,
+          tl: 122.84,
           sscl: 24.07,
           vat: 173.58,
-          totalTaxLkr: 336.64,
-          priceWithTaxLkr: 1137.92
+          totalTaxLkr: 336.84,
+          priceWithTaxLkr: 1138.12
         },
         {
           service: 'DIGITAL_SERVICES',
@@ -184,8 +184,8 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           tl: 0.00,
           sscl: 5.23,
           vat: 37.74,
-          totalTaxLkr: 47.05,
-          priceWithTaxLkr: 247.37
+          totalTaxLkr: 47.06,
+          priceWithTaxLkr: 247.38
         }
       ]
     },
@@ -266,7 +266,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           percentageOfBundle: 14.63,
           cess: 12.24,
           tl: 91.84,
-          sscl: 18.07,
+          sscl: 18.02,
           vat: 129.98,
           totalTaxLkr: 252.08,
           priceWithTaxLkr: 852.08
@@ -278,7 +278,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           percentageOfBundle: 36.59,
           cess: 30.60,
           tl: 229.59,
-          sscl: 45.08,
+          sscl: 45.06,
           vat: 324.95,
           totalTaxLkr: 630.20,
           priceWithTaxLkr: 2130.20
@@ -350,10 +350,10 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           percentageOfBundle: 60.34,
           cess: 43.45,
           tl: 0.00,
-          sscl: 55.64,
+          sscl: 55.63,
           vat: 401.24,
-          totalTaxLkr: 500.33,
-          priceWithTaxLkr: 2630.33
+          totalTaxLkr: 500.32,
+          priceWithTaxLkr: 2630.32
         },
         {
           service: 'LINE_RENTAL',
@@ -362,7 +362,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           percentageOfBundle: 17.00,
           cess: 12.24,
           tl: 91.84,
-          sscl: 18.07,
+          sscl: 18.02,
           vat: 129.98,
           totalTaxLkr: 252.08,
           priceWithTaxLkr: 852.08
@@ -374,7 +374,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           percentageOfBundle: 22.66,
           cess: 16.32,
           tl: 122.45,
-          sscl: 24.09,
+          sscl: 24.03,
           vat: 173.30,
           totalTaxLkr: 336.10,
           priceWithTaxLkr: 1136.10
@@ -448,33 +448,33 @@ export const TRIO_PACKAGES: TrioPackage[] = [
           cess: 12.24,
           tl: 0.00,
           sscl: 15.67,
-          vat: 113.02,
+          vat: 113.03,
           totalTaxLkr: 140.94,
           priceWithTaxLkr: 740.94
         },
         {
           service: 'LINE_RENTAL',
           displayName: 'Voice Line Rental (Essential)',
-          basePriceLkr: 430.00,
-          percentageOfBundle: 22.75,
-          cess: 8.77,
-          tl: 65.82,
-          sscl: 12.92,
-          vat: 93.15,
-          totalTaxLkr: 180.66,
-          priceWithTaxLkr: 610.66
+          basePriceLkr: 440.00,
+          percentageOfBundle: 23.28,
+          cess: 8.98,
+          tl: 67.35,
+          sscl: 13.22,
+          vat: 95.32,
+          totalTaxLkr: 184.87,
+          priceWithTaxLkr: 624.87
         },
         {
           service: 'PEO_TV',
           displayName: 'PEO TV Essential (70 Channels)',
-          basePriceLkr: 860.00,
-          percentageOfBundle: 45.50,
-          cess: 17.54,
-          tl: 131.63,
-          sscl: 25.83,
-          vat: 186.30,
-          totalTaxLkr: 361.31,
-          priceWithTaxLkr: 1221.31
+          basePriceLkr: 850.00,
+          percentageOfBundle: 44.97,
+          cess: 17.34,
+          tl: 130.10,
+          sscl: 25.53,
+          vat: 184.14,
+          totalTaxLkr: 357.10,
+          priceWithTaxLkr: 1207.10
         }
       ]
     },
