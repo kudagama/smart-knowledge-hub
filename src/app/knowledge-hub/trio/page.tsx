@@ -66,15 +66,27 @@ export default function TrioBundledPackagesPage() {
   // Filter packages based on tier and search
   const filteredPackages = useMemo(() => {
     return TRIO_PACKAGES.filter((pkg) => {
-      const matchesTier = selectedTier === 'ALL' || pkg.code === selectedTier;
       const q = searchQuery.toLowerCase();
+      const isSearchingPet = q.includes('pet');
+
+      let matchesTier = false;
+      if (selectedTier === 'ALL' || selectedTier === 'ACTIVE') {
+        matchesTier = !pkg.isDiscontinued || isSearchingPet;
+      } else if (selectedTier === 'DISCONTINUED') {
+        matchesTier = pkg.isDiscontinued === true;
+      } else {
+        matchesTier = pkg.code === selectedTier;
+      }
+
       const matchesSearch =
         !q ||
         pkg.name.toLowerCase().includes(q) ||
+        pkg.code.toLowerCase().includes(q) ||
         pkg.tagline.toLowerCase().includes(q) ||
         pkg.highlights.some(h => h.toLowerCase().includes(q)) ||
         pkg.broadband.anytimeQuotaGb.toString().includes(q) ||
         pkg.peoTv.channelCount.toString().includes(q);
+
       return matchesTier && matchesSearch;
     });
   }, [selectedTier, searchQuery]);
@@ -387,44 +399,44 @@ export default function TrioBundledPackagesPage() {
             
             {/* Tier Filters & Quick Stats */}
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-slate-500">Filter Tier:</span>
-                {['ALL', 'SHINE', 'VIBE_PLUS', 'VIBE', 'FIT'].map((tier) => (
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-semibold text-slate-500">Filter Portfolio:</span>
+                {[
+                  { id: 'ACTIVE', label: 'Active Packages (3)' },
+                  { id: 'SHINE', label: 'Trio Shine' },
+                  { id: 'VIBE_PLUS', label: 'Trio Vibe+' },
+                  { id: 'VIBE', label: 'Trio Vibe' },
+                  { id: 'DISCONTINUED', label: 'Discontinued (Trio Pet)' }
+                ].map((tier) => (
                   <button
-                    key={tier}
-                    onClick={() => setSelectedTier(tier)}
-                    className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${
-                      selectedTier === tier
+                    key={tier.id}
+                    onClick={() => setSelectedTier(tier.id)}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition-colors cursor-pointer ${
+                      selectedTier === tier.id || (selectedTier === 'ALL' && tier.id === 'ACTIVE')
                         ? 'bg-[#003B66] text-white shadow-xs'
+                        : tier.id === 'DISCONTINUED'
+                        ? 'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100'
                         : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
                     }`}
                   >
-                    {tier === 'ALL'
-                      ? 'Show All'
-                      : tier === 'SHINE'
-                      ? 'Shine'
-                      : tier === 'VIBE_PLUS'
-                      ? 'Vibe+'
-                      : tier === 'VIBE'
-                      ? 'Vibe'
-                      : 'Fit'}
+                    {tier.label}
                   </button>
                 ))}
               </div>
 
               <div className="text-xs text-slate-500 font-medium">
-                Showing <strong className="text-slate-800">{filteredPackages.length}</strong> of 4 TRCSL Approved Packages
+                Showing <strong className="text-slate-800">{filteredPackages.length}</strong> Packages (3 Active Commercial Offers)
               </div>
             </div>
 
             {/* Packages Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPackages.map((pkg) => {
                 const isExpanded = expandedPackageId === pkg.id;
                 const isShine = pkg.code === 'SHINE';
                 const isVibePlus = pkg.code === 'VIBE_PLUS';
                 const isVibe = pkg.code === 'VIBE';
-                const isFit = pkg.code === 'FIT';
+                const isPet = pkg.code === 'PET';
 
                 return (
                   <motion.div
@@ -460,7 +472,18 @@ export default function TrioBundledPackagesPage() {
                         <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center justify-between">
                           <span>{pkg.name}</span>
                           {isShine && <Sparkles className="w-5 h-5 text-sky-500" />}
+                          {pkg.isDiscontinued && (
+                            <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-700 border border-rose-300">
+                              Discontinued
+                            </span>
+                          )}
                         </h2>
+                        {pkg.isDiscontinued && (
+                          <div className="mt-1.5 px-2.5 py-1 rounded bg-rose-50 border border-rose-200 text-rose-800 text-[11px] font-bold flex items-center gap-1.5">
+                            <AlertTriangle className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+                            <span>Cannot be sold to new customers (Discontinued)</span>
+                          </div>
+                        )}
                         <p className="text-xs text-slate-500 mt-1 min-h-[32px] line-clamp-2">
                           {pkg.tagline}
                         </p>
@@ -680,7 +703,7 @@ export default function TrioBundledPackagesPage() {
                 <button
                   onClick={() => {
                     const csvContent = TRIO_COMPARISON_MATRIX.map(
-                      r => `"${r.featureName}","${r.shine}","${r.vibePlus}","${r.vibe}","${r.fit}"`
+                      r => `"${r.featureName}","${r.shine}","${r.vibePlus}","${r.vibe}","${r.pet}"`
                     ).join('\n');
                     copyToClipboard(csvContent, 'copy-compare-csv');
                   }}
@@ -711,7 +734,7 @@ export default function TrioBundledPackagesPage() {
                       Trio Vibe
                     </th>
                     <th className="py-3.5 px-4 font-extrabold text-cyan-900 bg-cyan-50/60 border-l border-slate-200 w-3/16">
-                      Trio Fit
+                      Trio Pet (Discontinued)
                     </th>
                   </tr>
                 </thead>
@@ -739,7 +762,7 @@ export default function TrioBundledPackagesPage() {
                         {row.vibe}
                       </td>
                       <td className="py-3 px-4 font-medium text-slate-900 border-l border-slate-100 bg-cyan-50/20">
-                        {row.fit}
+                        {row.pet}
                       </td>
                     </tr>
                   ))}
@@ -781,7 +804,7 @@ export default function TrioBundledPackagesPage() {
                   Why do different Trio packages have different effective tax rates?
                 </div>
                 <p className="text-[11px] leading-relaxed text-blue-800">
-                  In Sri Lanka, <strong>Broadband Internet data is exempt from the 15% Telecommunication Levy (TL)</strong>, whereas Voice Line Rental and PEO TV services are legally subject to the 15% TL. Since each Trio package has different price proportions allocated to Broadband vs Voice/TV, the blended effective tax rate varies from <strong>28.74%</strong> (Trio Shine) up to <strong>36.13%</strong> (Trio Fit).
+                  In Sri Lanka, <strong>Broadband Internet data is exempt from the 15% Telecommunication Levy (TL)</strong>, whereas Voice Line Rental and PEO TV services are legally subject to the 15% TL. Since each Trio package has different price proportions allocated to Broadband vs Voice/TV, the blended effective tax rate varies from <strong>28.74%</strong> (Trio Shine) up to <strong>36.13%</strong> (Trio Pet (Discontinued)).
                 </p>
               </div>
 

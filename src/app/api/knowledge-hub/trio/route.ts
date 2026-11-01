@@ -18,7 +18,7 @@ import {
  * 
  * Supported query params:
  * - format: 'json' (default) | 'rag' | 'markdown' | 'ai-prompt'
- * - package: 'shine' | 'vibe-plus' | 'vibe' | 'fit'
+ * - package: 'shine' | 'vibe-plus' | 'vibe' | 'pet'
  * - section: 'all' | 'packages' | 'taxes' | 'sops' | 'faqs' | 'comparison'
  * - search: keyword search across packages, rules, and FAQs
  */
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: `Trio package '${pkgParam}' not found. Valid options: 'shine', 'vibe-plus', 'vibe', 'fit'.`
+          error: `Trio package '${pkgParam}' not found. Valid options: 'shine', 'vibe-plus', 'vibe', 'pet'.`
         },
         { status: 404 }
       );

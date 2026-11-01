@@ -256,7 +256,7 @@ const MASTER_RULES_SEED = [
     rule_name: 'Trio Bundled Triple Play Package Activation & Migration',
     description: 'Migration from Single/Double play to Trio triple play bundle or new FTTH Trio provisioning.',
     asset_type: 'PEOTV',
-    symptom_patterns: ['trio activation', 'activate trio', 'trio package', 'trio shine', 'trio vibe', 'trio fit', 'upgrade to trio', 'triple play activation'],
+    symptom_patterns: ['trio activation', 'activate trio', 'trio package', 'trio shine', 'trio vibe', 'trio pet', 'upgrade to trio', 'triple play activation'],
     action_type: 'CUSTOMER_SELF_CARE',
     target_group: 'CEN-CSC-UI',
     validation_requirements: {

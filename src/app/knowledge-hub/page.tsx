@@ -116,7 +116,6 @@ const MAIN_PRODUCT_TILES = [
     bgLight: 'bg-cyan-50/50',
     badge: '1Gbps FTTH Optical',
     badgeStyle: 'bg-cyan-100 text-cyan-900 border-cyan-200',
-    desc: 'Ultra high-speed optical fiber connectivity, GPON ONT router triage, Wi-Fi 6 diagnostics, LOS red alarms, and direct Trouble Ticket dispatch to AREA-MTCE.',
     asset: 'DATA / FTTH',
     ruleCode: 'RULE_LOS_RED',
     route: '/knowledge-hub/ftth',
@@ -142,7 +141,6 @@ const MAIN_PRODUCT_TILES = [
     bgLight: 'bg-teal-50/50',
     badge: 'Copper Wireline Voice',
     badgeStyle: 'bg-teal-100 text-teal-900 border-teal-200',
-    desc: 'Traditional copper wireline voice telephone, ADSL broadband double-play, line noise / crackling, SNR & loop resistance diagnostics, and MDF exchange dispatch.',
     asset: 'VOICE / COPPER',
     ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
     route: '/knowledge-hub/faq',
@@ -167,7 +165,6 @@ const MAIN_PRODUCT_TILES = [
     bgLight: 'bg-purple-50/50',
     badge: 'Digital IPTV & VOD',
     badgeStyle: 'bg-purple-100 text-purple-900 border-purple-200',
-    desc: 'High-definition digital IPTV streaming, Set-Top Box (STB) hardware failure triage, remote controller 6-month warranty checks, VLAN 30 port binding, and PEO Mobile.',
     asset: 'PEOTV / IPTV',
     ruleCode: 'RULE_STB_ONT_ROUTER_FAULTY',
     route: '/knowledge-hub/faq',
@@ -192,7 +189,6 @@ const MAIN_PRODUCT_TILES = [
     bgLight: 'bg-amber-50/50',
     badge: 'Voice + Data + IPTV (3-in-1)',
     badgeStyle: 'bg-amber-100 text-amber-900 border-amber-200',
-    desc: 'Unified 3-in-1 Triple Play package combining Megaline/Fiber Telephone Voice + High Speed Broadband + PEO TV on a single consolidated bill with bundled savings.',
     asset: 'TRIO / BUNDLE',
     ruleCode: 'RULE_UNLIMITED_SLOWNESS',
     route: '/knowledge-hub/trio',
@@ -333,7 +329,6 @@ export default function KnowledgeHubPage() {
     const matchesSearch =
       c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (c.badge && c.badge.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (c.features && c.features.some(
         (f: any) => f.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -621,10 +616,6 @@ export default function KnowledgeHubPage() {
                         {tile.fullName}
                       </p>
 
-                      <p className="text-xs text-slate-600 font-medium leading-relaxed line-clamp-3 mb-4">
-                        {tile.desc}
-                      </p>
-
                       {/* Interactive Triage & Features */}
                       <div className="space-y-1.5 pt-3 border-t border-slate-100">
                         <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
@@ -694,9 +685,6 @@ export default function KnowledgeHubPage() {
                       </h4>
                       <p className="text-[10px] text-slate-400 font-bold mb-2 truncate">
                         {tile.fullName}
-                      </p>
-                      <p className="text-xs text-slate-500 font-medium line-clamp-2 leading-relaxed mb-3">
-                        {tile.desc}
                       </p>
 
                       {/* Feature Highlights */}

@@ -4,6 +4,11 @@
  * Includes comprehensive pricing, itemized tax breakdowns (CESS, TL, SSCL, VAT),
  * technical specifications, operational migration rules, call center SOPs,
  * and AI Bot RAG retrieval schemas.
+ * 
+ * IMPORTANT PORTFOLIO STATUS:
+ * - Active Packages: Trio Shine, Trio Vibe Plus (Vibe+), Trio Vibe
+ * - Discontinued / Inactive: Trio Pet (No longer available for new activations)
+ * - Note: There is NO package named "Trio Fit".
  */
 
 export interface TaxComponent {
@@ -28,7 +33,9 @@ export interface TrioPackage {
   id: string;
   code: string;
   name: string;
-  tier: 'FLAGSHIP' | 'POPULAR' | 'VALUE' | 'STARTER';
+  tier: 'FLAGSHIP' | 'POPULAR' | 'VALUE' | 'LEGACY';
+  isDiscontinued?: boolean;
+  discontinuedNotice?: string;
   tagline: string;
   badge: string;
   accentColor: {
@@ -96,7 +103,7 @@ export interface TrioFaqItem {
   author: string;
   role: string;
   date: string;
-  category: 'PRICING' | 'ELIGIBILITY' | 'MIGRATION' | 'TERMINATION' | 'HARDWARE';
+  category: 'PRICING' | 'ELIGIBILITY' | 'MIGRATION' | 'TERMINATION' | 'HARDWARE' | 'STATUS';
   verified: boolean;
 }
 
@@ -110,6 +117,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     code: 'SHINE',
     name: 'Trio Shine',
     tier: 'FLAGSHIP',
+    isDiscontinued: false,
     tagline: 'The Ultimate All-in-One Digital Home Experience',
     badge: 'Premium Flagship',
     accentColor: {
@@ -217,6 +225,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     code: 'VIBE_PLUS',
     name: 'Trio Vibe Plus (Vibe+)',
     tier: 'POPULAR',
+    isDiscontinued: false,
     tagline: 'High-Speed Broadband with Expanded Entertainment',
     badge: 'Most Popular',
     accentColor: {
@@ -312,6 +321,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     code: 'VIBE',
     name: 'Trio Vibe',
     tier: 'VALUE',
+    isDiscontinued: false,
     tagline: 'Smart Triple-Play Value for Daily Online Living',
     badge: 'Best Value',
     accentColor: {
@@ -403,18 +413,20 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     bestFor: 'Small households wanting essential fiber connectivity, local TV & free landline'
   },
   {
-    id: 'trio-fit',
-    code: 'FIT',
-    name: 'Trio Fit',
-    tier: 'STARTER',
-    tagline: 'Affordable Essential Triple-Play Entry Plan',
-    badge: 'Budget Friendly',
+    id: 'trio-pet',
+    code: 'PET',
+    name: 'Trio Pet (Discontinued)',
+    tier: 'LEGACY',
+    isDiscontinued: true,
+    discontinuedNotice: 'Trio Pet package has been officially DISCONTINUED and is no longer available for new activations or migrations.',
+    tagline: 'Legacy Entry Plan (Discontinued - Not Available for New Sales)',
+    badge: 'Discontinued',
     accentColor: {
-      primary: '#0284c7', // cyan-700
-      light: 'bg-cyan-50',
-      border: 'border-cyan-300 hover:border-cyan-500',
-      gradient: 'from-cyan-800 via-teal-700 to-blue-700',
-      pill: 'bg-cyan-100 text-cyan-900 border-cyan-300'
+      primary: '#64748b', // slate-500
+      light: 'bg-slate-50',
+      border: 'border-slate-300',
+      gradient: 'from-slate-700 via-slate-600 to-slate-500',
+      pill: 'bg-rose-100 text-rose-800 border-rose-300'
     },
     pricing: {
       basePriceWithoutTaxLkr: 1890.00,
@@ -469,7 +481,7 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     broadband: {
       anytimeQuotaGb: 20,
       freeNightTime: false,
-      nightQuotaDesc: 'Standard Anytime 20GB quota allocation',
+      nightQuotaDesc: 'Standard Anytime 20GB quota allocation (Historical)',
       uploadSpeed: 'High-Speed Optical GPON Uploads',
       downloadSpeed: 'Up to 100Mbps GPON Fiber Speeds',
       fairUsagePolicy: 'Standard TRCSL Fair Usage Policy applies'
@@ -489,15 +501,17 @@ export const TRIO_PACKAGES: TrioPackage[] = [
     commitmentMonths: 12,
     earlyTerminationFeeLkr: 1000.00,
     highlights: [
-      'Most economical triple-play entry package at Rs. 1,890/=',
-      '20 GB Anytime Broadband Data',
-      '70 PEO TV Channels including local news and entertainment',
-      'Free Voice Line Rental included',
-      'Ideal starting point for migrating from copper to fiber'
+      '⚠️ DISCONTINUED PACKAGE - Not available for new activations',
+      'Former entry-level triple play package at Rs. 1,890/=',
+      'Cannot be sold to new customers',
+      'Existing subscribed customers only'
     ],
-    bestFor: 'Budget conscious households and single users needing reliable triple play basics'
+    bestFor: 'Legacy information only - do NOT recommend to callers'
   }
 ];
+
+// Active packages for current customer recommendations
+export const TRIO_ACTIVE_PACKAGES = TRIO_PACKAGES.filter(p => !p.isDiscontinued);
 
 // ---------------------------------------------------------------------------
 // 2. CONTACT CENTRE OPERATIONAL RULES & SOPS
@@ -505,11 +519,23 @@ export const TRIO_PACKAGES: TrioPackage[] = [
 
 export const TRIO_OPERATIONAL_SOPS: TrioSopRule[] = [
   {
+    id: 'sop-trio-pet-discontinued',
+    ruleCode: 'RULE_TRIO_PET_DISCONTINUED',
+    title: 'Trio PET Status: Discontinued (Cannot be sold to new customers)',
+    channel: 'CONTACT_CENTER_1212',
+    description: 'The Trio PET package (Rs. 1,890/=) is DISCONTINUED and is NO LONGER AVAILABLE for new activations or migrations. Note that there is no package named Trio Fit either. Do not create new orders for Trio Pet.',
+    eligibility: 'Inquiries regarding Trio Pet or entry-level Trio packages.',
+    actionRequired: 'Inform the caller that Trio PET has been discontinued and cannot be sold. Direct the customer to the active lineup: Trio Vibe (Rs. 3,530/=), Trio Vibe+ (Rs. 4,100/=), or Trio Shine (Rs. 4,950/=). Existing Trio Pet customers may continue their subscription on legacy terms.',
+    ttTemplate: `INQUIRY: Trio PET Availability
+STATUS: DISCONTINUED (Cannot be sold to new customers)
+RESOLUTION: Customer informed that Trio PET is no longer available. Guided customer to active Trio Vibe / Vibe+ / Shine packages.`
+  },
+  {
     id: 'sop-trio-activation',
     ruleCode: 'RULE_TRIO_ACTIVATION_CHANNELS',
     title: 'Trio Package Activation & Channel Eligibility',
     channel: 'CONTACT_CENTER_1212',
-    description: 'Existing Single Play (Voice only) and Double Play (Voice + Broadband) customers can be migrated to Trio directly through the Contact Centre (1212) or Teleshop without visiting the branch.',
+    description: 'Existing Single Play (Voice only) and Double Play (Voice + Broadband) customers can be migrated to active Trio packages (Vibe, Vibe+, Shine) directly through the Contact Centre (1212) or Teleshop without visiting the branch.',
     eligibility: 'Available for SLT Fibre (FTTH) and Megaline (Copper/PSTN) customers upon upgrading to Fibre (FTTH).',
     actionRequired: 'Verify customer account on LDAP and C-Log/CRM. Ensure premises has active FTTH connection or order FTTH migration order first. Process Trio service request in CRM under Triple Play.',
     ttTemplate: `SERVICE: SLT Trio Package Activation
@@ -525,7 +551,7 @@ ACTION: Process Triple Play service order. Provision VLAN 30 on Port 4 for PEO T
     channel: 'CONTACT_CENTER_1212',
     description: 'Megaline PSTN Copper customers who wish to obtain Trio packages must be migrated to SLT Fibre (FTTH). Trio packages cannot run on pure copper ADSL lines due to IPTV bandwidth requirements.',
     eligibility: 'Megaline copper customers in fiber-ready coverage zones.',
-    actionRequired: 'Check Fiber Drop Point (DP) availability on GB Portal. Log Copper-to-Fiber migration order. Bind customer selected Trio bundle (Fit, Vibe, Vibe+, or Shine) upon fiber installation.',
+    actionRequired: 'Check Fiber Drop Point (DP) availability on GB Portal. Log Copper-to-Fiber migration order. Bind customer selected Trio bundle (Vibe, Vibe+, or Shine) upon fiber installation.',
     ttTemplate: `SERVICE: Copper to FTTH Trio Migration
 SUBSCRIBER: [SLT_NUMBER] (Megaline Copper)
 DP STATUS: Fiber DP available within 500m.
@@ -537,7 +563,7 @@ ACTION: Dispatch TT to AREA-MTCE for outdoor optical drop wire installation.`
     ruleCode: 'RULE_TRIO_UPGRADE_TO_SHINE',
     title: 'Upgrading Between Trio Packages (e.g. Vibe to Shine)',
     channel: 'CONTACT_CENTER_1212',
-    description: 'Any Trio subscriber can upgrade to a higher tier (e.g. Fit -> Vibe -> Vibe+ -> Shine) instantly via Contact Centre with zero migration or penalty fees.',
+    description: 'Any active Trio subscriber can upgrade to a higher tier (e.g. Vibe -> Vibe+ -> Shine) instantly via Contact Centre with zero migration or penalty fees.',
     eligibility: 'All active Trio subscribers in good billing standing.',
     actionRequired: 'Confirm upgraded quota and new monthly rental with subscriber. Update package code in CRM/Billing engine. New allowance takes effect immediately; bill is prorated for current cycle.',
     ttTemplate: `SERVICE: Trio Package Upgrade
@@ -577,9 +603,19 @@ DISPATCH: Escalated to TCV Retention Desk for customer consultation and retentio
 
 export const TRIO_FAQS: TrioFaqItem[] = [
   {
+    id: 'faq-00',
+    question: 'Is Trio PET package still available? What about Trio Fit?',
+    answer: 'Trio PET is officially DISCONTINUED and is no longer available for new sales or activations. There is also NO package named "Trio Fit". The current active SLT Trio lineup consists of exactly 3 packages: Trio Vibe (Rs. 3,530/=), Trio Vibe Plus (Rs. 4,100/=), and Trio Shine (Rs. 4,950/=). Existing Trio Pet customers may remain on their grandfathered plan, but no new subscriptions can be created.',
+    author: 'Eroshana Rathnayake',
+    role: 'Senior Executive - Broadband & VAS Knowledge Hub',
+    date: '2026-02-15',
+    category: 'STATUS',
+    verified: true
+  },
+  {
     id: 'faq-01',
     question: 'How long is the commitment period for Trio packages, and can customers change packages after that?',
-    answer: 'The minimum commitment period for all Trio packages (Fit, Vibe, Vibe+, Shine) is strictly 1 year (12 months) from the activation date. After completing the 1-year period, the customer is fully free to upgrade, downgrade, or transition to standalone packages with zero early termination penalty.',
+    answer: 'The minimum commitment period for all active Trio packages (Vibe, Vibe+, Shine) is strictly 1 year (12 months) from the activation date. After completing the 1-year period, the customer is fully free to upgrade, downgrade, or transition to standalone packages with zero early termination penalty.',
     author: 'Eroshana Rathnayake',
     role: 'Senior Executive - Broadband & VAS Knowledge Hub',
     date: '2026-02-15',
@@ -599,7 +635,7 @@ export const TRIO_FAQS: TrioFaqItem[] = [
   {
     id: 'faq-03',
     question: 'Can a second PEO TV (Multi-Room) connection be added to a Trio package?',
-    answer: 'Yes! A secondary PEO TV connection can be attached to any Trio FTTH package (except Trio Fit which is single STB only). Standard PEO TV multi-room subscription and STB hardware charges apply, and both TVs will be billed together on the single consolidated monthly statement.',
+    answer: 'Yes! A secondary PEO TV connection can be attached to any active Trio FTTH package. Standard PEO TV multi-room subscription and STB hardware charges apply, and both TVs will be billed together on the single consolidated monthly statement.',
     author: 'Eroshana Rathnayake',
     role: 'Senior Executive - Broadband & VAS Knowledge Hub',
     date: '2026-02-15',
@@ -609,7 +645,7 @@ export const TRIO_FAQS: TrioFaqItem[] = [
   {
     id: 'faq-04',
     question: 'What is the exact tax rate applied to each Trio package?',
-    answer: 'Because telecommunication services in Sri Lanka carry distinct tax treatments (Broadband is exempt from the 15% Telecommunication Levy, whereas Line Rental and PEO TV carry 15% TL), each Trio package has a unique effective tax rate based on its component ratios: Trio Shine = 28.74% (Total Rs. 6,372.47), Trio Vibe Plus = 32.98% (Total Rs. 5,452.07), Trio Vibe = 30.84% (Total Rs. 4,618.51), and Trio Fit = 36.13% (Total Rs. 2,572.91). Standard statutory taxes include CESS (2.04%), SSCL (2.56%), TL (15% on voice/TV), and VAT (18.00%).',
+    answer: 'Because telecommunication services in Sri Lanka carry distinct tax treatments (Broadband is exempt from the 15% Telecommunication Levy, whereas Line Rental and PEO TV carry 15% TL), each Trio package has a unique effective tax rate based on its component ratios: Trio Shine = 28.74% (Total Rs. 6,372.47), Trio Vibe Plus = 32.98% (Total Rs. 5,452.07), and Trio Vibe = 30.84% (Total Rs. 4,618.51). Standard statutory taxes include CESS (2.04%), SSCL (2.56%), TL (15% on voice/TV), and VAT (18.00%).',
     author: 'Eroshana Rathnayake',
     role: 'Senior Executive - Broadband & VAS Knowledge Hub',
     date: '2026-02-15',
@@ -648,18 +684,27 @@ export interface TrioComparisonRow {
   shine: string;
   vibePlus: string;
   vibe: string;
-  fit: string;
+  pet: string;
   tooltip?: string;
 }
 
 export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
+  {
+    featureName: 'Package Availability Status',
+    category: 'POLICY',
+    shine: 'Active (Available)',
+    vibePlus: 'Active (Available)',
+    vibe: 'Active (Available)',
+    pet: 'DISCONTINUED (Legacy Only)',
+    tooltip: 'Current commercial availability for new activations.'
+  },
   {
     featureName: 'Base Monthly Price (Without Tax)',
     category: 'PRICING',
     shine: 'Rs. 4,950/=',
     vibePlus: 'Rs. 4,100/=',
     vibe: 'Rs. 3,530/=',
-    fit: 'Rs. 1,890/=',
+    pet: 'Rs. 1,890/= (Legacy)',
     tooltip: 'Standard monthly recurring charge before government telecommunication levies.'
   },
   {
@@ -668,7 +713,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'Rs. 6,372.47',
     vibePlus: 'Rs. 5,452.07',
     vibe: 'Rs. 4,618.51',
-    fit: 'Rs. 2,572.91',
+    pet: 'Rs. 2,572.91',
     tooltip: 'Includes CESS (2.04%), Telecommunication Levy (TL 15% on voice/TV), SSCL (2.56%), and VAT (18.00%).'
   },
   {
@@ -677,7 +722,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: '28.74%',
     vibePlus: '32.98%',
     vibe: '30.84%',
-    fit: '36.13%',
+    pet: '36.13%',
     tooltip: 'Blended effective tax rate across the bundle components.'
   },
   {
@@ -686,7 +731,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: '100 GB',
     vibePlus: '70 GB',
     vibe: '40 GB',
-    fit: '20 GB',
+    pet: '20 GB',
     tooltip: 'High-speed GPON optical data quota usable anytime 24/7.'
   },
   {
@@ -695,7 +740,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'Unlimited (00:00 - 07:00)',
     vibePlus: 'Unlimited (00:00 - 07:00)',
     vibe: 'Unlimited (00:00 - 07:00)',
-    fit: 'Not Included',
+    pet: 'Not Included',
     tooltip: 'Free high-speed bonus data during off-peak hours.'
   },
   {
@@ -704,7 +749,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'Unlimited High-Speed',
     vibePlus: 'Unlimited High-Speed',
     vibe: 'Unlimited High-Speed',
-    fit: 'Standard Speed',
+    pet: 'Standard Speed',
     tooltip: 'Optical fiber symmetric upload capabilities.'
   },
   {
@@ -713,7 +758,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: '95 Channels (HD Tier)',
     vibePlus: '87 Channels (Entertainment)',
     vibe: '70 Channels (Starter Plus)',
-    fit: '70 Channels (Essential)',
+    pet: '70 Channels (Essential)',
     tooltip: 'Live TV channels with Rewind, Pause, and Catch-up TV features.'
   },
   {
@@ -722,7 +767,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'PEO Mobile + Lionsgate / HBO',
     vibePlus: 'PEO Mobile Included',
     vibe: 'PEO Mobile Included',
-    fit: 'PEO Mobile Standard',
+    pet: 'PEO Mobile Standard',
     tooltip: 'Complimentary streaming platform access on mobile devices and smart TVs.'
   },
   {
@@ -731,7 +776,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'FREE (Included in Bundle)',
     vibePlus: 'FREE (Included in Bundle)',
     vibe: 'FREE (Included in Bundle)',
-    fit: 'FREE (Included in Bundle)',
+    pet: 'FREE (Included in Bundle)',
     tooltip: 'Traditional monthly landline rental waived as part of the bundle.'
   },
   {
@@ -740,7 +785,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'UNLIMITED FREE',
     vibePlus: 'UNLIMITED FREE',
     vibe: 'UNLIMITED FREE',
-    fit: 'Standard Tariff',
+    pet: 'Standard Tariff',
     tooltip: 'Free crystal clear voice calls to any SLT wireline number islandwide.'
   },
   {
@@ -749,7 +794,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: '12 Months (1 Year)',
     vibePlus: '12 Months (1 Year)',
     vibe: '12 Months (1 Year)',
-    fit: '12 Months (1 Year)',
+    pet: '12 Months (1 Year)',
     tooltip: 'Mandatory minimum subscription period.'
   },
   {
@@ -758,7 +803,7 @@ export const TRIO_COMPARISON_MATRIX: TrioComparisonRow[] = [
     shine: 'Rs. 1,000/= + Taxes',
     vibePlus: 'Rs. 1,000/= + Taxes',
     vibe: 'Rs. 1,000/= + Taxes',
-    fit: 'Rs. 1,000/= + Taxes',
+    pet: 'Rs. 1,000/= + Taxes',
     tooltip: 'Fee charged if account drops or cancels before 12 months.'
   }
 ];
@@ -773,7 +818,23 @@ export const TRIO_AI_SYSTEM_CONTEXT = `
 ## Overview
 SLT Trio is a unified "Triple Play" (3-in-1) subscription combining FTTH Voice Telephone Line + High-Speed GPON Broadband + PEO TV IPTV under a single consolidated monthly bill.
 
-## Package Catalog & Official Pricing (Taxes as of 2026)
+### ⚠️ IMPORTANT STATUS & CATALOG RULES:
+1. **ACTIVE PACKAGES (Available for Sale):**
+   There are exactly THREE (3) active Trio packages:
+   - **Trio Shine** (Rs. 4,950/= without tax | Rs. 6,372.47 with tax)
+   - **Trio Vibe Plus / Vibe+** (Rs. 4,100/= without tax | Rs. 5,452.07 with tax)
+   - **Trio Vibe** (Rs. 3,530/= without tax | Rs. 4,618.51 with tax)
+
+2. **DISCONTINUED PACKAGE (TRIO PET):**
+   - **Trio Pet** (formerly Rs. 1,890/= without tax) is **DISCONTINUED**.
+   - It cannot be sold to new customers and is not available for new activations.
+   - If a caller asks for "Trio Pet", inform them that Trio Pet is no longer available and guide them to **Trio Vibe**, **Trio Vibe+**, or **Trio Shine**.
+
+3. **CORRECTION REGARDING "TRIO FIT":**
+   - There is **NO package named "Trio Fit"**.
+   - Do NOT reference or invent any package named "Trio Fit". The active lineup contains only Shine, Vibe Plus, and Vibe.
+
+## Active Package Specifications & Official Pricing (Taxes as of 2026)
 1. **Trio Shine (Flagship Tier)**
    - Base Price: Rs. 4,950/= (without tax)
    - Total Price With Tax: Rs. 6,372.47
@@ -798,13 +859,9 @@ SLT Trio is a unified "Triple Play" (3-in-1) subscription combining FTTH Voice T
    - Component Allocation: Broadband Rs. 2,130.00 (60.34%), Line Rental Rs. 600.00 (17.00%), PEO TV Rs. 800.00 (22.66%)
    - Specs: 40 GB Anytime Data + Free Night Time Data, 70 PEO TV Channels, Free PEO Mobile, Free Line Rental & Unlimited SLT-to-SLT calls.
 
-4. **Trio Fit**
-   - Base Price: Rs. 1,890/= (without tax)
-   - Total Price With Tax: Rs. 2,572.91
-   - Effective Tax Rate: 36.13% (Total Tax: Rs. 682.91)
-   - Tax Breakdown: CESS 2.04% (Rs. 38.56), TL 10.45% (Rs. 197.45), SSCL 2.56% (Rs. 54.43), VAT 18.00% (Rs. 392.48)
-   - Component Allocation: Broadband Rs. 600.00 (31.75%), Line Rental Rs. 430.00 (22.75%), PEO TV Rs. 860.00 (45.50%)
-   - Specs: 20 GB Anytime Data, 70 PEO TV Channels, Free Line Rental, Standard Voice calls.
+4. **Trio Pet (Legacy / Discontinued)**
+   - Base Price: Rs. 1,890/= | With Tax: Rs. 2,572.91
+   - Status: Discontinued. Not available for new orders.
 
 ## Key Operational & Contact Center Rules (Triage SOPs)
 - **Eligibility:** Available on SLT Fibre (FTTH). Megaline (Copper/PSTN) users can obtain Trio by upgrading to FTTH.
@@ -812,7 +869,7 @@ SLT Trio is a unified "Triple Play" (3-in-1) subscription combining FTTH Voice T
 - **Upgrades:** Subscribing up to a higher Trio plan (e.g. Vibe to Shine) can be completed over the phone via 1212 with zero penalty.
 - **Downgrades & Cancellation:** Must be routed through the TCV Customer Retention desk. If processed before the 12-month commitment expires, an Early Termination Fee of Rs. 1,000/- + applicable taxes is charged in C-Log/CRM.
 - **Commitment Period:** Mandatory 12 months (1 year). No termination fee applies after 1 year.
-- **Tax Policy Note:** Telecommunication Levy (TL 15%) is legally applied only to Voice Line Rental and PEO TV, not Broadband data. This produces varying effective bundle tax rates (28.74% to 36.13%).
+- **Tax Policy Note:** Telecommunication Levy (TL 15%) is legally applied only to Voice Line Rental and PEO TV, not Broadband data. This produces varying effective bundle tax rates (28.74% to 32.98%).
 `.trim();
 
 // Helper functions for easy querying
@@ -823,4 +880,3 @@ export function getTrioPackageById(id: string): TrioPackage | undefined {
 export function formatLKR(amount: number): string {
   return `Rs. ${amount.toLocaleString('en-LK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
-
