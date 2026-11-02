@@ -178,7 +178,7 @@ export const OPERATIONAL_BROADCASTS: OperationalBroadcast[] = [
     accentColor: 'text-purple-300',
     badgeStyle: 'bg-purple-600 text-white',
     linkText: 'System Portals',
-    linkUrl: '#common-links'
+    linkUrl: '/knowledge-hub/faq'
   }
 ];
 
@@ -355,85 +355,6 @@ const SERVICE_PILLARS = [
   }
 ];
 
-// Common Links Categories
-const COMMON_LINKS = {
-  operational: {
-    title: 'Operational (C-Log & CRM)',
-    badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-    items: [
-      { code: '(01)', name: 'MINT CRM', desc: 'Customer Relationship Management Portal for subscriber profiles, contact history, and service orders.', url: 'https://mintcrm.slt.lk' },
-      { code: '(02)', name: 'C-Log', desc: 'Customer Complaint Logging Engine for Trouble Ticket dispatching.', url: '#' },
-      { code: '(03)', name: 'C-Log Viewer', desc: 'Read-only inquiry for historical complaints and field officer visit updates.', url: '#' },
-      { code: '(04)', name: 'CQMS', desc: 'Customer Quality Management System for commercial queries and promotional escalations.', url: '#' },
-      { code: '(05)', name: 'sDesk', desc: 'Internal Service Desk for technical escalations and IT support tickets.', url: '#' },
-      { code: '(06)', name: 'Clarity C12', desc: 'Telecommunications OSS/BSS Service Provisioning & Inventory Management System.', url: '#' },
-      { code: '(07)', name: 'Railway VAS Portal', desc: 'Specialized enterprise portal for Railway communication lines and signaling circuits.', url: '#' },
-      { code: '(08)', name: 'VAS Service portal', desc: 'Management console for activating and troubleshooting Value Added Services.', url: '#' },
-      { code: '(09)', name: 'DBYD', desc: 'Dial Before You Dig - Outdoor excavation safety and underground fiber cable maps.', url: '#' },
-    ]
-  },
-  broadbandEmail: {
-    title: 'Broadband, TR-069 & Email',
-    badgeColor: 'bg-blue-100 text-blue-800 border-blue-200',
-    items: [
-      { code: '(11)', name: 'LDAP (Old)', desc: 'Directory Access Protocol verification for subscriber broadband authentication credentials.', url: '#' },
-      { code: '(12)', name: 'PW Reset', desc: 'Customer Broadband and Wi-Fi password reset utility.', url: '#' },
-      { code: '(13)', name: 'PW Reset (back-up)', desc: 'Secondary failover server for customer password resets.', url: '#' },
-      { code: '(14)', name: 'Top up (Old)', desc: 'Legacy extra data volume top-up tool for limited packages.', url: '#' },
-      { code: '(15)', name: 'Top up New', desc: 'New High-Speed extra data booster allocation portal.', url: '#' },
-      { code: '(16)', name: 'PCRF', desc: 'Policy and Charging Rules Function - Fair Usage Policy and bandwidth throttling management.', url: '#' },
-      { code: '(17)', name: 'ADSL Usage (BB VAS)', desc: 'Detailed data session logs, IP address assignments, and traffic graphs.', url: '#' },
-      { code: '(18)', name: 'ACS', desc: 'Auto Configuration Server (TR-069) for remote ONT router diagnosis and firmware updates.', url: '#' },
-      { code: '(19)', name: 'Loyalty', desc: 'SLT Mobitel customer loyalty points and tier rewards dashboard.', url: '#' },
-      { code: '(21)', name: 'Email (slt.lk)', desc: 'Webmail login and customer email quota administration.', url: 'https://mail.slt.lk' },
-      { code: '(22)', name: 'Coverage Map', desc: 'National Fibre (FTTH), 4G LTE, and Copper network coverage map.', url: '#' },
-      { code: '(23)', name: 'BB Package Change', desc: 'Administrative interface for processing customer package upgrades and downgrades.', url: '#' },
-    ]
-  },
-  billing: {
-    title: 'Billing & Ledger Systems',
-    badgeColor: 'bg-pink-100 text-pink-800 border-pink-200',
-    items: [
-      { code: '(31)', name: 'IBSIB', desc: 'Integrated Broadband & Subscriber Information Billing engine.', url: '#' },
-      { code: '(32)', name: 'I-Hub', desc: 'Integration Hub connecting bank transactions and merchant payments.', url: '#' },
-      { code: '(33)', name: 'CMS', desc: 'Credit Management System for tracking overdue invoices and credit limits.', url: '#' },
-      { code: '(34)', name: 'CMSB', desc: 'Credit Management System Billing subsidiary module.', url: '#' },
-      { code: '(35)', name: 'Bill View', desc: 'Real-time itemized bill viewer with PDF statement generator.', url: '#' },
-      { code: '(36)', name: 'Online Payments', desc: 'Direct Visa / Mastercard / LankaQR online payment settlement console.', url: '#' },
-      { code: '(37)', name: 'e-Bill Portal', desc: 'Electronic bill paperless email / SMS registration portal.', url: '#' },
-      { code: '(38)', name: 'Bill-Com', desc: 'Billing Complaints and ledger reconciliation module.', url: '#' },
-      { code: '(39)', name: 'SRS-T/L login', desc: 'Service Request System Team Leader supervisory approval login.', url: '#' },
-    ]
-  },
-  internal: {
-    title: 'Internal Tools & Employee Services',
-    badgeColor: 'bg-purple-100 text-purple-800 border-purple-200',
-    items: [
-      { code: '(51)', name: 'AMS', desc: 'Asset Management System for equipment barcodes and serial tracking.', url: '#' },
-      { code: '(52)', name: 'e-Teacher', desc: 'Staff e-learning and contact center agent training portal.', url: '#' },
-      { code: '(53)', name: 'WFM', desc: 'Workforce Management agent shift scheduling and attendance.', url: '#' },
-      { code: '(54)', name: 'ESAT', desc: 'Employee Satisfaction & Internal Staff Survey module.', url: '#' },
-      { code: '(55)', name: 'Qi Notice board', desc: 'Quality Improvement Notice Board with real-time operational bulletins.', url: '#' },
-      { code: '(56)', name: 'MINT Dashboard', desc: 'Executive Contact Center live call volume and queue monitor.', url: '#' },
-      { code: '(57)', name: 'Meeting Manager', desc: 'Room reservation and inter-departmental meeting scheduler.', url: '#' },
-      { code: '(58)', name: 'ESS', desc: 'Employee Self Service - Leave requests, pay slips, and HR records.', url: '#' },
-      { code: '(59)', name: 'Contact Center KPI Meter', desc: 'Real-time Average Handling Time (AHT) and First Call Resolution (FCR) stats.', url: '#' },
-    ]
-  }
-};
-
-// "Our Team" Contact Center Leadership & Management
-const TEAM_MEMBERS = [
-  { name: 'Sonali Dalupotha', title: 'Deputy General Manager - Contact Center', role: 'Executive Leadership', initials: 'SD', color: 'bg-emerald-600' },
-  { name: 'Nilanthi Amarasena', title: 'Manager - Contact Center Operations', role: 'Operations', initials: 'NA', color: 'bg-blue-600' },
-  { name: 'Dilhani', title: 'Manager - Contact Centre Quality', role: 'Quality & Compliance', initials: 'DL', color: 'bg-indigo-600' },
-  { name: 'Shiromi Wimalaratne', title: 'Senior Executive Assistant Manager', role: 'Executive Management', initials: 'SW', color: 'bg-purple-600' },
-  { name: 'Chathurani Rathnayake', title: 'Senior Assistant Manager (Contact Center)', role: 'Shift Operations', initials: 'CR', color: 'bg-rose-600' },
-  { name: 'Prasadi Fernando', title: 'Senior Assistant Manager (Contact Center)', role: 'Customer Experience', initials: 'PF', color: 'bg-amber-600' },
-  { name: 'Mushi', title: 'Senior Assistant Manager (Contact Center)', role: 'Technical Escalations', initials: 'MU', color: 'bg-cyan-600' },
-  { name: 'Mohamed Riyas', title: 'Contact Centre Associate - A15', role: 'Frontline Associate', initials: 'MR', color: 'bg-teal-600' },
-];
-
 export default function KnowledgeHubPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
@@ -441,7 +362,6 @@ export default function KnowledgeHubPage() {
   const [viewMode, setViewMode] = useState<'bento' | 'compact'>('bento');
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
-  const [activeCommonTab, setActiveCommonTab] = useState<'operational' | 'broadbandEmail' | 'billing' | 'internal'>('operational');
   
   // Operational Broadcast Banner State
   const [activeBroadcastIndex, setActiveBroadcastIndex] = useState(0);
@@ -1063,118 +983,7 @@ export default function KnowledgeHubPage() {
             </div>
           )}
 
-          {/* ======================================================== */}
-          {/* D. MODERNIZED COMMON LINKS & OPERATIONAL TOOLS MATRIX   */}
-          {/* ======================================================== */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4 p-5">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
-              <div>
-                <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                  <LinkIcon className="w-4 h-4 text-[#005696]" />
-                  <span>SLT Internal Systems &amp; Common Links (60+ Tools)</span>
-                </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Direct OSS / BSS, Customer Portal, Billing &amp; Field Dispatch links
-                </p>
-              </div>
-
-              {/* Category Pills */}
-              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs">
-                {(['operational', 'broadbandEmail', 'billing', 'internal'] as const).map((tabKey) => (
-                  <button
-                    key={tabKey}
-                    onClick={() => setActiveCommonTab(tabKey)}
-                    className={`px-3 py-1 rounded-lg font-bold capitalize transition-all ${
-                      activeCommonTab === tabKey
-                        ? 'bg-[#005696] text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                  >
-                    {tabKey === 'broadbandEmail'
-                      ? 'Broadband & Email'
-                      : tabKey === 'operational'
-                      ? 'C-Log & CRM'
-                      : tabKey}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Links Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {COMMON_LINKS[activeCommonTab].items.map((linkItem, idx) => (
-                <div
-                  key={idx}
-                  onClick={() =>
-                    setSelectedItem({
-                      ...linkItem,
-                      type: 'link',
-                      category: COMMON_LINKS[activeCommonTab].title
-                    })
-                  }
-                  className="p-3 rounded-xl border border-slate-200/90 bg-slate-50/60 hover:bg-blue-50/40 hover:border-blue-300 transition-all cursor-pointer group flex flex-col justify-between shadow-2xs"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono font-bold text-slate-400">
-                        {linkItem.code}
-                      </span>
-                      <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#005696] transition-colors" />
-                    </div>
-                    <h5 className="font-black text-xs text-slate-800 group-hover:text-[#005696] transition-colors">
-                      {linkItem.name}
-                    </h5>
-
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ======================================================== */}
-          {/* E. OUR TEAM (LEADERSHIP & OPERATIONS)                   */}
-          {/* ======================================================== */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
-            <div className="border-b border-slate-200 pb-2 flex items-center justify-between">
-              <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                <Users className="w-4 h-4 text-[#005696]" />
-                <span>Contact Center Operations &amp; Leadership</span>
-              </h3>
-              <span className="text-xs text-slate-400 font-medium">Duty Management &amp; Support</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-1">
-              {TEAM_MEMBERS.map((member, idx) => (
-                <div
-                  key={idx}
-                  onClick={() =>
-                    setSelectedItem({
-                      title: member.name,
-                      desc: `${member.title} | ${member.role}`,
-                      type: 'team'
-                    })
-                  }
-                  className="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200/80 hover:bg-slate-50 transition-all cursor-pointer group shadow-2xs"
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl ${member.color} text-white font-black flex items-center justify-center text-xs shadow-xs shrink-0 group-hover:scale-105 transition-transform`}
-                  >
-                    {member.initials}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold text-slate-800 truncate group-hover:text-[#005696] transition-colors">
-                      {member.name}
-                    </p>
-                    <p className="text-[10px] text-slate-500 truncate leading-tight">
-                      {member.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </main>
+          </main>
       </div>
 
       {/* ======================================================== */}
