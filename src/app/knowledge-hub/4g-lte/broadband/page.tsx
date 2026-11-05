@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import LteSubpageHeader from '../_components/LteSubpageHeader';
 import {
   Globe,
   ArrowLeft,
@@ -61,88 +62,23 @@ ACTION: Dispatch Trouble Ticket to AREA-MTCE / RF-PLANNING for outdoor high-gain
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-y-auto select-none text-slate-800">
       
-      {/* 1. TOP SHAREPOINT BAR */}
-      <div className="bg-[#004e89] text-white px-5 py-2.5 flex items-center justify-between text-sm shadow-md shrink-0">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/knowledge-hub/4g-lte"
-            className="flex items-center gap-2 text-white/90 hover:text-white hover:bg-white/10 px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>4G LTE Home</span>
-          </Link>
-          <span className="text-white/40">|</span>
-          <span className="font-semibold text-white/90 text-xs">Knowledge Hub</span>
-          <span className="text-white/40">/</span>
-          <span className="font-bold text-white text-xs">LTE BB Packages</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
-            Day + Night Quota Split
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-white/80 border border-white/20">
-            8 GB to 225 GB Tiers
-          </span>
-        </div>
-      </div>
-
-      {/* 2. HERO BANNER */}
-      <div className="bg-gradient-to-r from-[#1e1b4b] via-[#312e81] to-[#005696] text-white px-6 py-7 shadow-sm">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-xs font-black uppercase tracking-wider text-indigo-200">
-                Fixed Wireless Broadband
-              </span>
-              <span className="px-3 py-1 bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 rounded-lg text-xs font-black">
-                Night Bonus Included
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white flex items-center gap-3">
-              <Globe className="w-9 h-9 text-indigo-300" />
-              <span>LTE Broadband (BB) Package Matrix</span>
-            </h1>
-            <p className="text-slate-200 text-sm md:text-base max-w-3xl leading-relaxed font-medium">
-              Standard postpaid volume packages for 4G LTE Fixed Wireless subscribers. Daytime quota (08:00 - 00:00) paired with free night-time volume (00:00 - 08:00) from Web Starter (8 GB) to Web Supreme (225 GB).
-            </p>
-          </div>
-
-          {/* Quick Stat Card */}
-          <div className="bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl p-4 shrink-0 text-center space-y-1">
-            <div className="text-xs uppercase tracking-wider text-indigo-200 font-bold">Most Popular Plan</div>
-            <div className="text-3xl font-black text-white">60 GB</div>
-            <div className="text-[11px] font-bold text-emerald-300">Web Master (Rs. 2,390)</div>
-            <div className="text-[11px] text-white/80">30GB Day + 30GB Night</div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. AUTHOR & METADATA BAR */}
-      <div className="bg-white border-b border-slate-200 px-6 py-2.5 text-xs text-slate-500">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4 flex-wrap">
-            <div className="flex items-center gap-1.5 font-bold text-slate-700">
-              <Building2 className="w-3.5 h-3.5 text-indigo-700" />
-              <span>Chathurani Rathnayake, Senior Assistant Manager (Customer Relations) A7</span>
-            </div>
-            <span className="text-slate-300">|</span>
-            <div className="flex items-center gap-1.5 font-medium">
-              <Calendar className="w-3.5 h-3.5 text-slate-400" />
-              <span>Official Tariff Schedule</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/knowledge-hub/4g-lte/prepaid"
-              className="text-xs font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 px-3 py-1 rounded-lg transition-colors flex items-center gap-1 border border-emerald-200"
-            >
-              <Zap className="w-3.5 h-3.5 text-emerald-600" />
-              <span>View Prepaid Passes ➔</span>
-            </Link>
-          </div>
-        </div>
-      </div>
+      {/* UNIFIED SHAREPOINT PORTAL HEADER & 9-TOPIC QUICK SWITCHER */}
+      <LteSubpageHeader
+        currentTopicId="broadband"
+        title="LTE Broadband (BB) Package Matrix"
+        subtitle="Standard postpaid volume packages for 4G LTE Fixed Wireless subscribers. Daytime quota (08:00 - 00:00) paired with free night-time volume (00:00 - 08:00) from Web Starter (8 GB) to Web Supreme (225 GB)."
+        badge="Data Plans"
+        badgeStyle="bg-indigo-400/20 text-indigo-300 border-indigo-300/30"
+        taxDate="Day (08:00–00:00) + Night Bonus (00:00–08:00)"
+        author="Chathurani Rathnayake"
+        authorRole="Senior Assistant Manager (Customer Relations) - A7"
+        icon={Globe}
+        stats={[
+          { label: 'Popular Tier', value: '60 GB', sub: 'Web Master (Rs. 2,390)' },
+          { label: 'Entry Level', value: '8 GB', sub: 'Web Starter (Rs. 590)' },
+          { label: 'Top Capacity', value: '225 GB', sub: 'Web Supreme (Rs. 8,890)' }
+        ]}
+      />
 
       {/* 4. NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">

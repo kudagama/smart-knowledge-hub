@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import LteSubpageHeader from '../_components/LteSubpageHeader';
 import {
   CreditCard,
   ArrowLeft,
@@ -347,102 +348,24 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-y-auto select-none text-slate-800">
       
-      {/* 1. TOP SHAREPOINT NAV */}
-      <div className="bg-[#004e89] text-white px-5 py-2.5 flex items-center justify-between text-sm shadow-md shrink-0">
-        <div className="flex items-center gap-3">
-          <Link href="/knowledge-hub" className="flex items-center gap-2 cursor-pointer hover:opacity-90">
-            <Grid className="w-5 h-5 text-cyan-300" />
-            <span className="font-extrabold tracking-tight text-base">SharePoint</span>
-          </Link>
-          <span className="text-cyan-200">|</span>
-          <span className="text-cyan-100 font-semibold text-sm">4G LTE Prepaid Master Reference (ISO 9001:2015)</span>
-        </div>
-        <div className="flex items-center gap-4 text-xs">
-          <span className="hidden md:inline bg-cyan-900/60 border border-cyan-400/40 px-3 py-1 rounded-full text-cyan-200 font-medium">
-            SLT-Mobitel Customer Experience
-          </span>
-          <div className="w-8 h-8 rounded-full bg-emerald-600 border-2 border-emerald-300 flex items-center justify-center font-black text-xs text-white shadow-sm">
-            CR
-          </div>
-        </div>
-      </div>
-
-      {/* 2. BREADCRUMB */}
-      <div className="bg-white border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div className="flex items-center gap-2.5 text-slate-600">
-          <Link href="/knowledge-hub/4g-lte" className="text-[#005696] font-bold hover:underline flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to 4G LTE Hub
-          </Link>
-          <span className="text-slate-300">/</span>
-          <Link href="/knowledge-hub" className="hover:text-blue-800 font-medium">Knowledge Hub</Link>
-          <span className="text-slate-300">/</span>
-          <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-            4G LTE Prepaid
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-mono font-bold flex items-center gap-1.5 shadow-2xs">
-            <Smartphone className="w-3.5 h-3.5 text-emerald-700" />
-            Balance: *123#
-          </span>
-          <span className="px-3 py-1 rounded-lg bg-blue-100 text-blue-900 border border-blue-300 text-xs font-mono font-bold">
-            Hardware: CAT 4 Only
-          </span>
-        </div>
-      </div>
-
-      {/* 3. HERO BANNER WITH LARGE CLEAR HEADING */}
-      <div className="relative bg-gradient-to-r from-emerald-900 via-teal-950 to-slate-950 text-white px-8 py-9 overflow-hidden border-b-4 border-emerald-500 shadow-lg">
-        <div className="max-w-6xl mx-auto space-y-4 relative z-10">
-          
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-400 text-emerald-950 shadow-sm flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              Prepaid Pay-As-You-Go
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-black bg-amber-400/30 text-amber-200 border border-amber-300/40">
-              Tax Revised eff. 01/08/2024
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-cyan-200 backdrop-blur-xs">
-              No Monthly Commitment Bills
-            </span>
-          </div>
-
-          <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight flex items-center gap-3">
-              <div className="p-2.5 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400/50 shadow-inner">
-                <CreditCard className="w-8 h-8 text-emerald-300" />
-              </div>
-              <span>4G LTE Prepaid Services &amp; Tariff Reference</span>
-            </h1>
-
-            <p className="text-base md:text-lg text-emerald-100/95 max-w-4xl font-medium leading-relaxed">
-              Official customer support manual for Onetime Main Broadband packages, specialized Data Add-ons, out-of-bundle PAYG tariffs, and physical/digital reload validity schedules.
-            </p>
-          </div>
-
-          {/* Quick Stats Grid */}
-          <div className="pt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-xl space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block">Out-of-Bundle Rate</span>
-              <p className="text-xl font-black text-white">Rs. 0.08666 <span className="text-xs font-normal text-slate-300">/ MB</span></p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-xl space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300 block">Min. Physical Reload</span>
-              <p className="text-xl font-black text-white">Rs. 500/= <span className="text-xs font-normal text-slate-300">(Retail POS)</span></p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-xl space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">Min. SelfCare Reload</span>
-              <p className="text-xl font-black text-white">Rs. 50/= <span className="text-xs font-normal text-slate-300">(App / Web)</span></p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-xl space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-purple-300 block">SIM Only (BYOD)</span>
-              <p className="text-xl font-black text-white">Rs. 1,200/= <span className="text-xs font-normal text-slate-300">(No Lock-in)</span></p>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      {/* UNIFIED SHAREPOINT PORTAL HEADER & 9-TOPIC QUICK SWITCHER */}
+      <LteSubpageHeader
+        currentTopicId="prepaid"
+        title="4G LTE Prepaid Services & Tariff Reference"
+        subtitle="Official customer support manual for Onetime Main Broadband packages, specialized Data Add-ons, out-of-bundle PAYG tariffs, and physical/digital reload validity schedules."
+        badge="Prepaid Plans"
+        badgeStyle="bg-emerald-400/20 text-emerald-300 border-emerald-300/30"
+        taxDate="Tax Revised: 01/08/2024"
+        author="Chathurani Rathnayake"
+        authorRole="Senior Assistant Manager (Customer Relations) - A7"
+        icon={CreditCard}
+        stats={[
+          { label: 'Out-of-Bundle Rate', value: 'Rs. 0.08666', sub: 'Per MB PAYG' },
+          { label: 'Min. Physical Reload', value: 'Rs. 500/=', sub: 'Retail Merchant' },
+          { label: 'Min. App Reload', value: 'Rs. 50/=', sub: 'MySLT SelfCare' },
+          { label: 'SIM Only (BYOD)', value: 'Rs. 1,200/=', sub: 'Zero Commitment' }
+        ]}
+      />
 
       {/* 4. INTERACTIVE TOOLBAR & CONTROLS */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">

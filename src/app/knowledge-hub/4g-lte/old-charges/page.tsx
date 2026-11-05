@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import LteSubpageHeader from '../_components/LteSubpageHeader';
 import {
   Clock,
   ArrowLeft,
@@ -61,88 +62,23 @@ MIGRATION RECOMMENDATION: Customers spending over Rs. 435 in call charges should
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-y-auto select-none text-slate-800">
       
-      {/* 1. TOP SHAREPOINT BAR */}
-      <div className="bg-[#004e89] text-white px-5 py-2.5 flex items-center justify-between text-sm shadow-md shrink-0">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/knowledge-hub/4g-lte"
-            className="flex items-center gap-2 text-white/90 hover:text-white hover:bg-white/10 px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>4G LTE Home</span>
-          </Link>
-          <span className="text-white/40">|</span>
-          <span className="font-semibold text-white/90 text-xs">Knowledge Hub</span>
-          <span className="text-white/40">/</span>
-          <span className="font-bold text-white text-xs">LTE Old Call Charges</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider bg-slate-500/20 text-slate-300 border border-slate-400/30">
-            Historical Archive
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-white/80 border border-white/20">
-            Pre-20th Jan 2017
-          </span>
-        </div>
-      </div>
-
-      {/* 2. HERO BANNER */}
-      <div className="bg-gradient-to-r from-[#1e293b] via-[#334155] to-[#005696] text-white px-6 py-7 shadow-sm">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-xs font-black uppercase tracking-wider text-slate-200">
-                Archival Reference Document
-              </span>
-              <span className="px-3 py-1 bg-amber-500/20 text-amber-200 border border-amber-400/30 rounded-lg text-xs font-black">
-                Grandfathered Accounts
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white flex items-center gap-3">
-              <History className="w-9 h-9 text-slate-300" />
-              <span>LTE Old Call Charges (Pre-2017 Reference)</span>
-            </h1>
-            <p className="text-slate-200 text-sm md:text-base max-w-3xl leading-relaxed font-medium">
-              Call tariff matrix for fixed 4G LTE telephone services provisioned prior to 20th January 2017. For existing grandfathered accounts comparing rates against current Unlimited VoLTE plans.
-            </p>
-          </div>
-
-          {/* Quick Stat Card */}
-          <div className="bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl p-4 shrink-0 text-center space-y-1">
-            <div className="text-xs uppercase tracking-wider text-slate-300 font-bold">Legacy Residential</div>
-            <div className="text-3xl font-black text-white">Rs. 310</div>
-            <div className="text-[11px] font-bold text-emerald-300">+ 100 Free On-Net Mins</div>
-            <div className="text-[11px] text-white/80">Business: Rs. 499/mo</div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. AUTHOR & METADATA BAR */}
-      <div className="bg-white border-b border-slate-200 px-6 py-2.5 text-xs text-slate-500">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4 flex-wrap">
-            <div className="flex items-center gap-1.5 font-bold text-slate-700">
-              <Building2 className="w-3.5 h-3.5 text-slate-600" />
-              <span>Chathurani Rathnayake, Senior Assistant Manager (Customer Relations) A7</span>
-            </div>
-            <span className="text-slate-300">|</span>
-            <div className="flex items-center gap-1.5 font-medium">
-              <Calendar className="w-3.5 h-3.5 text-slate-400" />
-              <span>Historical Effective Date: Prior to 20th January 2017</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/knowledge-hub/4g-lte/voice"
-              className="text-xs font-bold text-teal-800 hover:text-teal-950 bg-teal-50 hover:bg-teal-100 px-3 py-1 rounded-lg transition-colors flex items-center gap-1 border border-teal-200"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-              <span>Modern Unlimited Voice (Rs. 745) ➔</span>
-            </Link>
-          </div>
-        </div>
-      </div>
+      {/* UNIFIED SHAREPOINT PORTAL HEADER & 9-TOPIC QUICK SWITCHER */}
+      <LteSubpageHeader
+        currentTopicId="old-charges"
+        title="LTE Old Call Charges (Pre-2017 Reference)"
+        subtitle="Call tariff matrix for fixed 4G LTE telephone services provisioned prior to 20th January 2017. For existing grandfathered accounts comparing rates against current Unlimited VoLTE plans."
+        badge="Historical Archive"
+        badgeStyle="bg-slate-400/20 text-slate-300 border-slate-300/30"
+        taxDate="Pre-20th Jan 2017 | Grandfathered Accounts"
+        author="Chathurani Rathnayake"
+        authorRole="Senior Assistant Manager (Customer Relations) - A7"
+        icon={History}
+        stats={[
+          { label: 'Legacy Residential', value: 'Rs. 310', sub: '+ 100 Free On-Net Mins' },
+          { label: 'Legacy Business', value: 'Rs. 499', sub: 'Includes Free VAS' },
+          { label: 'Migrate To', value: 'Rs. 745', sub: 'Unlimited Any-Net VoLTE' }
+        ]}
+      />
 
       {/* 4. MAIN CONTENT */}
       <div className="flex-1 p-6 md:p-8 space-y-8">

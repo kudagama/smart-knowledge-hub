@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import LteSubpageHeader from '../_components/LteSubpageHeader';
 import {
   Wrench,
   ArrowLeft,
@@ -238,98 +239,23 @@ ACTION: Post reconnection charge of Rs. 500/=. Restore HSS/IMS profile and data 
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-y-auto select-none text-slate-800">
       
-      {/* 1. TOP SHAREPOINT BAR */}
-      <div className="bg-[#004e89] text-white px-5 py-2.5 flex items-center justify-between text-sm shadow-md shrink-0">
-        <div className="flex items-center gap-3">
-          <Link href="/knowledge-hub" className="flex items-center gap-2 cursor-pointer hover:opacity-90">
-            <Grid className="w-5 h-5 text-cyan-300" />
-            <span className="font-extrabold tracking-tight text-base">SharePoint</span>
-          </Link>
-          <span className="text-cyan-200">|</span>
-          <span className="text-cyan-100 font-semibold text-sm">Other Charges – LTE &amp; CPE Damage Claims</span>
-        </div>
-        <div className="flex items-center gap-4 text-xs">
-          <span className="hidden md:inline bg-cyan-900/60 border border-cyan-400/40 px-3 py-1 rounded-full text-cyan-200 font-medium">
-            SLT-Mobitel Intranet
-          </span>
-          <div className="w-8 h-8 rounded-full bg-indigo-600 border-2 border-indigo-300 flex items-center justify-center font-black text-xs text-white shadow-sm">
-            CR
-          </div>
-        </div>
-      </div>
-
-      {/* 2. BREADCRUMB */}
-      <div className="bg-white border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div className="flex items-center gap-2.5 text-slate-600">
-          <Link href="/knowledge-hub/4g-lte" className="text-[#005696] font-bold hover:underline flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to 4G LTE Hub
-          </Link>
-          <span className="text-slate-300">/</span>
-          <Link href="/knowledge-hub" className="hover:text-blue-800 font-medium">Knowledge Hub</Link>
-          <span className="text-slate-300">/</span>
-          <span className="font-bold text-indigo-800 bg-indigo-50 px-2.5 py-0.5 rounded-md border border-indigo-200">
-            Other Charges – LTE
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-mono font-bold flex items-center gap-1.5 shadow-2xs">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-            Circular: 29-11-2022
-          </span>
-          <span className="px-3 py-1 rounded-lg bg-blue-100 text-blue-900 border border-blue-300 text-xs font-mono font-bold">
-            Published: 11/4/2024
-          </span>
-        </div>
-      </div>
-
-      {/* 3. HERO BANNER */}
-      <div className="relative bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white px-8 py-9 overflow-hidden border-b-4 border-indigo-500 shadow-lg">
-        <div className="max-w-6xl mx-auto space-y-4 relative z-10">
-          
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500 text-white shadow-sm flex items-center gap-1.5">
-              <Wrench className="w-3.5 h-3.5" />
-              Service Maintenance &amp; Claims
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-cyan-200 backdrop-blur-xs">
-              Reviewed by Chathurani Rathnayake (SAM CR - A7)
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-emerald-200">
-              Published: 11/4/2024
-            </span>
-          </div>
-
-          <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight flex items-center gap-3">
-              <div className="p-2.5 rounded-2xl bg-indigo-500/20 border-2 border-indigo-400/50 shadow-inner">
-                <Wrench className="w-8 h-8 text-indigo-300" />
-              </div>
-              <span>Other Charges – LTE &amp; CPE Damage Claim Manual</span>
-            </h1>
-
-            <p className="text-base md:text-lg text-slate-200/90 max-w-4xl font-medium leading-relaxed">
-              Official schedule for Customer-Responsible CPE Damage Claims (Indoor CAT 4, Indoor CAT 6, and Outdoor CPE), Postpaid Reconnection Fees (Rs. 500/=), and Voice Pal Lightning/Mouse Replacement installment rules.
-            </p>
-          </div>
-
-          {/* Quick Highlight Cards */}
-          <div className="pt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 block">Postpaid Reconnection Fee</span>
-              <p className="text-2xl font-black text-white">Rs. 500/= <span className="text-xs font-normal text-slate-300">(Terminated Line Restore)</span></p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block">Voice Pal Mouse/Lightning Scheme</span>
-              <p className="text-2xl font-black text-white">Rs. 5,000/= <span className="text-xs font-normal text-slate-300">(In 24 Monthly Installments)</span></p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-cyan-300 block">CPE Complete Set Claims</span>
-              <p className="text-2xl font-black text-white">Rs. 2,900 – 4,900 <span className="text-xs font-normal text-slate-300">(CAT 4 vs CAT 6)</span></p>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      {/* UNIFIED SHAREPOINT PORTAL HEADER & 9-TOPIC QUICK SWITCHER */}
+      <LteSubpageHeader
+        currentTopicId="other-charges"
+        title="Other Charges – LTE & CPE Damage Claim Manual"
+        subtitle="Official schedule for Customer-Responsible CPE Damage Claims (Indoor CAT 4, Indoor CAT 6, and Outdoor CPE), Postpaid Reconnection Fees (Rs. 500/=), and Voice Pal Lightning/Mouse Replacement installment rules."
+        badge="Damage & Reconnection"
+        badgeStyle="bg-rose-400/20 text-rose-300 border-rose-300/30"
+        taxDate="Circular: 29-11-2022 | Published: 11/4/2024"
+        author="Chathurani Rathnayake"
+        authorRole="Senior Assistant Manager (Customer Relations) - A7"
+        icon={Wrench}
+        stats={[
+          { label: 'Reconnection Fee', value: 'Rs. 500/=', sub: 'Terminated Postpaid' },
+          { label: 'Voice Pal Scheme', value: 'Rs. 5,000/=', sub: '24-Mo Installments' },
+          { label: 'Complete Set Claim', value: 'Rs. 2,900', sub: 'CAT 4 Full Unit' }
+        ]}
+      />
 
       {/* 4. NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">
