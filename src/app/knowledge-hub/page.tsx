@@ -238,7 +238,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'DATA / FTTH',
     ruleCode: 'RULE_LOS_RED',
     route: '/knowledge-hub/ftth',
-    ctaText: 'Open',
+    ctaText: 'Open Fiber Services',
     features: [
       { label: 'Voice (SIP Dial Tone & Rule 11 MDF)', path: '/knowledge-hub/ftth/voice', icon: Phone },
       { label: 'Broadband (1Gbps, Wi-Fi & LOS Red)', path: '/knowledge-hub/ftth/broadband', icon: Globe },
@@ -263,7 +263,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'VOICE / COPPER',
     ruleCode: 'RULE_FIBER_VOICE_LINE_FAULT',
     route: '/knowledge-hub/megaline',
-    ctaText: 'Open',
+    ctaText: 'Open Megaline SOPs',
     features: [
       { label: 'Voice (PSTN Dial Tone & MDF Rule 11)', path: '/knowledge-hub/megaline/voice', icon: Phone },
       { label: 'Broadband (ADSL/ADSL2+ & Router Sync)', path: '/knowledge-hub/megaline/broadband', icon: Globe },
@@ -287,14 +287,15 @@ const MAIN_PRODUCT_TILES = [
     asset: '4G LTE / WIRELESS',
     ruleCode: 'RULE_4G_RELOAD_DIRECT_CHANNELS',
     route: '/knowledge-hub/4g-lte',
-    ctaText: 'Open',
+    ctaText: 'Open 4G LTE Services',
     features: [
-      { label: 'CPE Router Signal (Band 40 / Band 3)', path: '/knowledge-hub/4g-lte', icon: Signal },
-      { label: 'Prepaid Reloads & Banking SOP', path: '/knowledge-hub/4g-lte', icon: CreditCard },
-      { label: 'VoLTE Desk Phone & SIM Replacement', path: '/knowledge-hub/4g-lte', icon: Phone },
-      { label: 'Outdoor High-Gain Antenna Dispatch', path: '/knowledge-hub/4g-lte', icon: Wifi },
+      { label: 'New Connection Charges (CAT 4 & CAT 6)', path: '/knowledge-hub/4g-lte', icon: Zap },
+      { label: 'LTE Voice Packages & VoLTE (Unlimited Rs. 745)', path: '/knowledge-hub/4g-lte', icon: Phone },
+      { label: 'LTE Broadband (BB) Data Tiers', path: '/knowledge-hub/4g-lte', icon: Globe },
+      { label: '4G LTE Prepaid Services & Reloads', path: '/knowledge-hub/4g-lte', icon: CreditCard },
+      { label: 'LTE Old Call Charges & Historical', path: '/knowledge-hub/4g-lte', icon: Clock },
     ],
-    highlights: ['Band 40 (2300MHz)', 'VoLTE Desk Phone', 'Prepaid Recharge SOP', 'Outdoor Antenna Extension']
+    highlights: ['CAT 4 / CAT 6 (Tozed)', 'VoLTE Desk Phone', 'Unlimited Rs. 745', 'Prepaid SIM Only']
   },
   {
     id: 'trio',
@@ -311,7 +312,7 @@ const MAIN_PRODUCT_TILES = [
     asset: 'TRIO / BUNDLE',
     ruleCode: 'RULE_UNLIMITED_SLOWNESS',
     route: '/knowledge-hub/trio',
-    ctaText: 'Open',
+    ctaText: 'Open Trio Solutions',
     features: [
       { label: 'Trio Shine (100GB + 95 Ch + Free OTT)', path: '/knowledge-hub/trio', icon: Sparkles },
       { label: 'Trio Vibe / Vibe+ (Entertainment)', path: '/knowledge-hub/trio', icon: Globe },
