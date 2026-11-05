@@ -494,8 +494,8 @@ export default function LteServicesHubPage() {
               </span>
             </div>
 
-            {/* Clean Topic Cards Grid (No description clutter) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {/* Clean Topic Cards Grid (Full Topic Always Visible) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4.5">
               {filteredCards.map((card) => {
                 const CardIcon = card.icon;
                 return (
@@ -507,17 +507,17 @@ export default function LteServicesHubPage() {
                     onClick={() => router.push(card.route)}
                     className={`bg-white rounded-2xl p-5 border-2 transition-all cursor-pointer flex items-center justify-between gap-4 shadow-xs hover:shadow-lg group ${card.cardBorder}`}
                   >
-                    <div className="flex items-center gap-3.5 min-w-0">
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
                       <div
                         className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform shrink-0`}
                       >
                         <CardIcon className="w-6 h-6" />
                       </div>
-                      <div className="min-w-0">
-                        <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border mb-1 inline-block ${card.badgeStyle}`}>
+                      <div className="flex-1 min-w-0">
+                        <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border mb-1.5 inline-block ${card.badgeStyle}`}>
                           {card.badge}
                         </span>
-                        <h3 className="font-black text-base md:text-lg text-slate-900 group-hover:text-[#005696] transition-colors leading-snug truncate">
+                        <h3 className="font-black text-base md:text-lg text-slate-900 group-hover:text-[#005696] transition-colors leading-snug break-words whitespace-normal">
                           {card.title}
                         </h3>
                       </div>
