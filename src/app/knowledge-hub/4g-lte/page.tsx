@@ -49,265 +49,98 @@ import {
 } from 'lucide-react';
 
 // ==========================================
-// 1. MAIN CARDS DEFINITION (Displayed Immediately On Opening)
+// 1. MAIN CARDS DEFINITION (Topic-Only Navigation)
 // ==========================================
 const LTE_MAIN_CARDS = [
   {
     id: 'cat4',
     title: 'New Connection Charges (CAT 4)',
-    subtitle: 'Basic CPE Models (Huawei B310/B311/Tozed)',
-    badge: 'Basic CPE (CAT 4)',
+    badge: 'Basic CPE',
     badgeStyle: 'bg-blue-50 text-[#005696] border-blue-200',
     icon: Radio,
     gradient: 'from-[#005696] via-blue-700 to-indigo-800',
-    cardBorder: 'border-blue-200 hover:border-blue-500 hover:shadow-blue-500/15',
-    route: '/knowledge-hub/4g-lte/cat-4',
-    ctaText: 'Open CAT 4 Charges',
-    priceHighlight: 'Rs. 4,990 (Concessionary)',
-    taxDate: 'Tax Rev. eff. 01/08/2024',
-    desc: 'Official connection charges for Basic CAT 4 routers. Double Play Concessionary (Rs. 4,990), Refurbished units (Rs. 3,900), CDMA to 4G Free Migration, and SIM-only options.',
-    keyFeatures: [
-      'Concessionary Double Play: Rs. 4,990 (Prior Rs. 7,900)',
-      'Single Play BB Concessionary: Rs. 4,990 with tax',
-      'CDMA CityLink to 4G Migration: 100% Free',
-      'Refurbished Recovered CPE: Rs. 3,900 with tax',
-      'Warranty: New CPE 12 Mos | Refurbished 6 Mos'
-    ],
-    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
-TARIFF OPTION: New Connection (CAT 4 Basic CPE - Concessionary Double Play)
-ROUTER MODEL: Huawei B310 / B311 / Tozed Basic
-PRICE WITH TAX: Rs. 4,990 (New Charges eff. 01/08/2024)
-BASE PRICE WITHOUT TAX: Rs. 4,990 (Prior base Rs. 4,048.96)
-PACKAGE CRITERIA: Applicable for BB package category Rs. 1,990 / 2,390 and above.
-WARRANTY: 12 Months (Ownership transferred to subscriber after warranty).
-EARLY TERMINATION FEE: Rs. 5,000 applies within 1-year commitment period.`
+    cardBorder: 'border-slate-200 hover:border-[#005696] hover:shadow-[#005696]/15',
+    route: '/knowledge-hub/4g-lte/cat-4'
   },
   {
     id: 'cat6',
     title: 'New Connection Charges (CAT 6)',
-    subtitle: 'Advanced Tozed CPE (Carrier Aggregation)',
-    badge: 'Advanced CAT 6 (Tozed)',
+    badge: 'Tozed Advanced',
     badgeStyle: 'bg-amber-50 text-amber-900 border-amber-300',
     icon: Zap,
     gradient: 'from-amber-600 via-orange-600 to-indigo-900',
-    cardBorder: 'border-amber-200 hover:border-amber-500 hover:shadow-amber-500/15',
-    route: '/knowledge-hub/4g-lte/cat-6',
-    ctaText: 'Open CAT 6 Charges',
-    priceHighlight: 'Rs. 13,990 / Rs. 19,900',
-    taxDate: 'Published: 6/13/2025',
-    desc: 'High-throughput Tozed CAT 6 advanced router pricing. Concessionary New (Rs. 13,990), Refurbished (Rs. 6,990), and Full Pay New (Rs. 19,900) with 25GB/mo free bonus data.',
-    keyFeatures: [
-      'Concessionary New: Rs. 13,990 (1-yr commit / Rs. 5k penalty)',
-      'Concessionary Refurbished: Rs. 6,990 (6-month warranty)',
-      'Full Payment: Rs. 19,900 (No commitment, no termination fee)',
-      'Bonus Data: 25 GB/Month free for first 12 months on Full Pay',
-      'Average Speeds: Download 16 Mbps | Upload 1 Mbps'
-    ],
-    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
-TARIFF OPTION: New Connection (CAT 6 Advanced CPE - Tozed)
-PRICE WITH TAX: Rs. 13,990 (Concessionary) / Rs. 19,900 (Full Payment)
-BASE PRICE WITHOUT TAX: Rs. 11,327.94 (Prior base Rs. 6,900)
-CPE SPECIFICATION: CAT 6 High-Throughput Tozed LTE Router with Carrier Aggregation (CA).
-AVERAGE SPEEDS: Download 16 Mbps | Upload 1 Mbps.
-WARRANTY: New CPE: 12 Months | Refurbished: 6 Months (Ownership transferred after warranty).
-PACKAGE ELIGIBILITY: Applicable for Broadband packages Rs. 2,390 (1,990) and above.`
+    cardBorder: 'border-slate-200 hover:border-amber-600 hover:shadow-amber-500/15',
+    route: '/knowledge-hub/4g-lte/cat-6'
   },
   {
     id: 'voice',
     title: 'LTE Voice Packages (VoLTE)',
-    subtitle: 'HD Voice & Unlimited Plans (011-2XXXXXX)',
-    badge: 'VoLTE HD Telephony',
+    badge: 'HD Telephony',
     badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
     icon: Phone,
     gradient: 'from-teal-600 via-emerald-600 to-indigo-900',
-    cardBorder: 'border-teal-200 hover:border-teal-500 hover:shadow-teal-500/15',
-    route: '/knowledge-hub/4g-lte/voice',
-    ctaText: 'Open VoLTE Voice',
-    priceHighlight: 'Unlimited Voice Rs. 745',
-    taxDate: 'Geo: 011-2XXXXXX',
-    desc: 'Voice over LTE calling tariffs, Active & Leisure time bands, geographical number allocation, and 4 Flat-Rate Unlimited Any-Net Voice Plans (Home, Office, Religious, Voice Pal).',
-    keyFeatures: [
-      'Unlimited Home Double Play: Rs. 745 / mo (Any-Net)',
-      'Unlimited Office Double Play: Rs. 745 / mo (Corporate/SME)',
-      'Unlimited 4G Single Play Voice Pal: Rs. 745 / mo',
-      'Standard On-net: Peak Rs. 1.70/min | Leisure Rs. 1.00/min',
-      'Concurrent VoLTE operation with high-speed 4G data'
-    ],
-    ttTemplate: `SERVICE: SLT 4G VoLTE (Fixed Voice)
-PLAN: Unlimited Home Double Play Rs. 745
-SERVICE ORDER TYPE: CREATE (New Customer) / MODIFY (Migration from Copper/CDMA)
-CALL ALLOWANCE: Unlimited Calls to Any Local Network (On-net & Off-net)
-NUMBER PRESERVATION: Geographical series (011-2XXXXXX / CityLink retained)
-QUALITY: Voice over LTE (VoLTE) High-Definition Audio Codec
-RENTAL: Rs. 745 / month (Postpaid)`
+    cardBorder: 'border-slate-200 hover:border-teal-600 hover:shadow-teal-500/15',
+    route: '/knowledge-hub/4g-lte/voice'
   },
   {
     id: 'broadband',
     title: 'LTE Broadband (BB) Packages',
-    subtitle: 'Standard Data Quotas & Night Bonus',
-    badge: 'Fixed Broadband Data',
+    badge: 'Data Plans',
     badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200',
     icon: Globe,
     gradient: 'from-indigo-600 via-blue-700 to-purple-900',
-    cardBorder: 'border-indigo-200 hover:border-indigo-500 hover:shadow-indigo-500/15',
-    route: '/knowledge-hub/4g-lte/broadband',
-    ctaText: 'Open Broadband Plans',
-    priceHighlight: '8 GB to 225 GB Tiers',
-    taxDate: 'Day: 08-00 | Night: 00-08',
-    desc: 'Daytime and free night-time volume package tiers (Web Starter to Web Supreme), Flash daily allowances (Flash 10/25), Work & Learn passes, and RF signal strength scale.',
-    keyFeatures: [
-      'Web Starter (8GB ~Rs. 490) to Web Supreme (225GB ~Rs. 7,890)',
-      'Daytime standard quota applies 08:00 to 00:00 hrs',
-      'Free bonus night-time data applies 00:00 to 08:00 hrs',
-      'Flash 10 & Flash 25: Daily volume allowances with FUP',
-      'RSRP RF Signal Scale: Antenna dispatch if RSRP < -105 dBm'
-    ],
-    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
-FAULT: Slow Browsing Speeds / Weak RF Signal (RSRP < -105 dBm)
-DIAGNOSTICS: Router gateway (192.168.8.1) indicates 1 red signal bar. Band 40 (2300MHz).
-ACTION: Dispatch Trouble Ticket to AREA-MTCE / RF-PLANNING for outdoor high-gain Yagi antenna installation.`
+    cardBorder: 'border-slate-200 hover:border-indigo-600 hover:shadow-indigo-500/15',
+    route: '/knowledge-hub/4g-lte/broadband'
+  },
+  {
+    id: 'old_charges',
+    title: 'LTE Old Call Charges',
+    badge: 'Historical Rates',
+    badgeStyle: 'bg-slate-100 text-slate-700 border-slate-300',
+    icon: Clock,
+    gradient: 'from-slate-700 via-slate-800 to-slate-950',
+    cardBorder: 'border-slate-200 hover:border-slate-600 hover:shadow-slate-500/15',
+    route: '/knowledge-hub/4g-lte/old-charges'
   },
   {
     id: 'prepaid',
     title: '4G LTE Prepaid Services',
-    subtitle: 'SIM Starter Pack & Top-Up Passes',
-    badge: 'Prepaid Pay-As-You-Go',
+    badge: 'Prepaid Plans',
     badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
     icon: CreditCard,
     gradient: 'from-emerald-600 via-teal-700 to-cyan-900',
-    cardBorder: 'border-emerald-200 hover:border-emerald-500 hover:shadow-emerald-500/15',
-    route: '/knowledge-hub/4g-lte/prepaid',
-    ctaText: 'Open Prepaid Plans',
-    priceHighlight: 'HBB Anytime: 35GB & 75GB',
-    taxDate: 'Work & Learn: 30GB (Rs. 235)',
-    desc: 'Onetime prepaid broadband passes, HBB Anytime 899 (35GB) & 1899 (75GB), Work & Learn 30GB (Rs. 235), YouTube & Social 25GB (Rs. 390), MySLT app activation, and out-of-bundle rates.',
-    keyFeatures: [
-      'HBB Anytime Packs: 35GB (Rs. 899) & 75GB (Rs. 1,899)',
-      'Home Broadband 30 Days: 20GB (Rs. 535) onetime',
-      'Add-ons: Work & Learn (30GB - Rs. 235), YouTube & Social (25GB - Rs. 390)',
-      'Out-of-bundle PAYG Data: Rs. 0.08666 / MB (With Tax)',
-      'Reload Validity Matrix: Tier 1 to 8 (TRCSL compliant)'
-    ],
-    ttTemplate: `SERVICE: SLT 4G LTE Prepaid Recharge
-FAULT: Prepaid Recharge Not Credited to Account
-PAYMENT CHANNEL: Third-Party Banking / Merchant (e.g. Commercial Bank / Food City)
-RELOAD AMOUNT: Rs. [AMOUNT]
-TRANSACTION REF: [BANK_REF_OR_RECEIPT_NO]
-TIMESTAMP: [DATE_TIME]
-RULE: RULE_4G_RELOAD_THIRD_PARTY_CHANNELS
-TARGET: BILLING-HELPDESK
-ACTION: Verify API settlement gateway with merchant bank. Credit package quota manually upon transaction reconciliation.`
-  },
-  {
-    id: 'old_charges',
-    title: 'LTE Old Call Charges (Archive)',
-    subtitle: 'Historical Rates (Pre-20th Jan 2017)',
-    badge: 'Historical Reference',
-    badgeStyle: 'bg-slate-100 text-slate-700 border-slate-300',
-    icon: Clock,
-    gradient: 'from-slate-700 via-slate-800 to-slate-950',
-    cardBorder: 'border-slate-300 hover:border-slate-500 hover:shadow-slate-500/15',
-    route: '/knowledge-hub/4g-lte/old-charges',
-    ctaText: 'Open Old Rates',
-    priceHighlight: 'Pre-Jan 2017 Archive',
-    taxDate: 'Reviewed: 11/4/2024',
-    desc: 'Archival call rate schedule for accounts provisioned prior to 20th January 2017. Comparison between Residential (Rs. 310) and Business (Rs. 499) legacy tariffs.',
-    keyFeatures: [
-      'Residential: Rs. 310 rental | 100 Free On-net Minutes',
-      'Business: Rs. 499 rental | Stepped on-net calling rates',
-      'Off-net call rates: Active Rs. 2.70/min | Leisure Rs. 2.00/min',
-      'Free VAS bundle: CLI, Call Forwarding, Hunting, Conferencing',
-      'Migration advice to new Unlimited VoLTE Rs. 745 plan'
-    ],
-    ttTemplate: `SERVICE: SLT 4G LTE Historical Call Rates (Pre-20th Jan 2017)
-RESIDENTIAL: Rental Rs. 310 | On-net Active: Rs. 1.70/min | Leisure: Rs. 1.00/min | Off-net: Rs. 2.70/min | Free Min: 100 On-net
-BUSINESS: Rental Rs. 499 | On-net: Rs. 1.70 (1st 3 mins) / Rs. 1.00 (>3 mins) | Off-net: Rs. 2.70/min | Free VAS: CLI, Call Forwarding, Hunting, Conferencing.`
+    cardBorder: 'border-slate-200 hover:border-emerald-600 hover:shadow-emerald-500/15',
+    route: '/knowledge-hub/4g-lte/prepaid'
   },
   {
     id: 'other_charges',
     title: 'Other Charges – LTE',
-    subtitle: 'Damage Claims & Reconnection Fee',
-    badge: 'Equipment & Reconnection',
-    badgeStyle: 'bg-indigo-50 text-indigo-900 border-indigo-200',
+    badge: 'Damage & Reconnection',
+    badgeStyle: 'bg-rose-50 text-rose-900 border-rose-200',
     icon: Wrench,
-    gradient: 'from-indigo-600 via-slate-800 to-blue-950',
-    cardBorder: 'border-indigo-200 hover:border-indigo-500 hover:shadow-indigo-500/15',
-    route: '/knowledge-hub/4g-lte/other-charges',
-    ctaText: 'Open Other Charges',
-    priceHighlight: 'Reconnection: Rs. 500/=',
-    taxDate: 'Circular: 29-11-2022',
-    desc: 'Customer responsible CPE damage claims for CAT 4 (Rs. 2,900), CAT 6 (Rs. 4,900), and Outdoor units. Postpaid line reconnection fee (Rs. 500/=) and Voice Pal mouse/lightning 24-mo scheme.',
-    keyFeatures: [
-      'Postpaid Reconnection Fee: Rs. 500/= for terminated lines',
-      'Indoor CAT 4 Complete Set: Rs. 2,900 (Unit only Rs. 2,400)',
-      'Indoor CAT 6 Complete Set: Rs. 4,900 (Unit only Rs. 4,300)',
-      'Outdoor CPE Complete Set: Rs. 3,900 (ODU unit Rs. 3,500)',
-      'Voice Pal Mouse/Lightning: Rs. 5,000 in 24 monthly installments (~Rs. 208.33/mo)'
-    ],
-    ttTemplate: `SERVICE: SLT 4G LTE Fixed Broadband
-FAULT: Customer Responsible CPE Damage Claim
-ROUTER: CAT 4 (Rs. 2,900) / CAT 6 (Rs. 4,900) / Outdoor (Rs. 3,900)
-POSTPAID RECONNECTION: Rs. 500/=
-VOICE PAL SCHEME: Rs. 5,000 in 24 installments for mouse/lightning damage.
-CIRCULAR: 29-11-2022 Product Circular.`
+    gradient: 'from-rose-600 via-indigo-800 to-blue-950',
+    cardBorder: 'border-slate-200 hover:border-rose-600 hover:shadow-rose-500/15',
+    route: '/knowledge-hub/4g-lte/other-charges'
   },
   {
     id: 'lanka_bell',
     title: 'Lanka Bell to SLT 4G',
-    subtitle: 'Free Migration & Number Porting',
-    badge: 'Competitor Migration',
-    badgeColor: 'bg-purple-50 text-purple-900 border-purple-200',
+    badge: 'Free Migration',
+    badgeStyle: 'bg-purple-50 text-purple-900 border-purple-200',
     icon: Repeat,
     gradient: 'from-purple-700 via-indigo-800 to-slate-950',
-    cardBorder: 'border-purple-200 hover:border-purple-500 hover:shadow-purple-500/15',
-    route: '/knowledge-hub/4g-lte/lanka-bell',
-    ctaText: 'Open Lanka Bell Migration',
-    priceHighlight: 'Free Connection + CPE Swap',
-    taxDate: 'Updated: 01/08/2024',
-    desc: 'Complete SOP for migrating Lanka Bell subscribers to SLT 4G LTE. Free connection with CPE swap-out, package mapping matrix (Starter to Family Max), monthly bonus data, and SME number retention.',
-    keyFeatures: [
-      'Residential Migration: 100% Free connection with Bell CPE swap-out',
-      'Starter Pack (55GB @ Rs. 1,140) ➔ Any Joy (22GB + 23GB Bonus @ Rs. 1,150)',
-      'Intro Pack (77GB @ Rs. 1,620) ➔ Any Beat (36GB + 41GB Bonus @ Rs. 1,550)',
-      'Family Pack (154GB @ Rs. 3,180) ➔ LTE Flash 5 (Save Rs. 830/mo)',
-      'Enterprise / SME: Keep Lanka Bell number (Notify manushika@slt.com.lk)'
-    ],
-    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
-ACTION: Lanka Bell to SLT 4G LTE Free Migration
-SUBSCRIBER: [CUSTOMER_NAME] (NIC: [NIC_NUMBER])
-LANKA BELL NUMBER: [011-XXXXXXXX]
-OLD BELL PACKAGE: [STARTER / INTRO / LITE / FAMILY]
-MAPPED SLT PLAN: [Any Joy / Any Beat / LTE Flash 5 / Flash 10]
-CPE SWAP: Existing Lanka Bell CPE returned. SLT LTE CPE issued Free of Charge.
-BONUS DATA: Applicable monthly bonus quota provisioned within 2 weeks.`
+    cardBorder: 'border-slate-200 hover:border-purple-600 hover:shadow-purple-500/15',
+    route: '/knowledge-hub/4g-lte/lanka-bell'
   },
   {
     id: 'storage',
     title: 'SLT Storage (Eazy Storage)',
-    subtitle: 'Cloud Backup & File Syncing',
-    badge: 'DATA FREE for Broadband',
-    badgeColor: 'bg-cyan-50 text-cyan-900 border-cyan-200',
+    badge: 'Cloud Sync',
+    badgeStyle: 'bg-cyan-50 text-cyan-900 border-cyan-200',
     icon: Server,
     gradient: 'from-cyan-700 via-teal-800 to-slate-950',
-    cardBorder: 'border-cyan-200 hover:border-cyan-500 hover:shadow-cyan-500/15',
-    route: '/knowledge-hub/4g-lte/storage',
-    ctaText: 'Open Storage Manual',
-    priceHighlight: 'Zero Quota Deduction',
-    taxDate: '27 Tiers (20GB - 10TB)',
-    desc: 'Secure personal cloud storage to backup, sync, and share files, photos, contacts, and call logs. Zero internet quota consumption on SLT Broadband, free registration, and monthly bill integration.',
-    keyFeatures: [
-      'Data-Free Offer: Upload/download without deducting from SLT BB quota',
-      '27 Granular Package Tiers: 20 GB (Rs. 350) up to 10 TB',
-      'Popular Tiers: 50GB (Rs. 500), 100GB (Rs. 850), 200GB (Rs. 1,700)',
-      'Apps: Google Play, Huawei App Gallery, Apple App Store, Web Portal',
-      'Payment: Integrated with monthly SLT bill or Credit Card'
-    ],
-    ttTemplate: `SERVICE: SLT Eazy Storage (Cloud Backup & Sync)
-ACTION: Storage Quota Activation / Technical Assistance
-ACCOUNT NO: [011-2XXXXXX / BROADBAND_ACCOUNT]
-STORAGE TIER: [20GB / 50GB / 100GB / 200GB / 500GB / 1TB]
-BILLING OPTION: Add to SLT Monthly Bill (Postpaid) / Credit Card
-RULE: DATA_FREE_SLT_BROADBAND_USAGE (Zero quota deduction).`
+    cardBorder: 'border-slate-200 hover:border-cyan-600 hover:shadow-cyan-500/15',
+    route: '/knowledge-hub/4g-lte/storage'
   }
 ];
 
@@ -421,7 +254,6 @@ const SIDEBAR_SOP_LINKS = [
 export default function LteServicesHubPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTtModal, setActiveTtModal] = useState<any | null>(null);
   const [activeSidebarModal, setActiveSidebarModal] = useState<any | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -434,12 +266,7 @@ export default function LteServicesHubPage() {
   const filteredCards = LTE_MAIN_CARDS.filter((card) => {
     if (!searchQuery) return true;
     const q = searchQuery.toLowerCase();
-    return (
-      card.title.toLowerCase().includes(q) ||
-      card.subtitle.toLowerCase().includes(q) ||
-      card.desc.toLowerCase().includes(q) ||
-      card.keyFeatures.some((f) => f.toLowerCase().includes(q))
-    );
+    return card.title.toLowerCase().includes(q) || card.badge.toLowerCase().includes(q);
   });
 
   return (
@@ -505,7 +332,7 @@ export default function LteServicesHubPage() {
       </div>
 
       {/* 4. HERO BANNER */}
-      <div className="relative bg-gradient-to-r from-[#03152e] via-[#082a52] to-[#011429] text-white px-8 py-8 overflow-hidden border-b border-blue-900/40">
+      <div className="relative bg-gradient-to-r from-[#03152e] via-[#082a52] to-[#011429] text-white px-8 py-7 overflow-hidden border-b border-blue-900/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10 space-y-3">
@@ -524,30 +351,30 @@ export default function LteServicesHubPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search CAT 4, CAT 6, VoLTE, Prepaid..."
-                className="w-full bg-white text-slate-800 text-xs pl-8 pr-7 py-1.5 rounded-md focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
+                placeholder="Search topic (CAT 4, VoLTE, Prepaid...)"
+                className="w-full bg-white text-slate-800 text-xs pl-8 pr-7 py-2 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-400 shadow-xs"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
                   className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  <X className="w-3 h-3" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
           </div>
 
           <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-md">
-            SLT-Mobitel 4G LTE - Core Service Modules
+            SLT-Mobitel 4G LTE - Service Navigation Hub
           </h1>
           <p className="text-xs text-cyan-100/90 max-w-3xl font-medium leading-relaxed">
-            Select a service card below to navigate directly to its dedicated tariffs, connection charges (CAT 4 &amp; CAT 6), VoLTE voice packages, broadband data allowances, and prepaid procedures.
+            Select any service topic below to redirect directly to its complete tariffs, connection charges, packages, and technical operational procedures.
           </p>
 
           {/* Publisher Metadata */}
           <div className="flex items-center gap-3 pt-1">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-700 border border-cyan-400 flex items-center justify-center font-bold text-xs text-white shadow-sm">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-700 border border-cyan-400 flex items-center justify-center font-bold text-xs text-white shadow-sm">
               CR
             </div>
             <div className="text-xs">
@@ -564,15 +391,12 @@ export default function LteServicesHubPage() {
           <div className="flex items-center gap-2">
             <span className="font-black text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-[#005696]" />
-              <span>4G LTE Modules (Click Card to Redirect)</span>
-            </span>
-            <span className="px-2 py-0.5 rounded-full bg-blue-100 text-[#005696] font-bold text-[10px]">
-              {filteredCards.length} Sections Available
+              <span>4G LTE Navigation Cards ({filteredCards.length} Topics)</span>
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-slate-500 font-semibold text-[11px]">
-            <span>Price plans eff. 24/08/2022</span>
+            <span>Click any card to open dedicated page</span>
             <span>•</span>
             <span className="text-emerald-700 font-bold">Revised with Tax: 01/08/2024</span>
           </div>
@@ -650,7 +474,7 @@ export default function LteServicesHubPage() {
           </div>
 
           {/* ---------------------------------------------------- */}
-          {/* B. MAIN RIGHT PANEL: PRIMARY 4G CARDS GRID           */}
+          {/* B. MAIN RIGHT PANEL: TOPIC-ONLY 4G CARDS GRID        */}
           {/* ---------------------------------------------------- */}
           <div className="lg:col-span-3 space-y-6">
 
@@ -658,112 +482,49 @@ export default function LteServicesHubPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-black text-slate-900 tracking-tight">
-                  4G LTE Operational Modules (6 Main Cards)
+                  4G LTE Service Topics
                 </h2>
-                <p className="text-xs text-slate-500 font-medium">
-                  Click any card to redirect directly to its dedicated pricing and triage page
+                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                  Click any topic card to open its dedicated page with complete details and calculators
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/knowledge-hub/4g-lte/cat-4"
-                  className="px-3 py-1.5 rounded-lg bg-[#005696] hover:bg-[#004172] text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors"
-                >
-                  <Radio className="w-3.5 h-3.5" />
-                  <span>Open CAT 4 ➔</span>
-                </Link>
-                <Link
-                  href="/knowledge-hub/4g-lte/cat-6"
-                  className="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors"
-                >
-                  <Zap className="w-3.5 h-3.5" />
-                  <span>Open CAT 6 ➔</span>
-                </Link>
-              </div>
+              <span className="hidden sm:inline-block text-xs font-bold text-[#005696] bg-blue-50 px-3 py-1 rounded-xl border border-blue-200">
+                9 Modules Available
+              </span>
             </div>
 
-            {/* The 6 Main Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {/* Clean Topic Cards Grid (No description clutter) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {filteredCards.map((card) => {
                 const CardIcon = card.icon;
                 return (
                   <motion.div
                     key={card.id}
-                    whileHover={{ y: -5, scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ y: -3, scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    transition={{ duration: 0.15 }}
                     onClick={() => router.push(card.route)}
-                    className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer flex flex-col justify-between shadow-2xs hover:shadow-xl relative overflow-hidden group ${card.cardBorder}`}
+                    className={`bg-white rounded-2xl p-5 border-2 transition-all cursor-pointer flex items-center justify-between gap-4 shadow-xs hover:shadow-lg group ${card.cardBorder}`}
                   >
-                    <div>
-                      {/* Top Header */}
-                      <div className="flex items-start justify-between gap-1.5 mb-3">
-                        <div
-                          className={`w-11 h-11 rounded-xl bg-gradient-to-br ${card.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform shrink-0`}
-                        >
-                          <CardIcon className="w-5 h-5" />
-                        </div>
-                        <span
-                          className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border truncate ${card.badgeStyle}`}
-                        >
+                    <div className="flex items-center gap-3.5 min-w-0">
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform shrink-0`}
+                      >
+                        <CardIcon className="w-6 h-6" />
+                      </div>
+                      <div className="min-w-0">
+                        <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border mb-1 inline-block ${card.badgeStyle}`}>
                           {card.badge}
                         </span>
-                      </div>
-
-                      {/* Title & Subtitle */}
-                      <div className="flex items-center justify-between mb-0.5">
-                        <h3 className="font-black text-base text-slate-900 group-hover:text-[#005696] transition-colors flex items-center gap-1">
-                          <span>{card.title}</span>
-                          <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#005696]" />
+                        <h3 className="font-black text-base md:text-lg text-slate-900 group-hover:text-[#005696] transition-colors leading-snug truncate">
+                          {card.title}
                         </h3>
-                      </div>
-
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 truncate">
-                        {card.subtitle}
-                      </p>
-
-                      <div className="mb-3 flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 text-xs">
-                        <span className="font-bold text-[#005696]">{card.priceHighlight}</span>
-                        <span className="text-[10px] text-slate-500 font-semibold">{card.taxDate}</span>
-                      </div>
-
-                      <p className="text-xs text-slate-600 font-medium line-clamp-3 leading-relaxed mb-4">
-                        {card.desc}
-                      </p>
-
-                      {/* Key Features List */}
-                      <div className="space-y-1.5 pt-3 border-t border-slate-100 mb-4">
-                        <span className="text-[9px] font-black uppercase tracking-wider text-slate-400 block mb-1">
-                          Key Topics &amp; Tariffs:
-                        </span>
-                        {card.keyFeatures.slice(0, 3).map((feat, fIdx) => (
-                          <div key={fIdx} className="flex items-center gap-1.5 text-[10px] text-slate-600 font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#005696] shrink-0"></span>
-                            <span className="truncate">{feat}</span>
-                          </div>
-                        ))}
                       </div>
                     </div>
 
-                    {/* Bottom Action Footer */}
-                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveTtModal(card);
-                        }}
-                        className="text-[10px] font-bold text-[#005696] hover:underline flex items-center gap-1"
-                      >
-                        <FileText className="w-3 h-3" />
-                        <span>TT / Quote</span>
-                      </button>
-
-                      <div
-                        className="px-3 py-1 rounded-lg bg-[#005696] group-hover:bg-[#004172] text-white font-bold text-[11px] flex items-center gap-1 shadow-2xs transition-colors"
-                      >
-                        <span>{card.ctaText}</span>
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
+                    <div className="w-9 h-9 rounded-full bg-slate-100 group-hover:bg-[#005696] text-slate-500 group-hover:text-white flex items-center justify-center transition-all shrink-0 shadow-2xs">
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </motion.div>
                 );
@@ -775,7 +536,7 @@ export default function LteServicesHubPage() {
               <div className="border-b border-slate-100 pb-2 flex items-center justify-between">
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#005696]" />
-                  <span>4G LTE Frontline Triage &amp; Escalation Summary</span>
+                  <span>4G LTE Frontline Quick Reference</span>
                 </h3>
                 <span className="text-xs text-slate-400 font-semibold">ISO 9001:2015 Compliant</span>
               </div>
@@ -784,25 +545,25 @@ export default function LteServicesHubPage() {
                 <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-200/80 space-y-1">
                   <span className="text-[10px] font-black uppercase text-[#005696]">CAT 4 Connection</span>
                   <p className="font-bold text-slate-800">New With Tax: Rs. 4,990</p>
-                  <p className="text-[11px] text-slate-600">Applicable for BB packages Rs. 1,990/2,390 and above.</p>
+                  <p className="text-[11px] text-slate-600">Concessionary Double Play.</p>
                 </div>
 
                 <div className="p-3 bg-amber-50/60 rounded-xl border border-amber-200/80 space-y-1">
                   <span className="text-[10px] font-black uppercase text-amber-800">CAT 6 Tozed Advanced</span>
                   <p className="font-bold text-slate-800">Concession: Rs. 13,990</p>
-                  <p className="text-[11px] text-slate-600">Full payment Rs. 19,900 carries free 25GB/mo bonus data.</p>
+                  <p className="text-[11px] text-slate-600">Full payment Rs. 19,900 (25GB/mo free).</p>
                 </div>
 
                 <div className="p-3 bg-teal-50/60 rounded-xl border border-teal-200/80 space-y-1">
                   <span className="text-[10px] font-black uppercase text-teal-800">VoLTE HD Voice</span>
                   <p className="font-bold text-slate-800">Unlimited Voice: Rs. 745</p>
-                  <p className="text-[11px] text-slate-600">Postpaid flat rate calling to any local telephone network.</p>
+                  <p className="text-[11px] text-slate-600">Any-Net flat rate calling.</p>
                 </div>
 
                 <div className="p-3 bg-emerald-50/60 rounded-xl border border-emerald-200/80 space-y-1">
                   <span className="text-[10px] font-black uppercase text-emerald-800">Prepaid SIM Pack</span>
                   <p className="font-bold text-slate-800">Starter Pack: Rs. 1,400</p>
-                  <p className="text-[11px] text-slate-600">Pay-as-you-go volume passes from 1GB to 40GB.</p>
+                  <p className="text-[11px] text-slate-600">HBB Anytime &amp; Add-ons.</p>
                 </div>
               </div>
             </div>
@@ -812,70 +573,7 @@ export default function LteServicesHubPage() {
         </div>
       </div>
 
-      {/* MODAL 1: Trouble Ticket / Quotation Draft */}
-      <AnimatePresence>
-        {activeTtModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 space-y-4"
-            >
-              <div className="flex items-start justify-between border-b border-slate-100 pb-3">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-[#005696] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                    Trouble Ticket &amp; Quotation Template
-                  </span>
-                  <h3 className="text-base font-black text-slate-900 mt-1">
-                    {activeTtModal.title}
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setActiveTtModal(null)}
-                  className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="bg-slate-900 text-white p-4 rounded-xl font-mono text-xs border border-slate-800">
-                <pre className="whitespace-pre-wrap leading-relaxed text-lime-300">
-                  {activeTtModal.ttTemplate}
-                </pre>
-              </div>
-
-              <div className="flex items-center justify-between pt-2">
-                <button
-                  onClick={() => router.push(activeTtModal.route)}
-                  className="px-4 py-2 rounded-xl bg-blue-50 text-[#005696] font-bold text-xs hover:bg-blue-100 transition-colors flex items-center gap-1.5"
-                >
-                  <span>Go to Full Page</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => copyToClipboard(activeTtModal.ttTemplate, 'tt-modal')}
-                    className="px-4 py-2 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-xs shadow-xs flex items-center gap-1.5 transition-colors"
-                  >
-                    {copiedId === 'tt-modal' ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copiedId === 'tt-modal' ? 'Copied Template!' : 'Copy Template'}</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveTtModal(null)}
-                    className="px-4 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* MODAL 2: Sidebar SOP Procedure Details */}
+      {/* MODAL: Sidebar SOP Procedure Details */}
       <AnimatePresence>
         {activeSidebarModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
