@@ -177,15 +177,15 @@ ACTION: Dispatch Trouble Ticket to AREA-MTCE / RF-PLANNING for outdoor high-gain
     cardBorder: 'border-emerald-200 hover:border-emerald-500 hover:shadow-emerald-500/15',
     route: '/knowledge-hub/4g-lte/prepaid',
     ctaText: 'Open Prepaid Plans',
-    priceHighlight: 'SIM Pack: Rs. 1,200',
-    taxDate: 'HBB Anytime: 15GB & 30GB',
-    desc: 'Pay-as-you-go broadband data passes, instant SIM starter pack (Rs. 1,200), HBB Anytime bundles (15GB @ Rs. 590 / 30GB @ Rs. 1,090), Work & Learn passes, reload validity matrix, and trouble ticketing.',
+    priceHighlight: 'HBB Anytime: 35GB & 75GB',
+    taxDate: 'Work & Learn: 30GB (Rs. 235)',
+    desc: 'Onetime prepaid broadband passes, HBB Anytime 899 (35GB) & 1899 (75GB), Work & Learn 30GB (Rs. 235), YouTube & Social 25GB (Rs. 390), MySLT app activation, and out-of-bundle rates.',
     keyFeatures: [
-      'Prepaid SIM Starter Pack: Rs. 1,200 (eff. 08/04/2024)',
-      'HBB Anytime Packs: 15GB (Rs. 590) & 30GB (Rs. 1,090)',
-      'Add-ons: Work & Learn (20GB - Rs. 295), YouTube (10GB - Rs. 395)',
-      'Reload Validity Matrix: Tier 1 to 8 (Min. physical reload Rs. 500)',
-      '50 Free On-Net Minutes on 30-day Home Package with Data Rollover'
+      'HBB Anytime Packs: 35GB (Rs. 899) & 75GB (Rs. 1,899)',
+      'Home Broadband 30 Days: 20GB (Rs. 535) onetime',
+      'Add-ons: Work & Learn (30GB - Rs. 235), YouTube & Social (25GB - Rs. 390)',
+      'Out-of-bundle PAYG Data: Rs. 0.08666 / MB (With Tax)',
+      'Reload Validity Matrix: Tier 1 to 8 (TRCSL compliant)'
     ],
     ttTemplate: `SERVICE: SLT 4G LTE Prepaid Recharge
 FAULT: Prepaid Recharge Not Credited to Account

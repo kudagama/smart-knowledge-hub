@@ -79,115 +79,121 @@ const PREPAID_CONNECTION_CHARGES = [
   }
 ];
 
-// Main Packages Table
+// Main Packages Table (From Official SLT Documentation)
 const MAIN_PACKAGES = [
   {
     name: '4G LTE - Home Broadband - 7 Days',
     status: 'Discontinued',
-    statusDate: 'Discontinued from 07th Jan 2024',
+    statusDate: 'Discontinued from 15th January 2026',
+    recurrence: 'Onetime',
+    volume: '5 GB',
     validity: '7 Days',
-    totalVolume: '7 GB',
-    dailyAllotment: '1 GB / Day',
-    price: '220',
-    notes: 'Daily quota reset at 00:00 midnight. Replaced by HBB Anytime 15GB.'
+    price: '155',
+    notes: 'Discontinued from 15th January 2026'
   },
   {
     name: '4G LTE - Home Broadband - 14 Days',
     status: 'Discontinued',
-    statusDate: 'Discontinued from 07th Jan 2024',
+    statusDate: 'Discontinued from 15th January 2026',
+    recurrence: 'Onetime',
+    volume: '10 GB',
     validity: '14 Days',
-    totalVolume: '14 GB',
-    dailyAllotment: '1 GB / Day',
-    price: '440',
-    notes: 'Daily quota reset at 00:00 midnight. Replaced by HBB Anytime 15GB/30GB.'
+    price: '295',
+    notes: 'Discontinued from 15th January 2026'
   },
   {
     name: '4G LTE - Home Broadband - 30 Days',
     status: 'Active',
     statusDate: 'Standard Plan',
+    recurrence: 'Onetime',
+    volume: '20 GB',
     validity: '30 Days',
-    totalVolume: '30 GB',
-    dailyAllotment: '1 GB / Day',
-    price: '940',
-    notes: 'Includes 50 Free On-Net voice minutes. Unused data rolls over if recharged before expiry.'
+    price: '535',
+    notes: 'Standard monthly onetime pack'
   },
   {
-    name: 'HBB Anytime - 15GB (15 Days)',
+    name: 'HBB Anytime - 899 (30 days)',
     status: 'Active',
-    statusDate: 'Available from 07th Jan 2024',
-    validity: '15 Days',
-    totalVolume: '15 GB',
-    dailyAllotment: 'Anytime (No daily cap)',
-    price: '590',
-    notes: 'Pure anytime quota. Usable 24 hours without day/night or daily restriction.'
+    statusDate: 'Available from 12th February 2025',
+    recurrence: 'Onetime',
+    volume: '35 GB',
+    validity: '30 Days',
+    price: '899',
+    notes: 'Pure anytime quota (Available from 12th February 2025)'
   },
   {
-    name: 'HBB Anytime - 30GB (30 Days)',
+    name: 'HBB Anytime - 1899 (30 days)',
     status: 'Active',
-    statusDate: 'Available from 07th Jan 2024',
+    statusDate: 'Available from 12th February 2025',
+    recurrence: 'Onetime',
+    volume: '75 GB',
     validity: '30 Days',
-    totalVolume: '30 GB',
-    dailyAllotment: 'Anytime (No daily cap)',
-    price: '1,090',
-    notes: 'Pure anytime quota. Unused balance rolls over upon subsequent package reactivation.'
+    price: '1,899',
+    notes: 'Pure anytime high-speed volume (Available from 12th February 2025)'
   }
 ];
 
-// Special Add-ons / Data Add-ons
+// Special Add-ons / Data Add-ons (From Official SLT Documentation)
 const DATA_ADDONS = [
   {
-    name: 'Work & Learn Addon (15 Days)',
+    name: 'Work & Learn Addon 30 Days',
     category: 'Work & Study',
-    volume: '20 GB',
-    validity: '15 Days',
-    price: '295',
+    recurrence: 'Onetime',
+    volume: '30 GB',
+    validity: '30 Days',
+    price: '235',
     restriction: 'Zoom, MS Teams, Office 365, Google Meet only',
-    description: 'Special education/work bundle. Quota utilized only for authorized collaboration tools.'
+    description: 'Dedicated quota for remote education and office collaboration tools.'
   },
   {
-    name: 'YouTube & Social Media Addon (15 Days)',
-    category: 'Entertainment',
-    volume: '10 GB',
-    validity: '15 Days',
-    price: '395',
-    restriction: 'YouTube, Facebook, Instagram, WhatsApp, Messenger',
-    description: 'High-speed media pass for streaming and social feeds without affecting standard quota.'
+    name: 'YouTube & social media Addon 30 Days',
+    category: 'Entertainment & Social',
+    recurrence: 'Onetime',
+    volume: '25 GB',
+    validity: '30 Days',
+    price: '390',
+    restriction: 'WhatsApp Messenger, Viber Messenger, IMO Messenger, Facebook & Facebook Messenger, Instagram, TikTok, Spotify',
+    description: 'High-speed pass for messaging, music and social media streaming.'
   },
   {
-    name: 'Anytime Addon 1GB (1 Day)',
+    name: 'Anytime Addon 5GB 7 Days',
     category: 'Anytime Booster',
-    volume: '1 GB',
-    validity: '1 Day (24 Hrs)',
-    price: '110',
-    restriction: 'Any internet access',
-    description: 'Emergency booster for quick file transfers or temporary quota exhaustion.'
-  },
-  {
-    name: 'Anytime Addon 2GB (3 Days)',
-    category: 'Anytime Booster',
-    volume: '2 GB',
-    validity: '3 Days',
-    price: '190',
-    restriction: 'Any internet access',
-    description: 'Short-duration weekend browsing pass.'
-  },
-  {
-    name: 'Anytime Addon 5GB (7 Days)',
-    category: 'Anytime Booster',
+    recurrence: 'Onetime',
     volume: '5 GB',
     validity: '7 Days',
-    price: '440',
+    price: '249',
     restriction: 'Any internet access',
-    description: 'Weekly volume top-up.'
+    description: 'Weekly volume booster.'
   },
   {
-    name: 'Anytime Addon 10GB (14 Days)',
+    name: 'Anytime Addon 5GB 30 Days',
     category: 'Anytime Booster',
-    volume: '10 GB',
-    validity: '14 Days',
-    price: '820',
+    recurrence: 'Onetime',
+    volume: '5 GB',
+    validity: '30 Days',
+    price: '298',
     restriction: 'Any internet access',
-    description: 'Bi-weekly anytime pass for heavy browsing.'
+    description: 'Monthly 5GB extension.'
+  },
+  {
+    name: 'Anytime Addon 10GB 7 Days',
+    category: 'Anytime Booster',
+    recurrence: 'Onetime',
+    volume: '10 GB',
+    validity: '7 Days',
+    price: '460',
+    restriction: 'Any internet access',
+    description: 'High-volume weekly pass.'
+  },
+  {
+    name: 'Anytime Addon 10GB 30 Days',
+    category: 'Anytime Booster',
+    recurrence: 'Onetime',
+    volume: '10 GB',
+    validity: '30 Days',
+    price: '570',
+    restriction: 'Any internet access',
+    description: 'Heavy monthly volume pass.'
   }
 ];
 
@@ -533,10 +539,10 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
                     <Wifi className="w-5 h-5 text-emerald-700" />
-                    <span>Main Packages (Prepaid Broadband Bundles)</span>
+                    <span>Main Packages (4G LTE Prepaid Broadband)</span>
                   </h2>
                   <p className="text-xs text-slate-500">
-                    HBB Anytime bundles (no day/night or daily limits) and legacy daily allotment packages.
+                    Official Onetime broadband bundles, HBB Anytime packages, and historical daily allotment packs.
                   </p>
                 </div>
                 <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded bg-blue-50 text-blue-800 border border-blue-200">
@@ -544,18 +550,17 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
                 </span>
               </div>
 
-              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs space-y-4 p-5">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
                       <tr className="bg-slate-900 text-white font-bold">
                         <th className="p-3.5">Display Name</th>
-                        <th className="p-3.5">Status</th>
-                        <th className="p-3.5">Validity</th>
-                        <th className="p-3.5">Total Volume</th>
-                        <th className="p-3.5">Allotment Mode</th>
-                        <th className="p-3.5 text-emerald-400">Price (With Tax)</th>
-                        <th className="p-3.5">Package Rules &amp; Freebies</th>
+                        <th className="p-3.5">Recurrence</th>
+                        <th className="p-3.5">Data Volume (GB)</th>
+                        <th className="p-3.5">Validity (Days)</th>
+                        <th className="p-3.5 text-emerald-400">Price (Rs) With Tax</th>
+                        <th className="p-3.5">Package Status &amp; Availability</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
@@ -573,38 +578,85 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
                                 )}
                               </div>
                             </td>
+                            <td className="p-3.5 font-medium text-slate-700">{pkg.recurrence}</td>
+                            <td className="p-3.5 font-mono font-black text-[#005696] text-sm">{pkg.volume}</td>
+                            <td className="p-3.5 font-bold text-slate-800">{pkg.validity}</td>
+                            <td className="p-3.5 font-mono font-black text-emerald-700 text-sm">
+                              Rs. {pkg.price}
+                            </td>
                             <td className="p-3.5">
                               <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                pkg.status === 'Active' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'
+                                pkg.status === 'Active' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-50 text-rose-700 border border-rose-200'
                               }`}>
                                 {pkg.statusDate}
                               </span>
                             </td>
-                            <td className="p-3.5 font-bold text-slate-800">{pkg.validity}</td>
-                            <td className="p-3.5 font-mono font-black text-[#005696] text-sm">{pkg.totalVolume}</td>
-                            <td className="p-3.5 text-slate-700 font-medium">{pkg.dailyAllotment}</td>
-                            <td className="p-3.5 font-mono font-black text-emerald-700 text-sm">
-                              Rs. {pkg.price}
-                            </td>
-                            <td className="p-3.5 text-slate-600 text-[11px] max-w-xs">{pkg.notes}</td>
                           </tr>
                         ))}
                     </tbody>
                   </table>
                 </div>
 
-                {/* Package Features Callout */}
-                <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-2 text-xs text-slate-700">
-                  <div className="font-bold text-slate-900 flex items-center gap-1.5">
-                    <Info className="w-4 h-4 text-emerald-600" />
-                    <span>Unique Features of 4G LTE Home Package 30 Days:</span>
+                {/* Activation & Guidelines Box */}
+                <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5 text-xs text-emerald-950">
+                    <Smartphone className="w-5 h-5 text-emerald-700 shrink-0" />
+                    <div>
+                      <span className="font-bold block">SelfCare Activation:</span>
+                      <span>Can be Activated through <strong>MySLT App</strong> and <strong>My SLT Portal</strong>.</span>
+                    </div>
                   </div>
-                  <ul className="list-disc list-inside space-y-1 text-slate-600 pl-2">
-                    <li><strong>50 Free Voice Minutes:</strong> 50 On-Net local minutes included free of charge with the 30-day package.</li>
-                    <li><strong>Data Rollover:</strong> Unused data quota is accumulated into the next cycle if the customer recharges before validity expiry.</li>
-                    <li><strong>Independent Activation:</strong> Customers can activate broadband data with or without an active voice bundle.</li>
-                  </ul>
+                  <a
+                    href="https://sltcomlk.sharepoint.com/sites/KnowledgeHub/Shared%20Documents/Forms/AllItems.aspx?id=/sites/KnowledgeHub/Shared%20Documents/Chathurani/From%20Old%20KH/Old%20KH%20Backup/LTE/LTE%20Prepaid%20Guide%20for%20MySLT%20App.pdf&viewid=f85720f1-07a8-48b6-be78-153e3e326686&parent=/sites/KnowledgeHub/Shared%20Documents/Chathurani/From%20Old%20KH/Old%20KH%20Backup/LTE"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-colors shrink-0 shadow-2xs"
+                  >
+                    <span>Click here to find Guidelines to install MySLT App</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
+
+                {/* Usage Charges (When Add-on is not activated) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-slate-50 rounded-xl border border-slate-200 p-4 space-y-2">
+                    <h4 className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Usage charges of Main Package (When Add-on is not activated)</span>
+                    </h4>
+                    <table className="w-full text-left text-xs border-collapse">
+                      <thead>
+                        <tr className="bg-white text-slate-700 border-b border-slate-200 font-bold">
+                          <th className="p-2.5">Service</th>
+                          <th className="p-2.5 text-emerald-800">Price in LKR (With Tax)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-slate-100 bg-white">
+                          <td className="p-2.5 font-medium text-slate-800">Data Charge</td>
+                          <td className="p-2.5 font-mono font-bold text-emerald-700 text-sm">
+                            Rs. 0.08666 / MB
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Prerequisites Alert */}
+                  <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200 space-y-2 text-xs text-amber-950 flex flex-col justify-center">
+                    <div className="font-black flex items-center gap-1.5 text-amber-900">
+                      <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>Customer Add-on &amp; Wallet Balance Conditions:</span>
+                    </div>
+                    <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1 font-medium">
+                      <li>Customer can add <strong>only add-ons without any main package</strong>.</li>
+                      <li>
+                        <strong>Important Requirement:</strong> But to use the add-on without any issue, the customer needs to have a <strong>positive wallet balance</strong> or a <strong>main package with a positive balance</strong>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
           )}
@@ -616,18 +668,93 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
                     <Zap className="w-5 h-5 text-amber-600" />
-                    <span>Special Add-ons &amp; Anytime Quota Passes</span>
+                    <span>Data Add-ons (Work &amp; Learn, Social Media, Anytime Passes)</span>
                   </h2>
                   <p className="text-xs text-slate-500">
-                    Targeted passes for Work &amp; Learn, Social Media, and Instant Anytime Boosters.
+                    Onetime add-on passes usable independently or with an active main package.
                   </p>
                 </div>
                 <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200">
-                  Priority Consumption
+                  Onetime Passes
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Add-ons Official Table */}
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-slate-900 text-white font-bold">
+                        <th className="p-3.5">Display Name</th>
+                        <th className="p-3.5">Recurrence</th>
+                        <th className="p-3.5">Data Volume (GB)</th>
+                        <th className="p-3.5">Validity</th>
+                        <th className="p-3.5 text-emerald-400">Price (Rs) With Tax</th>
+                        <th className="p-3.5">Allowed Protocols / Applications</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {DATA_ADDONS
+                        .filter(item => searchTerm === '' || item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.restriction.toLowerCase().includes(searchTerm.toLowerCase()))
+                        .map((addon, idx) => (
+                          <tr key={idx} className="hover:bg-amber-50/40 transition-colors">
+                            <td className="p-3.5 font-bold text-slate-900">{addon.name}</td>
+                            <td className="p-3.5 font-medium text-slate-700">{addon.recurrence}</td>
+                            <td className="p-3.5 font-mono font-black text-[#005696] text-sm">{addon.volume}</td>
+                            <td className="p-3.5 font-bold text-slate-800">{addon.validity}</td>
+                            <td className="p-3.5 font-mono font-black text-emerald-700 text-sm">
+                              Rs. {addon.price}
+                            </td>
+                            <td className="p-3.5 text-slate-600 text-[11px] max-w-sm">
+                              {addon.restriction}
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Add-on Activation & Balance Guidelines */}
+                <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-3 text-xs text-slate-700">
+                  <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5 text-xs text-emerald-950">
+                      <Smartphone className="w-5 h-5 text-emerald-700 shrink-0" />
+                      <div>
+                        <span className="font-bold block">Add-on Activation:</span>
+                        <span>Can be Activated through <strong>MySLT App</strong> and <strong>My SLT Portal</strong>.</span>
+                      </div>
+                    </div>
+                    <a
+                      href="https://sltcomlk.sharepoint.com/sites/KnowledgeHub/Shared%20Documents/Forms/AllItems.aspx?id=/sites/KnowledgeHub/Shared%20Documents/Chathurani/From%20Old%20KH/Old%20KH%20Backup/LTE/LTE%20Prepaid%20Guide%20for%20MySLT%20App.pdf&viewid=f85720f1-07a8-48b6-be78-153e3e326686&parent=/sites/KnowledgeHub/Shared%20Documents/Chathurani/From%20Old%20KH/Old%20KH%20Backup/LTE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-colors shrink-0 shadow-2xs"
+                    >
+                      <span>Click here to find Guidelines to install MySLT App</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200 space-y-1.5 text-amber-950">
+                    <div className="font-bold flex items-center gap-1.5 text-amber-900">
+                      <AlertTriangle className="w-4 h-4 text-amber-600" />
+                      <span>Special Operating Notes:</span>
+                    </div>
+                    <ul className="list-disc list-inside space-y-1 text-amber-900/90 pl-1 font-medium">
+                      <li>Customer can add <strong>only add-ons without any main package</strong>.</li>
+                      <li>
+                        <strong>Critical Condition:</strong> But to use the add-on without any issue, the customer needs to have a <strong>positive wallet balance</strong> or a <strong>main package with a positive balance</strong>.
+                      </li>
+                      <li>
+                        <strong>YouTube &amp; Social Media Protocols:</strong> WhatsApp Messenger, Viber Messenger, IMO Messenger, Facebook &amp; Facebook Messenger, Instagram, TikTok, Spotify.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Add-ons Visual Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
                 {DATA_ADDONS
                   .filter(item => searchTerm === '' || item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.restriction.toLowerCase().includes(searchTerm.toLowerCase()))
                   .map((addon, idx) => (
@@ -676,19 +803,6 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
                       </div>
                     </div>
                   ))}
-              </div>
-
-              {/* Add-on Operating Rules */}
-              <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200 space-y-1.5 text-xs text-amber-900">
-                <div className="font-bold flex items-center gap-1.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-700" />
-                  <span>Quota Consumption Order &amp; Reset Rules:</span>
-                </div>
-                <p className="text-amber-800 pl-5">
-                  1. <strong>Precedence:</strong> Special application add-on data (e.g. Work &amp; Learn) is consumed first before deducting from the standard anytime or daily allotment quota.<br/>
-                  2. <strong>Daily Allocation Reset:</strong> On daily allotment packages, quota is refreshed every night at <strong>00:00 hrs (midnight)</strong>.<br/>
-                  3. <strong>Multiple Addons:</strong> Customers can activate multiple add-ons concurrently; validity periods run independently for each pack.
-                </p>
               </div>
             </div>
           )}
