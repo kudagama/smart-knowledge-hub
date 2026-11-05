@@ -280,6 +280,34 @@ OLD BELL PACKAGE: [STARTER / INTRO / LITE / FAMILY]
 MAPPED SLT PLAN: [Any Joy / Any Beat / LTE Flash 5 / Flash 10]
 CPE SWAP: Existing Lanka Bell CPE returned. SLT LTE CPE issued Free of Charge.
 BONUS DATA: Applicable monthly bonus quota provisioned within 2 weeks.`
+  },
+  {
+    id: 'storage',
+    title: 'SLT Storage (Eazy Storage)',
+    subtitle: 'Cloud Backup & File Syncing',
+    badge: 'DATA FREE for Broadband',
+    badgeColor: 'bg-cyan-50 text-cyan-900 border-cyan-200',
+    icon: Server,
+    gradient: 'from-cyan-700 via-teal-800 to-slate-950',
+    cardBorder: 'border-cyan-200 hover:border-cyan-500 hover:shadow-cyan-500/15',
+    route: '/knowledge-hub/4g-lte/storage',
+    ctaText: 'Open Storage Manual',
+    priceHighlight: 'Zero Quota Deduction',
+    taxDate: '27 Tiers (20GB - 10TB)',
+    desc: 'Secure personal cloud storage to backup, sync, and share files, photos, contacts, and call logs. Zero internet quota consumption on SLT Broadband, free registration, and monthly bill integration.',
+    keyFeatures: [
+      'Data-Free Offer: Upload/download without deducting from SLT BB quota',
+      '27 Granular Package Tiers: 20 GB (Rs. 350) up to 10 TB',
+      'Popular Tiers: 50GB (Rs. 500), 100GB (Rs. 850), 200GB (Rs. 1,700)',
+      'Apps: Google Play, Huawei App Gallery, Apple App Store, Web Portal',
+      'Payment: Integrated with monthly SLT bill or Credit Card'
+    ],
+    ttTemplate: `SERVICE: SLT Eazy Storage (Cloud Backup & Sync)
+ACTION: Storage Quota Activation / Technical Assistance
+ACCOUNT NO: [011-2XXXXXX / BROADBAND_ACCOUNT]
+STORAGE TIER: [20GB / 50GB / 100GB / 200GB / 500GB / 1TB]
+BILLING OPTION: Add to SLT Monthly Bill (Postpaid) / Credit Card
+RULE: DATA_FREE_SLT_BROADBAND_USAGE (Zero quota deduction).`
   }
 ];
 

@@ -852,10 +852,10 @@ ACTION: Create Bill SR with description. Reverse and credit the initial connecti
             </Link>
 
             <Link
-              href="/knowledge-hub/4g-lte"
-              className="px-5 py-2.5 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
+              href="/knowledge-hub/4g-lte/storage"
+              className="px-5 py-2.5 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
             >
-              <span>Back to 4G LTE Hub</span>
+              <span>Next: SLT Storage (Eazy Storage)</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
