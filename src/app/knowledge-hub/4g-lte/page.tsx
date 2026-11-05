@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Radio,
@@ -38,314 +39,193 @@ import {
   Smartphone,
   Activity,
   Cpu,
-  Download,
-  Upload,
-  Calendar,
   Clock,
   Gauge,
   Tag,
+  Gift,
   Award,
-  ChevronRight,
-  ExternalLink,
-  PhoneCall
+  ChevronRight
 } from 'lucide-react';
 
 // ==========================================
-// 1. DATA: CAT 4 CONNECTION CHARGES
+// 1. MAIN CARDS DEFINITION (Displayed Immediately On Opening)
 // ==========================================
-const CAT4_CHARGES = [
+const LTE_MAIN_CARDS = [
   {
-    package: 'Double Play (BB + Voice) Concessionary - New',
-    withoutTax: '4,990',
-    priorWithoutTax: '4,048.96',
-    withTax: '4,990',
-    priorWithTax: '7,900',
-    badge: 'Concessionary Offer',
-    conditions: 'Any BB Package (Rs. 1,990 / 2,390 package category and above)',
-    type: 'double_play',
-    highlight: true
+    id: 'cat4',
+    title: 'New Connection Charges (CAT 4)',
+    subtitle: 'Basic CPE Models (Huawei B310/B311/Tozed)',
+    badge: 'Basic CPE (CAT 4)',
+    badgeStyle: 'bg-blue-50 text-[#005696] border-blue-200',
+    icon: Radio,
+    gradient: 'from-[#005696] via-blue-700 to-indigo-800',
+    cardBorder: 'border-blue-200 hover:border-blue-500 hover:shadow-blue-500/15',
+    route: '/knowledge-hub/4g-lte/cat-4',
+    ctaText: 'Open CAT 4 Charges',
+    priceHighlight: 'Rs. 4,990 (Concessionary)',
+    taxDate: 'Tax Rev. eff. 01/08/2024',
+    desc: 'Official connection charges for Basic CAT 4 routers. Double Play Concessionary (Rs. 4,990), Refurbished units (Rs. 3,900), CDMA to 4G Free Migration, and SIM-only options.',
+    keyFeatures: [
+      'Concessionary Double Play: Rs. 4,990 (Prior Rs. 7,900)',
+      'Single Play BB Concessionary: Rs. 4,990 with tax',
+      'CDMA CityLink to 4G Migration: 100% Free',
+      'Refurbished Recovered CPE: Rs. 3,900 with tax',
+      'Warranty: New CPE 12 Mos | Refurbished 6 Mos'
+    ],
+    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
+TARIFF OPTION: New Connection (CAT 4 Basic CPE - Concessionary Double Play)
+ROUTER MODEL: Huawei B310 / B311 / Tozed Basic
+PRICE WITH TAX: Rs. 4,990 (New Charges eff. 01/08/2024)
+BASE PRICE WITHOUT TAX: Rs. 4,990 (Prior base Rs. 4,048.96)
+PACKAGE CRITERIA: Applicable for BB package category Rs. 1,990 / 2,390 and above.
+WARRANTY: 12 Months (Ownership transferred to subscriber after warranty).
+EARLY TERMINATION FEE: Rs. 5,000 applies within 1-year commitment period.`
   },
   {
-    package: 'Single Play (BB only) Concessionary - New',
-    withoutTax: '4,990',
-    priorWithoutTax: '4,048.96',
-    withTax: '4,990',
-    priorWithTax: '7,241',
-    badge: 'Data Only',
-    conditions: 'Yes (Applicable for BB packages Rs. 1,990 / 2,390 and above)',
-    type: 'single_play',
-    highlight: true
+    id: 'cat6',
+    title: 'New Connection Charges (CAT 6)',
+    subtitle: 'Advanced Tozed CPE (Carrier Aggregation)',
+    badge: 'Advanced CAT 6 (Tozed)',
+    badgeStyle: 'bg-amber-50 text-amber-900 border-amber-300',
+    icon: Zap,
+    gradient: 'from-amber-600 via-orange-600 to-indigo-900',
+    cardBorder: 'border-amber-200 hover:border-amber-500 hover:shadow-amber-500/15',
+    route: '/knowledge-hub/4g-lte/cat-6',
+    ctaText: 'Open CAT 6 Charges',
+    priceHighlight: 'Rs. 13,990 / Rs. 19,900',
+    taxDate: 'Published: 6/13/2025',
+    desc: 'High-throughput Tozed CAT 6 advanced router pricing. Concessionary New (Rs. 13,990), Refurbished (Rs. 6,990), and Full Pay New (Rs. 19,900) with 25GB/mo free bonus data.',
+    keyFeatures: [
+      'Concessionary New: Rs. 13,990 (1-yr commit / Rs. 5k penalty)',
+      'Concessionary Refurbished: Rs. 6,990 (6-month warranty)',
+      'Full Payment: Rs. 19,900 (No commitment, no termination fee)',
+      'Bonus Data: 25 GB/Month free for first 12 months on Full Pay',
+      'Average Speeds: Download 16 Mbps | Upload 1 Mbps'
+    ],
+    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
+TARIFF OPTION: New Connection (CAT 6 Advanced CPE - Tozed)
+PRICE WITH TAX: Rs. 13,990 (Concessionary) / Rs. 19,900 (Full Payment)
+BASE PRICE WITHOUT TAX: Rs. 11,327.94 (Prior base Rs. 6,900)
+CPE SPECIFICATION: CAT 6 High-Throughput Tozed LTE Router with Carrier Aggregation (CA).
+AVERAGE SPEEDS: Download 16 Mbps | Upload 1 Mbps.
+WARRANTY: New CPE: 12 Months | Refurbished: 6 Months (Ownership transferred after warranty).
+PACKAGE ELIGIBILITY: Applicable for Broadband packages Rs. 2,390 (1,990) and above.`
   },
   {
-    package: 'Single Play (Voice only) - Full Pay / New',
-    withoutTax: '5,490',
-    priorWithoutTax: '5,432.00',
-    withTax: '6,490',
-    priorWithTax: '7,900',
-    badge: 'Voice Only',
-    conditions: 'Any Voice Package (Postpaid Voice Plans)',
-    type: 'voice_only'
+    id: 'voice',
+    title: 'LTE Voice Packages (VoLTE)',
+    subtitle: 'HD Voice & Unlimited Plans (011-2XXXXXX)',
+    badge: 'VoLTE HD Telephony',
+    badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200',
+    icon: Phone,
+    gradient: 'from-teal-600 via-emerald-600 to-indigo-900',
+    cardBorder: 'border-teal-200 hover:border-teal-500 hover:shadow-teal-500/15',
+    route: '/knowledge-hub/4g-lte/voice',
+    ctaText: 'Open VoLTE Voice',
+    priceHighlight: 'Unlimited Voice Rs. 745',
+    taxDate: 'Geo: 011-2XXXXXX',
+    desc: 'Voice over LTE calling tariffs, Active & Leisure time bands, geographical number allocation, and 4 Flat-Rate Unlimited Any-Net Voice Plans (Home, Office, Religious, Voice Pal).',
+    keyFeatures: [
+      'Unlimited Home Double Play: Rs. 745 / mo (Any-Net)',
+      'Unlimited Office Double Play: Rs. 745 / mo (Corporate/SME)',
+      'Unlimited 4G Single Play Voice Pal: Rs. 745 / mo',
+      'Standard On-net: Peak Rs. 1.70/min | Leisure Rs. 1.00/min',
+      'Concurrent VoLTE operation with high-speed 4G data'
+    ],
+    ttTemplate: `SERVICE: SLT 4G VoLTE (Fixed Voice)
+PLAN: Unlimited Home Double Play Rs. 745
+SERVICE ORDER TYPE: CREATE (New Customer) / MODIFY (Migration from Copper/CDMA)
+CALL ALLOWANCE: Unlimited Calls to Any Local Network (On-net & Off-net)
+NUMBER PRESERVATION: Geographical series (011-2XXXXXX / CityLink retained)
+QUALITY: Voice over LTE (VoLTE) High-Definition Audio Codec
+RENTAL: Rs. 745 / month (Postpaid)`
   },
   {
-    package: 'Single Play (Voice only) - Off-Net No F2F',
-    withoutTax: '4,990',
-    priorWithoutTax: '4,048.96',
-    withTax: '6,490',
-    priorWithTax: '7,900',
-    badge: 'Off-Net Voice',
-    conditions: 'Voice package (Voice Pal)',
-    type: 'voice_only'
+    id: 'broadband',
+    title: 'LTE Broadband (BB) Packages',
+    subtitle: 'Standard Data Quotas & Night Bonus',
+    badge: 'Fixed Broadband Data',
+    badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    icon: Globe,
+    gradient: 'from-indigo-600 via-blue-700 to-purple-900',
+    cardBorder: 'border-indigo-200 hover:border-indigo-500 hover:shadow-indigo-500/15',
+    route: '/knowledge-hub/4g-lte/broadband',
+    ctaText: 'Open Broadband Plans',
+    priceHighlight: '8 GB to 225 GB Tiers',
+    taxDate: 'Day: 08-00 | Night: 00-08',
+    desc: 'Daytime and free night-time volume package tiers (Web Starter to Web Supreme), Flash daily allowances (Flash 10/25), Work & Learn passes, and RF signal strength scale.',
+    keyFeatures: [
+      'Web Starter (8GB ~Rs. 490) to Web Supreme (225GB ~Rs. 7,890)',
+      'Daytime standard quota applies 08:00 to 00:00 hrs',
+      'Free bonus night-time data applies 00:00 to 08:00 hrs',
+      'Flash 10 & Flash 25: Daily volume allowances with FUP',
+      'RSRP RF Signal Scale: Antenna dispatch if RSRP < -105 dBm'
+    ],
+    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
+FAULT: Slow Browsing Speeds / Weak RF Signal (RSRP < -105 dBm)
+DIAGNOSTICS: Router gateway (192.168.8.1) indicates 1 red signal bar. Band 40 (2300MHz).
+ACTION: Dispatch Trouble Ticket to AREA-MTCE / RF-PLANNING for outdoor high-gain Yagi antenna installation.`
   },
   {
-    package: 'CDMA to LTE Migration',
-    withoutTax: 'Free migration according to current scheme',
-    priorWithoutTax: null,
-    withTax: 'Free',
-    priorWithTax: null,
-    badge: 'Free Migration',
-    conditions: 'Existing CDMA voice customers migrating (CityLink retained)',
-    type: 'migration',
-    isFree: true
+    id: 'prepaid',
+    title: '4G LTE Prepaid Services',
+    subtitle: 'SIM Starter Pack & Top-Up Passes',
+    badge: 'Prepaid Pay-As-You-Go',
+    badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    icon: CreditCard,
+    gradient: 'from-emerald-600 via-teal-700 to-cyan-900',
+    cardBorder: 'border-emerald-200 hover:border-emerald-500 hover:shadow-emerald-500/15',
+    route: '/knowledge-hub/4g-lte/prepaid',
+    ctaText: 'Open Prepaid Plans',
+    priceHighlight: 'Starter Pack: Rs. 1,400',
+    taxDate: 'Passes: 1GB to 40GB',
+    desc: 'Pay-as-you-go broadband data passes, instant SIM starter packs (Rs. 1,400), MySLT LankaQR top-ups, merchant counter reloads, grace period policies, and *123# balance check.',
+    keyFeatures: [
+      'Prepaid SIM Starter Pack: Rs. 1,400 with starter balance',
+      'Volume Passes: 1GB, 2GB, 5GB, 10GB, 20GB, 40GB',
+      'Validity options: 1, 3, 7, 14, and 30 days',
+      'Recharge Channels: MySLT, Banking Apps, Food City/Keells',
+      '90-Day inactive grace period / 180-day recycle policy'
+    ],
+    ttTemplate: `SERVICE: SLT 4G LTE Prepaid Recharge
+FAULT: Prepaid Recharge Not Credited to Account
+PAYMENT CHANNEL: Third-Party Banking / Merchant (e.g. Commercial Bank / Food City)
+RELOAD AMOUNT: Rs. [AMOUNT]
+TRANSACTION REF: [BANK_REF_OR_RECEIPT_NO]
+TIMESTAMP: [DATE_TIME]
+RULE: RULE_4G_RELOAD_THIRD_PARTY_CHANNELS
+TARGET: BILLING-HELPDESK
+ACTION: Verify API settlement gateway with merchant bank. Credit package quota manually upon transaction reconciliation.`
   },
   {
-    package: 'Double Play (BB + Voice) Full Payment',
-    withoutTax: '9,900',
-    priorWithoutTax: '8,097.92',
-    withTax: '9,900',
-    priorWithTax: '11,900',
-    badge: 'Standard Full Pay',
-    conditions: 'Any BB package (Unlimited / Any BB package category)',
-    type: 'double_play'
-  },
-  {
-    package: 'Recovered CPE Single Play (Concessionary - Refurbished)',
-    withoutTax: '2,450 / 3,000',
-    priorWithoutTax: 'Charges based on refurbished unit scheme',
-    withTax: '3,900',
-    priorWithTax: '4,750',
-    badge: 'Refurbished Unit',
-    conditions: '• Warranty: 6 months\n• 1 year commitment period\n• Early termination fee: Rs. 5,000\n• Applicable for selected packages',
-    type: 'refurbished'
-  },
-  {
-    package: 'Recovered CPE Double Play (Concessionary - Refurbished)',
-    withoutTax: 'Concessionary offer for refurb units',
-    priorWithoutTax: null,
-    withTax: '3,900',
-    priorWithTax: '4,750',
-    badge: 'Refurbished Unit',
-    conditions: '• Warranty: 6 months\n• 1 year commitment period\n• Early termination fee: Rs. 5,000\n• BB packages above Rs. 1,990 / 2,390',
-    type: 'refurbished'
-  },
-  {
-    package: 'With OUT Sub / Router - Double Play (Broadband + Voice)',
-    withoutTax: '4,990',
-    priorWithoutTax: '4,048.96',
-    withTax: '6,490',
-    priorWithTax: '7,900',
-    badge: 'SIM Only (BYOD)',
-    conditions: '• Customer already has compatible CPE router\n• SIM only provision\n• Applicable package rules apply',
-    type: 'sim_only'
-  },
-  {
-    package: 'Without Sub / Router - BB only (Data only SIM)',
-    withoutTax: '4,990',
-    priorWithoutTax: '4,048.96',
-    withTax: '6,490',
-    priorWithTax: '7,900',
-    badge: 'Data SIM Only',
-    conditions: '• Compatible router provided by user\n• Applicable package rules apply',
-    type: 'sim_only'
-  },
-  {
-    package: '4G LTE Prepaid SIM only (Voice + Broadband)',
-    withoutTax: '1,400',
-    priorWithoutTax: null,
-    withTax: '1,400',
-    priorWithTax: null,
-    badge: 'Prepaid SIM',
-    conditions: '• Prepaid SIM card only\n• Can load data / voice top-ups\n• Self-care recharge via MySLT & banking apps',
-    type: 'prepaid'
+    id: 'old_charges',
+    title: 'LTE Old Call Charges (Archive)',
+    subtitle: 'Historical Rates (Pre-20th Jan 2017)',
+    badge: 'Historical Reference',
+    badgeStyle: 'bg-slate-100 text-slate-700 border-slate-300',
+    icon: Clock,
+    gradient: 'from-slate-700 via-slate-800 to-slate-950',
+    cardBorder: 'border-slate-300 hover:border-slate-500 hover:shadow-slate-500/15',
+    route: '/knowledge-hub/4g-lte/old-charges',
+    ctaText: 'Open Old Rates',
+    priceHighlight: 'Pre-Jan 2017 Archive',
+    taxDate: 'Reviewed: 11/4/2024',
+    desc: 'Archival call rate schedule for accounts provisioned prior to 20th January 2017. Comparison between Residential (Rs. 310) and Business (Rs. 499) legacy tariffs.',
+    keyFeatures: [
+      'Residential: Rs. 310 rental | 100 Free On-net Minutes',
+      'Business: Rs. 499 rental | Stepped on-net calling rates',
+      'Off-net call rates: Active Rs. 2.70/min | Leisure Rs. 2.00/min',
+      'Free VAS bundle: CLI, Call Forwarding, Hunting, Conferencing',
+      'Migration advice to new Unlimited VoLTE Rs. 745 plan'
+    ],
+    ttTemplate: `SERVICE: SLT 4G LTE Historical Call Rates (Pre-20th Jan 2017)
+RESIDENTIAL: Rental Rs. 310 | On-net Active: Rs. 1.70/min | Leisure: Rs. 1.00/min | Off-net: Rs. 2.70/min | Free Min: 100 On-net
+BUSINESS: Rental Rs. 499 | On-net: Rs. 1.70 (1st 3 mins) / Rs. 1.00 (>3 mins) | Off-net: Rs. 2.70/min | Free VAS: CLI, Call Forwarding, Hunting, Conferencing.`
   }
 ];
 
 // ==========================================
-// 2. DATA: CAT 6 ADVANCED CPE CHARGES
-// ==========================================
-const CAT6_CHARGES = [
-  {
-    package: 'Concessionary - New (CPE Model - Tozed CAT 6)',
-    withoutTax: '11,327.94',
-    priorWithoutTax: '6,900',
-    withTax: '13,990',
-    badge: 'New CAT 6 Tozed',
-    conditions: [
-      'Warranty for the new CPE: 12 months',
-      'One year commitment period',
-      'Early termination fee of Rs. 5,000 is applicable',
-      'CAT 6 CPE types will be provided (High throughput Carrier Aggregation)',
-      'Only applicable for BB packages 2,390 (1,990) and above'
-    ]
-  },
-  {
-    package: 'Concessionary - Refurbished (CPE Model - Tozed CAT 6)',
-    withoutTax: '5,659.92',
-    priorWithoutTax: '3,450',
-    withTax: '6,990',
-    badge: 'Refurbished CAT 6',
-    conditions: [
-      'Warranty for the refurbished CPE: 6 months',
-      'One year commitment period',
-      'Early termination fee of Rs. 5,000 is applicable',
-      'CAT 6 CPE types will be provided',
-      'Only applicable for BB packages 2,390 (1,990) and above'
-    ]
-  },
-  {
-    package: 'Full Payment - New (CPE Model - Tozed CAT 6)',
-    withoutTax: '16,186.23',
-    priorWithoutTax: '12,000',
-    withTax: '19,900',
-    badge: 'Full Pay Bonus 25GB',
-    conditions: [
-      'Warranty for the new CPE: 12 months',
-      'No commitment period',
-      'No early termination fee',
-      'Additional Data of 25GB per month for the first 12 months will be provided (Not applicable for Unlimited packages)'
-    ]
-  }
-];
-
-// ==========================================
-// 3. DATA: LTE VOICE & VOLTE PACKAGES
-// ==========================================
-const STANDARD_VOICE_PACKAGES = [
-  {
-    planCategory: '4G Voice Pal (Single Play)',
-    name: 'Basic / Postpaid Voice Pal',
-    rental: '310 / 499',
-    onNetPeak: 'Rs. 1.70 / min',
-    onNetLeisure: 'Rs. 1.00 / min',
-    offNetPeak: 'Rs. 2.70 / min',
-    offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: '100 On-Net Free Minutes (Residential)'
-  },
-  {
-    planCategory: 'Double Play (Voice + BB)',
-    name: 'Residential Double Play Voice',
-    rental: 'Based on BB Plan',
-    onNetPeak: 'Rs. 1.70 / min',
-    onNetLeisure: 'Rs. 1.00 / min',
-    offNetPeak: 'Rs. 2.70 / min',
-    offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: 'Free VAS package bundle included'
-  },
-  {
-    planCategory: 'Business / Corporate',
-    name: 'Business Voice Pal / DP',
-    rental: '499',
-    onNetPeak: 'Rs. 1.70 (Up to 3 min) / Rs. 1.00 (>3 min)',
-    onNetLeisure: 'Rs. 1.70 / Rs. 1.00',
-    offNetPeak: 'Rs. 2.70 / min',
-    offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: 'CLI, Call Waiting, Hunting, Conferencing'
-  },
-  {
-    planCategory: 'Religious',
-    name: 'Religious Package',
-    rental: 'Concessionary rental',
-    onNetPeak: 'Concession rates apply',
-    onNetLeisure: 'Concession rates apply',
-    offNetPeak: 'Concession rates apply',
-    offNetLeisure: 'Concession rates apply',
-    freeMinutes: 'Free incoming & restricted outgoing options'
-  }
-];
-
-const UNLIMITED_VOICE_PACKAGES = [
-  {
-    plan: 'Unlimited Home Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Domestic / Individual\n• SLT Staff Residential\n• Higher Education Residential',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited calls to any network in Sri Lanka',
-      'Crystal clear HD VoLTE call quality',
-      'Postpaid package billing',
-      'No unexpected high voice bills',
-      'Keep existing copper/CDMA number',
-      'No commitment period lock'
-    ]
-  },
-  {
-    plan: 'Unlimited Office Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Business / Offices\n• Government Institutions\n• SME Customers',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited calls to any network',
-      'Fixed voice clarity over LTE',
-      'Consolidated postpaid corporate billing',
-      'Dedicated hunt group support'
-    ]
-  },
-  {
-    plan: 'Unlimited 4G Religious Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Temples, Churches, Mosques & Kovils\n• Registered Religious Institutions',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited any-net voice calls',
-      'Concessionary base setup and billing waiver',
-      'Reliable community communications'
-    ]
-  },
-  {
-    plan: 'Unlimited 4G Single Play Voice Pal Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Individual Customers\n• Business / SME\n• Government & Religious',
-    classification: '4G Voice Pal (Single Play)',
-    advantages: [
-      'Unlimited voice calling without mandatory BB data bundle',
-      'Works with standard VoLTE desk phone unit',
-      'Ideal for senior citizens & voice-centric premises'
-    ]
-  }
-];
-
-// ==========================================
-// 4. DATA: LTE BROADBAND (BB) PACKAGES
-// ==========================================
-const LTE_BB_PACKAGES = [
-  { tier: 'Web Starter', total: '8 GB', day: '4 GB', night: '4 GB', rental: '~ 490' },
-  { tier: 'Web Lite', total: '16 GB', day: '8 GB', night: '8 GB', rental: '~ 790' },
-  { tier: 'Web Pro', total: '35 GB', day: '18 GB', night: '17 GB', rental: '~ 1,490' },
-  { tier: 'Web Master', total: '60 GB', day: '30 GB', night: '30 GB', rental: '~ 2,390' },
-  { tier: 'Web Champ', total: '95 GB', day: '48 GB', night: '47 GB', rental: '~ 3,490' },
-  { tier: 'Web Life', total: '150 GB', day: '75 GB', night: '75 GB', rental: '~ 5,390' },
-  { tier: 'Web Supreme', total: '225 GB', day: '115 GB', night: '110 GB', rental: '~ 7,890' }
-];
-
-// ==========================================
-// 5. DATA: LTE OLD CALL CHARGES (PRE-2017)
-// ==========================================
-const OLD_CALL_CHARGES = [
-  { feature: 'Monthly Rental', residential: 'Rs. 310', business: 'Rs. 499' },
-  { feature: 'On-net (Active Hours)', residential: 'Rs. 1.70 per min', business: 'Up to 3rd min: Rs. 1.70 | Beyond: Rs. 1.00' },
-  { feature: 'On-net (Leisure Hours)', residential: 'Rs. 1.00 per min', business: 'Up to 3rd min: Rs. 1.70 | Beyond: Rs. 1.00' },
-  { feature: 'Off-net (Active Hours)', residential: 'Rs. 2.70 per min', business: 'Rs. 2.70 per min' },
-  { feature: 'Off-net (Leisure Hours)', residential: 'Rs. 2.00 per min', business: 'Rs. 2.00 per min' },
-  { feature: 'Free Minutes', residential: '100 Minutes (On-net)', business: 'NA' },
-  { feature: 'Data Allowance', residential: 'Based on the BB Package', business: 'Based on the BB Package' },
-  {
-    feature: 'Free Value Added Services (VAS)',
-    residential: 'VAS Bundle included',
-    business: 'CLI, Call Forwarding, Call Waiting, Conferencing (Three parties), Absentee service, Abbreviated dialing'
-  }
-];
-
-// ==========================================
-// 6. DATA: SIDEBAR PROCEDURES & SOP LINKS
+// 2. SIDEBAR SOP PROCEDURES DEFINITION
 // ==========================================
 const SIDEBAR_SOP_LINKS = [
   {
@@ -452,53 +332,33 @@ const SIDEBAR_SOP_LINKS = [
 ];
 
 export default function LteServicesHubPage() {
-  const [activeTab, setActiveTab] = useState<'cat4' | 'cat6' | 'voice' | 'bb' | 'prepaid' | 'old_charges' | 'other' | 'lankabell' | 'storage'>('cat4');
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTtModal, setActiveTtModal] = useState<any | null>(null);
   const [activeSidebarModal, setActiveSidebarModal] = useState<any | null>(null);
-  const [copiedText, setCopiedText] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
-    setCopiedText(id);
-    setTimeout(() => setCopiedText(null), 2000);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
-  // Filter CAT 4 Table
-  const filteredCat4 = CAT4_CHARGES.filter((c) => {
+  const filteredCards = LTE_MAIN_CARDS.filter((card) => {
     if (!searchQuery) return true;
     const q = searchQuery.toLowerCase();
     return (
-      c.package.toLowerCase().includes(q) ||
-      c.conditions.toLowerCase().includes(q) ||
-      c.withoutTax.toLowerCase().includes(q) ||
-      c.withTax.toLowerCase().includes(q)
+      card.title.toLowerCase().includes(q) ||
+      card.subtitle.toLowerCase().includes(q) ||
+      card.desc.toLowerCase().includes(q) ||
+      card.keyFeatures.some((f) => f.toLowerCase().includes(q))
     );
-  });
-
-  // Filter Voice Packages
-  const filteredVoice = STANDARD_VOICE_PACKAGES.filter((v) => {
-    if (!searchQuery) return true;
-    const q = searchQuery.toLowerCase();
-    return (
-      v.name.toLowerCase().includes(q) ||
-      v.planCategory.toLowerCase().includes(q) ||
-      v.freeMinutes.toLowerCase().includes(q)
-    );
-  });
-
-  // Filter BB Packages
-  const filteredBB = LTE_BB_PACKAGES.filter((b) => {
-    if (!searchQuery) return true;
-    const q = searchQuery.toLowerCase();
-    return b.tier.toLowerCase().includes(q) || b.total.toLowerCase().includes(q);
   });
 
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f4f7f9] overflow-y-auto select-none">
       
-      {/* ======================================================== */}
-      {/* 1. TOP SHAREPOINT INTRA BAR                              */}
-      {/* ======================================================== */}
+      {/* 1. TOP SHAREPOINT INTRA BAR */}
       <div className="bg-[#005a9c] text-white px-4 py-2 flex items-center justify-between text-xs shadow-xs shrink-0">
         <div className="flex items-center gap-3">
           <Link href="/knowledge-hub" className="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
@@ -516,9 +376,7 @@ export default function LteServicesHubPage() {
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 2. SLT MOBITEL BANNER & MENU NAVIGATION                 */}
-      {/* ======================================================== */}
+      {/* 2. SLT MOBITEL BANNER & MENU NAVIGATION */}
       <div className="bg-white border-b border-slate-200 px-6 py-2.5 flex items-center justify-between shadow-2xs shrink-0">
         <div className="flex items-center gap-3">
           <div className="flex flex-col">
@@ -541,9 +399,7 @@ export default function LteServicesHubPage() {
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 3. BREADCRUMB SUB-HEADER                                */}
-      {/* ======================================================== */}
+      {/* 3. BREADCRUMB SUB-HEADER */}
       <div className="bg-white border-b border-slate-200 px-6 py-2 flex items-center justify-between text-xs text-slate-600">
         <div className="flex items-center gap-2">
           <Link href="/knowledge-hub" className="text-[#005696] font-bold hover:underline flex items-center gap-1">
@@ -561,9 +417,7 @@ export default function LteServicesHubPage() {
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 4. HERO BANNER                                          */}
-      {/* ======================================================== */}
+      {/* 4. HERO BANNER */}
       <div className="relative bg-gradient-to-r from-[#03152e] via-[#082a52] to-[#011429] text-white px-8 py-8 overflow-hidden border-b border-blue-900/40">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent pointer-events-none"></div>
 
@@ -576,14 +430,14 @@ export default function LteServicesHubPage() {
               <span className="text-xs text-blue-200">Band 40 (2300MHz TDD) &amp; Band 3 (1800MHz FDD)</span>
             </div>
 
-            {/* Quick Search */}
+            {/* Quick Search Bar */}
             <div className="relative w-72 md:w-80">
               <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search CAT 4, CAT 6, VoLTE, charges..."
+                placeholder="Search CAT 4, CAT 6, VoLTE, Prepaid..."
                 className="w-full bg-white text-slate-800 text-xs pl-8 pr-7 py-1.5 rounded-md focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
               />
               {searchQuery && (
@@ -598,146 +452,47 @@ export default function LteServicesHubPage() {
           </div>
 
           <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white drop-shadow-md">
-            LTE New Connection Charges &amp; Packages Portal
+            SLT-Mobitel 4G LTE - Core Service Modules
           </h1>
           <p className="text-xs text-cyan-100/90 max-w-3xl font-medium leading-relaxed">
-            Official tariff schedules, connection charges (effective 24/08/2022 | revised with tax effective 01/08/2024), VoLTE voice call rates, data allowances, and customer migration matrices.
+            Select a service card below to navigate directly to its dedicated tariffs, connection charges (CAT 4 &amp; CAT 6), VoLTE voice packages, broadband data allowances, and prepaid procedures.
           </p>
 
-          {/* Publisher Metadata matching screenshot */}
+          {/* Publisher Metadata */}
           <div className="flex items-center gap-3 pt-1">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-700 border border-cyan-400 flex items-center justify-center font-bold text-xs text-white shadow-sm">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-700 border border-cyan-400 flex items-center justify-center font-bold text-xs text-white shadow-sm">
               CR
             </div>
             <div className="text-xs">
               <p className="font-bold text-white">Chathurani Rathnayake</p>
-              <p className="text-[11px] text-cyan-200/90">Senior Assistant Manager (Customer Relations) - A7</p>
-              <p className="text-[10px] text-slate-400">Published / Reviewed for 2024-2025 Tax Revision</p>
+              <p className="text-[11px] text-cyan-200/90">Senior Assistant Manager (Customer Relations) - A7 | Tax Revision: 01/08/2024</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 5. NAVIGATION BUTTONS (Matching Screenshot)              */}
-      {/* ======================================================== */}
-      <div className="bg-white px-6 py-2.5 border-b border-slate-200 sticky top-0 z-20 shadow-xs">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          
-          <button
-            onClick={() => setActiveTab('cat4')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'cat4'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Radio className="w-3.5 h-3.5" />
-            <span>New Connection Charges (CAT 4)</span>
-          </button>
+      {/* 5. NAVIGATION STRIP */}
+      <div className="bg-white px-6 py-2.5 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="font-black text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-[#005696]" />
+              <span>4G LTE Modules (Click Card to Redirect)</span>
+            </span>
+            <span className="px-2 py-0.5 rounded-full bg-blue-100 text-[#005696] font-bold text-[10px]">
+              {filteredCards.length} Sections Available
+            </span>
+          </div>
 
-          <button
-            onClick={() => setActiveTab('cat6')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'cat6'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Zap className="w-3.5 h-3.5 text-amber-500" />
-            <span>New Connection Charges (CAT 6)</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('voice')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'voice'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Phone className="w-3.5 h-3.5 text-teal-600" />
-            <span>LTE Voice Packages (VoLTE)</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('bb')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'bb'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Globe className="w-3.5 h-3.5 text-blue-600" />
-            <span>LTE BB Packages</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('prepaid')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'prepaid'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <CreditCard className="w-3.5 h-3.5 text-emerald-600" />
-            <span>4G LTE Prepaid</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('old_charges')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'old_charges'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>LTE Old Call Charges</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('other')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'other'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-600" />
-            <span>Other Charges - LTE</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('lankabell')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'lankabell'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Award className="w-3.5 h-3.5 text-purple-600" />
-            <span>Lanka Bell to SLT 4G</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('storage')}
-            className={`px-3 py-1.5 rounded-md font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'storage'
-                ? 'bg-[#005696] text-white shadow-2xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
-            }`}
-          >
-            <Server className="w-3.5 h-3.5 text-cyan-600" />
-            <span>SLT Storage</span>
-          </button>
-
+          <div className="flex items-center gap-3 text-slate-500 font-semibold text-[11px]">
+            <span>Price plans eff. 24/08/2022</span>
+            <span>•</span>
+            <span className="text-emerald-700 font-bold">Revised with Tax: 01/08/2024</span>
+          </div>
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 6. MAIN CONTENT AREA (Left Sidebar + Right Panels)       */}
-      {/* ======================================================== */}
+      {/* 6. MAIN CONTENT AREA (Left Sidebar + Right Cards Grid) */}
       <div className="flex-1 p-6 md:p-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
           
@@ -745,7 +500,7 @@ export default function LteServicesHubPage() {
           {/* A. LEFT SIDEBAR: Standard Procedures & Quick Links   */}
           {/* ---------------------------------------------------- */}
           <div className="lg:col-span-1 space-y-4">
-            <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs space-y-3">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs space-y-3">
               <div className="border-b border-slate-100 pb-2">
                 <h3 className="font-black text-xs uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-[#005696]" />
@@ -769,21 +524,21 @@ export default function LteServicesHubPage() {
             </div>
 
             {/* Quick Speed Summary Card */}
-            <div className="bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-xl p-4 shadow-xs space-y-2.5 border border-blue-800/40">
+            <div className="bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-2xl p-4 shadow-xs space-y-2.5 border border-blue-800/40">
               <div className="flex items-center gap-1.5 text-cyan-300 font-bold text-xs uppercase tracking-wider">
                 <Gauge className="w-4 h-4" />
                 <span>4G LTE Speed Guidelines</span>
               </div>
 
               <div className="space-y-2 text-xs">
-                <div className="p-2 bg-white/10 rounded-lg">
+                <div className="p-2.5 bg-white/10 rounded-xl">
                   <span className="text-[10px] font-bold text-cyan-200 uppercase block">Good Coverage Area:</span>
                   <p className="font-mono font-bold text-white text-sm">10 - 20 Mbps</p>
                   <p className="text-[10px] text-slate-300">Min. Guarantee: 3-5 Mbps | Peak: up to 40 Mbps</p>
                   <p className="text-[10px] text-cyan-300">Upload: 3 - 5 Mbps</p>
                 </div>
 
-                <div className="p-2 bg-white/10 rounded-lg">
+                <div className="p-2.5 bg-white/10 rounded-xl">
                   <span className="text-[10px] font-bold text-amber-300 uppercase block">Fringe / Moderate Area:</span>
                   <p className="font-mono font-bold text-white text-sm">4 - 8 Mbps</p>
                   <p className="text-[10px] text-slate-300">Upload: 1 - 2 Mbps</p>
@@ -792,7 +547,7 @@ export default function LteServicesHubPage() {
             </div>
 
             {/* Tax & Billing Cycles Card */}
-            <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs text-xs space-y-2">
+            <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs text-xs space-y-2">
               <h4 className="font-black text-slate-800 text-[11px] uppercase tracking-wider flex items-center gap-1">
                 <Tag className="w-3.5 h-3.5 text-[#005696]" />
                 <span>Tax Structure &amp; Cycles</span>
@@ -808,554 +563,232 @@ export default function LteServicesHubPage() {
           </div>
 
           {/* ---------------------------------------------------- */}
-          {/* B. MAIN RIGHT PANEL (Content Tabs)                   */}
+          {/* B. MAIN RIGHT PANEL: PRIMARY 4G CARDS GRID           */}
           {/* ---------------------------------------------------- */}
           <div className="lg:col-span-3 space-y-6">
 
-            {/* TAB 1: CAT 4 CONNECTION CHARGES */}
-            {activeTab === 'cat4' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-100 text-[#005696] border border-blue-200">
-                          Basic CPE Models
-                        </span>
-                        <span className="text-xs text-slate-500 font-semibold">
-                          Huawei B310 / B311 / Tozed Basic
-                        </span>
-                      </div>
-                      <h2 className="text-lg font-black text-slate-900 mt-1">
-                        New Connection Charges Table (SLT 4G LTE Voice Dedicated)
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        Price plans effective from 24/08/2022 | Revised with tax effective from <strong>01/08/2024</strong>
-                      </p>
-                    </div>
-
-                    <div className="text-right">
-                      <span className="text-[10px] font-bold text-slate-400 block uppercase">Ownership Transfer</span>
-                      <span className="text-xs font-black text-slate-800">New: 12 Mos | Refurb: 6 Mos</span>
-                    </div>
-                  </div>
-
-                  {/* Table */}
-                  <div className="overflow-x-auto mt-4">
-                    <table className="w-full text-left text-xs border-collapse">
-                      <thead>
-                        <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                          <th className="p-3 w-1/3">Package (CAT 4 - Basic CPE Models)</th>
-                          <th className="p-3">Without Tax (Rs.)<br/><span className="text-[10px] text-slate-500 font-normal">(Prior / Base)</span></th>
-                          <th className="p-3 text-emerald-800">With Tax (Rs.)<br/><span className="text-[10px] text-emerald-700 font-normal">(New eff. 01/08/2024)</span></th>
-                          <th className="p-3">Applicable Packages / Conditions</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-200">
-                        {filteredCat4.map((row, idx) => (
-                          <tr key={idx} className={`hover:bg-blue-50/40 transition-colors ${row.highlight ? 'bg-cyan-50/20' : ''}`}>
-                            <td className="p-3 align-top">
-                              <div className="font-bold text-slate-900 flex items-center gap-1.5">
-                                <span>{row.package}</span>
-                              </div>
-                              <span className="inline-block mt-1 px-1.5 py-0.2 rounded text-[9px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                                {row.badge}
-                              </span>
-                            </td>
-                            <td className="p-3 align-top font-mono font-bold text-slate-700">
-                              <div>{row.withoutTax}</div>
-                              {row.priorWithoutTax && (
-                                <div className="text-[10px] text-slate-400 font-normal">({row.priorWithoutTax})</div>
-                              )}
-                            </td>
-                            <td className="p-3 align-top font-mono font-black text-[#005696]">
-                              <div className="text-sm">{row.withTax}</div>
-                              {row.priorWithTax && (
-                                <div className="text-[10px] text-slate-400 font-normal">({row.priorWithTax})</div>
-                              )}
-                            </td>
-                            <td className="p-3 align-top text-slate-600 whitespace-pre-wrap leading-relaxed text-[11px]">
-                              {row.conditions}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Conditions & Warranty Footer */}
-                  <div className="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600">
-                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
-                      <span className="font-black text-slate-800 uppercase text-[10px] block">Warranty &amp; Ownership Policy:</span>
-                      <p>• Ownership is transferred to the customer after warranty completion (New CPEs: 12 Months | Refurbished CPEs: 6 Months).</p>
-                      <p>• Early termination fee of Rs. 5,000 applies to concessionary packages within the 1-year commitment.</p>
-                    </div>
-
-                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
-                      <span className="font-black text-slate-800 uppercase text-[10px] block">Migration &amp; Outdoor Antenna:</span>
-                      <p>• Standard migration charge: <strong>Rs. 1,000</strong> (without tax).</p>
-                      <p>• Outdoor Antenna: Approx. <strong>Rs. 3,500 - 5,000</strong> depending on cable length for low coverage premises.</p>
-                    </div>
-                  </div>
-                </div>
+            {/* Section Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-black text-slate-900 tracking-tight">
+                  4G LTE Operational Modules (6 Main Cards)
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">
+                  Click any card to redirect directly to its dedicated pricing and triage page
+                </p>
               </div>
-            )}
 
-            {/* TAB 2: CAT 6 ADVANCED CPE CHARGES */}
-            {activeTab === 'cat6' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300">
-                          Advanced CPE (Tozed)
-                        </span>
-                        <span className="text-xs text-slate-500 font-semibold">
-                          High-Throughput Carrier Aggregation
-                        </span>
-                      </div>
-                      <h2 className="text-lg font-black text-slate-900 mt-1">
-                        LTE New Connection Charges (CAT 6)
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        Published: 6/13/2025 | Revised with tax effective from <strong>01/08/2024</strong>
-                      </p>
-                    </div>
-
-                    <div className="p-2 bg-amber-50 rounded-lg border border-amber-200 text-right">
-                      <span className="text-[10px] font-bold text-amber-800 uppercase block">Average CAT 6 Speeds</span>
-                      <span className="text-xs font-black text-slate-800">DL: 16 Mbps | UL: 1 Mbps</span>
-                    </div>
-                  </div>
-
-                  {/* CAT 6 Table */}
-                  <div className="overflow-x-auto mt-4">
-                    <table className="w-full text-left text-xs border-collapse">
-                      <thead>
-                        <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                          <th className="p-3 w-1/3">Package (CAT 6 - Advanced CPE Models)</th>
-                          <th className="p-3">Without Tax (Rs.)</th>
-                          <th className="p-3 text-emerald-800">With Tax (Rs.)</th>
-                          <th className="p-3">Special Conditions</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-200">
-                        {CAT6_CHARGES.map((row, idx) => (
-                          <tr key={idx} className="hover:bg-amber-50/30 transition-colors">
-                            <td className="p-3 align-top">
-                              <div className="font-bold text-slate-900">{row.package}</div>
-                              <span className="inline-block mt-1 px-1.5 py-0.2 rounded text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
-                                {row.badge}
-                              </span>
-                            </td>
-                            <td className="p-3 align-top font-mono font-bold text-slate-700">
-                              <div>{row.withoutTax}</div>
-                              {row.priorWithoutTax && (
-                                <div className="text-[10px] text-slate-400 font-normal">(Prior: {row.priorWithoutTax})</div>
-                              )}
-                            </td>
-                            <td className="p-3 align-top font-mono font-black text-emerald-700 text-sm">
-                              {row.withTax}
-                            </td>
-                            <td className="p-3 align-top text-slate-600 text-[11px]">
-                              <ul className="space-y-1">
-                                {row.conditions.map((c, cIdx) => (
-                                  <li key={cIdx} className="flex items-start gap-1">
-                                    <span className="text-amber-600 font-bold">•</span>
-                                    <span>{c}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div className="mt-4 p-3 rounded-lg bg-amber-50/70 border border-amber-200 text-xs text-amber-900 flex items-center gap-2">
-                    <Info className="w-4 h-4 text-amber-700 shrink-0" />
-                    <span><strong>Mandatory Rule:</strong> New Connection Charge with Tax must be collected for all options upfront when providing the service.</span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/knowledge-hub/4g-lte/cat-4"
+                  className="px-3 py-1.5 rounded-lg bg-[#005696] hover:bg-[#004172] text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors"
+                >
+                  <Radio className="w-3.5 h-3.5" />
+                  <span>Open CAT 4 ➔</span>
+                </Link>
+                <Link
+                  href="/knowledge-hub/4g-lte/cat-6"
+                  className="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors"
+                >
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>Open CAT 6 ➔</span>
+                </Link>
               </div>
-            )}
+            </div>
 
-            {/* TAB 3: LTE VOICE PACKAGES (VOLTE) */}
-            {activeTab === 'voice' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
-                  <div className="border-b border-slate-100 pb-3 flex flex-wrap items-center justify-between gap-2">
+            {/* The 6 Main Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+              {filteredCards.map((card) => {
+                const CardIcon = card.icon;
+                return (
+                  <motion.div
+                    key={card.id}
+                    whileHover={{ y: -5, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => router.push(card.route)}
+                    className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer flex flex-col justify-between shadow-2xs hover:shadow-xl relative overflow-hidden group ${card.cardBorder}`}
+                  >
                     <div>
-                      <h2 className="text-lg font-black text-slate-900">
-                        LTE Voice Packages (VoLTE) &amp; Call Rates
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        High-Definition crystal clear voice calls over 4G LTE with concurrent high-speed data usage.
-                      </p>
-                    </div>
-                    <span className="px-2.5 py-1 bg-teal-50 text-teal-800 border border-teal-200 rounded text-xs font-mono font-bold">
-                      Geographical Series: 011-2XXXXXX
-                    </span>
-                  </div>
-
-                  {/* Standard Voice Plans Table */}
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs border-collapse">
-                      <thead>
-                        <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                          <th className="p-3">Plan / Category</th>
-                          <th className="p-3">Rental (Rs.)</th>
-                          <th className="p-3">On-net (Peak / Active)</th>
-                          <th className="p-3">On-net (Leisure)</th>
-                          <th className="p-3">Off-net (Peak / Active)</th>
-                          <th className="p-3">Off-net (Leisure)</th>
-                          <th className="p-3">Free Minutes / Benefits</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-200">
-                        {filteredVoice.map((v, idx) => (
-                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                            <td className="p-3 align-top font-bold text-slate-900">
-                              <div>{v.name}</div>
-                              <span className="text-[10px] text-slate-400 font-normal">{v.planCategory}</span>
-                            </td>
-                            <td className="p-3 align-top font-mono font-bold text-teal-800">{v.rental}</td>
-                            <td className="p-3 align-top font-mono text-slate-700">{v.onNetPeak}</td>
-                            <td className="p-3 align-top font-mono text-slate-700">{v.onNetLeisure}</td>
-                            <td className="p-3 align-top font-mono text-slate-700">{v.offNetPeak}</td>
-                            <td className="p-3 align-top font-mono text-slate-700">{v.offNetLeisure}</td>
-                            <td className="p-3 align-top text-slate-600 text-[11px] font-medium">{v.freeMinutes}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Call Time Bands Strip */}
-                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                    <div>
-                      <span className="font-black text-slate-800 uppercase text-[10px] block">Active Hours Band:</span>
-                      <p className="text-slate-600">• Monday to Friday: 07:00 hrs to 19:00 hrs</p>
-                      <p className="text-slate-600">• Saturday: 07:00 hrs to 14:00 hrs</p>
-                    </div>
-                    <div>
-                      <span className="font-black text-slate-800 uppercase text-[10px] block">Leisure Hours Band:</span>
-                      <p className="text-slate-600">• Monday to Friday: 00:00 to 07:00 &amp; 19:00 to 24:00</p>
-                      <p className="text-slate-600">• Saturday: 14:00 to 24:00 | Sunday &amp; Holidays: Full Day</p>
-                    </div>
-                  </div>
-
-                  {/* Unlimited Voice Packages Section */}
-                  <div className="pt-2 space-y-3">
-                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4 text-amber-500" />
-                      <span>Unlimited Voice Packages - 4G LTE (Rs. 745)</span>
-                    </h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {UNLIMITED_VOICE_PACKAGES.map((u, uIdx) => (
-                        <div key={uIdx} className="p-4 rounded-xl border border-slate-200 bg-white hover:border-[#005696] transition-all space-y-2 shadow-2xs">
-                          <div className="flex items-start justify-between gap-1">
-                            <h4 className="font-black text-sm text-[#005696]">{u.plan}</h4>
-                            <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[9px] uppercase">
-                              Rs. 745 / mo
-                            </span>
-                          </div>
-                          <p className="text-[10px] text-slate-400 font-semibold">{u.orderType}</p>
-                          <div className="text-[11px] text-slate-600 space-y-1">
-                            <span className="font-bold text-slate-700 block">Eligible Sub-categories:</span>
-                            <pre className="font-sans text-[11px] whitespace-pre-wrap">{u.subCategories}</pre>
-                          </div>
-                          <div className="pt-2 border-t border-slate-100">
-                            <span className="font-bold text-[10px] text-slate-500 uppercase block mb-1">Key Advantages:</span>
-                            <ul className="text-[10px] text-slate-600 space-y-0.5">
-                              {u.advantages.map((adv, aIdx) => (
-                                <li key={aIdx} className="flex items-center gap-1">
-                                  <Check className="w-3 h-3 text-emerald-600 shrink-0" />
-                                  <span>{adv}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                      {/* Top Header */}
+                      <div className="flex items-start justify-between gap-1.5 mb-3">
+                        <div
+                          className={`w-11 h-11 rounded-xl bg-gradient-to-br ${card.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform shrink-0`}
+                        >
+                          <CardIcon className="w-5 h-5" />
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+                        <span
+                          className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border truncate ${card.badgeStyle}`}
+                        >
+                          {card.badge}
+                        </span>
+                      </div>
 
-            {/* TAB 4: LTE BROADBAND (BB) PACKAGES */}
-            {activeTab === 'bb' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
-                  <div className="border-b border-slate-100 pb-3 flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <h2 className="text-lg font-black text-slate-900">
-                        LTE Broadband (BB) Data Packages
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        Standard anytime volume packages, night-time bonuses, flash unlimited quotas, and study add-ons.
+                      {/* Title & Subtitle */}
+                      <div className="flex items-center justify-between mb-0.5">
+                        <h3 className="font-black text-base text-slate-900 group-hover:text-[#005696] transition-colors flex items-center gap-1">
+                          <span>{card.title}</span>
+                          <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#005696]" />
+                        </h3>
+                      </div>
+
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 truncate">
+                        {card.subtitle}
                       </p>
-                    </div>
-                    <span className="px-2.5 py-1 bg-blue-50 text-[#005696] border border-blue-200 rounded text-xs font-mono font-bold">
-                      Day: 08:00 - 00:00 | Night: 00:00 - 08:00
-                    </span>
-                  </div>
 
-                  {/* Standard Volume Table */}
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs border-collapse">
-                      <thead>
-                        <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                          <th className="p-3">Package Tier</th>
-                          <th className="p-3">Total Volume (GB)</th>
-                          <th className="p-3">Standard Daytime (08:00 - 00:00)</th>
-                          <th className="p-3">Free Night Data (00:00 - 08:00)</th>
-                          <th className="p-3 text-emerald-800">Rental w/o Tax (Rs.)</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-200">
-                        {filteredBB.map((b, idx) => (
-                          <tr key={idx} className="hover:bg-blue-50/30 transition-colors">
-                            <td className="p-3 font-bold text-slate-900">{b.tier}</td>
-                            <td className="p-3 font-mono font-black text-[#005696]">{b.total}</td>
-                            <td className="p-3 font-mono text-slate-700">{b.day}</td>
-                            <td className="p-3 font-mono text-indigo-700">{b.night}</td>
-                            <td className="p-3 font-mono font-bold text-emerald-700">{b.rental}</td>
-                          </tr>
+                      <div className="mb-3 flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 text-xs">
+                        <span className="font-bold text-[#005696]">{card.priceHighlight}</span>
+                        <span className="text-[10px] text-slate-500 font-semibold">{card.taxDate}</span>
+                      </div>
+
+                      <p className="text-xs text-slate-600 font-medium line-clamp-3 leading-relaxed mb-4">
+                        {card.desc}
+                      </p>
+
+                      {/* Key Features List */}
+                      <div className="space-y-1.5 pt-3 border-t border-slate-100 mb-4">
+                        <span className="text-[9px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                          Key Topics &amp; Tariffs:
+                        </span>
+                        {card.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                          <div key={fIdx} className="flex items-center gap-1.5 text-[10px] text-slate-600 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#005696] shrink-0"></span>
+                            <span className="truncate">{feat}</span>
+                          </div>
                         ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Flash & Add-on Packages Box */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
-                    <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
-                      <h4 className="font-black text-xs text-slate-800 uppercase flex items-center gap-1">
-                        <Zap className="w-3.5 h-3.5 text-amber-500" />
-                        <span>Flash 10 &amp; Flash 25</span>
-                      </h4>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Daily recurring data allowances (10 GB/day or 25 GB/day). Standard Fair Usage Policy (FUP) throttling speeds apply after daily threshold exhaustion.
-                      </p>
+                      </div>
                     </div>
 
-                    <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
-                      <h4 className="font-black text-xs text-slate-800 uppercase flex items-center gap-1">
-                        <BookOpen className="w-3.5 h-3.5 text-blue-600" />
-                        <span>Work &amp; Learn Plans</span>
-                      </h4>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Unlimited and quota-based passes dedicated for Zoom, Microsoft Teams, Google Meet, and Office 365 video collaboration.
-                      </p>
-                    </div>
+                    {/* Bottom Action Footer */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTtModal(card);
+                        }}
+                        className="text-[10px] font-bold text-[#005696] hover:underline flex items-center gap-1"
+                      >
+                        <FileText className="w-3 h-3" />
+                        <span>TT / Quote</span>
+                      </button>
 
-                    <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
-                      <h4 className="font-black text-xs text-slate-800 uppercase flex items-center gap-1">
-                        <Smartphone className="w-3.5 h-3.5 text-purple-600" />
-                        <span>Social Media Add-ons</span>
-                      </h4>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Dedicated data buckets for YouTube, Facebook, WhatsApp, Instagram, and TikTok with high-speed streaming optimization.
-                      </p>
+                      <div
+                        className="px-3 py-1 rounded-lg bg-[#005696] group-hover:bg-[#004172] text-white font-bold text-[11px] flex items-center gap-1 shadow-2xs transition-colors"
+                      >
+                        <span>{card.ctaText}</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Quick Operational Triage & Signal Summary */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-3">
+              <div className="border-b border-slate-100 pb-2 flex items-center justify-between">
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#005696]" />
+                  <span>4G LTE Frontline Triage &amp; Escalation Summary</span>
+                </h3>
+                <span className="text-xs text-slate-400 font-semibold">ISO 9001:2015 Compliant</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                <div className="p-3 bg-blue-50/60 rounded-xl border border-blue-200/80 space-y-1">
+                  <span className="text-[10px] font-black uppercase text-[#005696]">CAT 4 Connection</span>
+                  <p className="font-bold text-slate-800">New With Tax: Rs. 4,990</p>
+                  <p className="text-[11px] text-slate-600">Applicable for BB packages Rs. 1,990/2,390 and above.</p>
+                </div>
+
+                <div className="p-3 bg-amber-50/60 rounded-xl border border-amber-200/80 space-y-1">
+                  <span className="text-[10px] font-black uppercase text-amber-800">CAT 6 Tozed Advanced</span>
+                  <p className="font-bold text-slate-800">Concession: Rs. 13,990</p>
+                  <p className="text-[11px] text-slate-600">Full payment Rs. 19,900 carries free 25GB/mo bonus data.</p>
+                </div>
+
+                <div className="p-3 bg-teal-50/60 rounded-xl border border-teal-200/80 space-y-1">
+                  <span className="text-[10px] font-black uppercase text-teal-800">VoLTE HD Voice</span>
+                  <p className="font-bold text-slate-800">Unlimited Voice: Rs. 745</p>
+                  <p className="text-[11px] text-slate-600">Postpaid flat rate calling to any local telephone network.</p>
+                </div>
+
+                <div className="p-3 bg-emerald-50/60 rounded-xl border border-emerald-200/80 space-y-1">
+                  <span className="text-[10px] font-black uppercase text-emerald-800">Prepaid SIM Pack</span>
+                  <p className="font-bold text-slate-800">Starter Pack: Rs. 1,400</p>
+                  <p className="text-[11px] text-slate-600">Pay-as-you-go volume passes from 1GB to 40GB.</p>
                 </div>
               </div>
-            )}
-
-            {/* TAB 5: 4G LTE PREPAID SERVICES */}
-            {activeTab === 'prepaid' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
-                  <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
-                    <div>
-                      <h2 className="text-lg font-black text-slate-900">
-                        4G LTE Prepaid Services &amp; Top-Up SOP
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        Pay-as-you-go broadband data passes, instant SIM starter packs, and recharge channels.
-                      </p>
-                    </div>
-                    <span className="px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded text-xs font-mono font-bold">
-                      Starter Pack: Rs. 1,400
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                      <h3 className="font-black text-xs uppercase text-slate-800 flex items-center gap-1.5">
-                        <CreditCard className="w-4 h-4 text-emerald-600" />
-                        <span>Prepaid SIM Starter Pack</span>
-                      </h3>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Purchasable across all SLT Teleshops, Regional Telecom Offices, and authorized Mobitel dealer networks. Pre-loaded with starter balance.
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                      <h3 className="font-black text-xs uppercase text-slate-800 flex items-center gap-1.5">
-                        <Layers className="w-4 h-4 text-blue-600" />
-                        <span>Volume Top-Ups</span>
-                      </h3>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Fixed volume data passes: <strong>1 GB, 2 GB, 5 GB, 10 GB, 20 GB, 40 GB</strong>. Valid for 1 day, 3 days, 7 days, 14 days, and 30 days.
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
-                      <h3 className="font-black text-xs uppercase text-slate-800 flex items-center gap-1.5">
-                        <Smartphone className="w-4 h-4 text-purple-600" />
-                        <span>Recharge Channels</span>
-                      </h3>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">
-                        • MySLT Mobile App &amp; Web Portal<br/>
-                        • Commercial Bank, Sampath, BOC Online<br/>
-                        • Food City, Keells, Singer merchant counters<br/>
-                        • Physical scratch cards (*123#)
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Prepaid Policies */}
-                  <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200 text-xs text-amber-900 space-y-1.5">
-                    <span className="font-black uppercase text-[10px] text-amber-800 block">Prepaid Lifecycle &amp; Grace Period Rules:</span>
-                    <p>• Inactive accounts without top-ups for 90 days enter a grace period.</p>
-                    <p>• If unexhausted after 180 days, the MSISDN and SIM profile will be recycled per TRCSL numbering rules.</p>
-                    <p>• Balance inquiry command: Dial <strong>*123#</strong> or query via MySLT Selfcare.</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 6: LTE OLD CALL CHARGES (HISTORICAL) */}
-            {activeTab === 'old_charges' && (
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
-                  <div className="border-b border-slate-100 pb-3 flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <h2 className="text-lg font-black text-slate-900">
-                        LTE Old Call Charges (Historical Reference)
-                      </h2>
-                      <p className="text-[11px] text-slate-500">
-                        Archival call rate schedule for accounts provisioned before 20th January 2017.
-                      </p>
-                    </div>
-                    <span className="px-2.5 py-1 bg-slate-100 text-slate-700 border border-slate-300 rounded text-xs font-mono font-bold">
-                      Pre-Jan 2017 Archive
-                    </span>
-                  </div>
-
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs border-collapse">
-                      <thead>
-                        <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                          <th className="p-3 w-1/3">Feature / Tariff Detail</th>
-                          <th className="p-3 text-blue-900">Residential</th>
-                          <th className="p-3 text-indigo-900">Business</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-200">
-                        {OLD_CALL_CHARGES.map((row, idx) => (
-                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                            <td className="p-3 font-bold text-slate-800">{row.feature}</td>
-                            <td className="p-3 font-mono text-slate-700 whitespace-pre-wrap">{row.residential}</td>
-                            <td className="p-3 font-mono text-slate-700 whitespace-pre-wrap">{row.business}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 7: OTHER CHARGES */}
-            {activeTab === 'other' && (
-              <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-3">
-                <h2 className="text-base font-black text-slate-900 uppercase tracking-wider">
-                  Other Charges &amp; Incidental Service Fees - LTE
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800 block">SIM Replacement (USIM):</span>
-                    <p className="text-slate-600">Rs. 250 (Waiver applicable if SIM was found defective within warranty period at Teleshop).</p>
-                  </div>
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800 block">Change of Ownership:</span>
-                    <p className="text-slate-600">Rs. 1,000 standard transfer fee with customer consent letter and NIC documentation.</p>
-                  </div>
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800 block">Relocation / Premises Shifting:</span>
-                    <p className="text-slate-600">Free within 4G coverage. Requires IMEI cell-lock reconfiguration in HSS core.</p>
-                  </div>
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800 block">Temporary Disconnection &amp; Safe Custody:</span>
-                    <p className="text-slate-600">Rs. 250 monthly safe custody fee (Maximum 6 months duration).</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 8: LANKA BELL TO SLT 4G */}
-            {activeTab === 'lankabell' && (
-              <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-3">
-                <div className="border-b border-slate-100 pb-2 flex items-center justify-between">
-                  <h2 className="text-base font-black text-slate-900">
-                    Lanka Bell to SLT-Mobitel 4G Migration Program
-                  </h2>
-                  <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-xs">
-                    Special Concession
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Special customer takeover package for former Lanka Bell LTE subscribers. Allows smooth transition to SLT 4G Fixed Wireless network with waived connection charges.
-                </p>
-                <div className="p-3 rounded-lg bg-purple-50/60 border border-purple-200 text-xs text-purple-900 space-y-1">
-                  <p>• <strong>Free Connection:</strong> Standard connection charge waived upon presenting Lanka Bell final settlement bill.</p>
-                  <p>• <strong>Compatible Router Reuse:</strong> If subscriber owns an unlocked Band 40 CPE router, only a SIM-only package fee (Rs. 1,400) is charged.</p>
-                  <p>• <strong>Bonus Data:</strong> Free 50GB introductory data booster allocated upon first bill cycle activation.</p>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 9: SLT STORAGE */}
-            {activeTab === 'storage' && (
-              <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-3">
-                <h2 className="text-base font-black text-slate-900">
-                  SLT Storage &amp; Cloud Drive for 4G LTE
-                </h2>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Secure local cloud storage hosted inside SLT Tier III National Data Center (Pitipana &amp; Welikada) for 4G LTE subscribers.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800">Free 10GB Tier</span>
-                    <p className="text-slate-600">Included complimentary for all Web Master and above 4G LTE packages.</p>
-                  </div>
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800">100GB Expansion</span>
-                    <p className="text-slate-600">Rs. 250 / month added to primary billing invoice.</p>
-                  </div>
-                  <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-1">
-                    <span className="font-bold text-slate-800">1TB Family Cloud</span>
-                    <p className="text-slate-600">Rs. 1,200 / month with multi-device sync and automatic photo backup.</p>
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
 
           </div>
 
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* 7. MODAL: SIDEBAR SOP PROCEDURE DETAILS                  */}
-      {/* ======================================================== */}
+      {/* MODAL 1: Trouble Ticket / Quotation Draft */}
+      <AnimatePresence>
+        {activeTtModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 space-y-4"
+            >
+              <div className="flex items-start justify-between border-b border-slate-100 pb-3">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#005696] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    Trouble Ticket &amp; Quotation Template
+                  </span>
+                  <h3 className="text-base font-black text-slate-900 mt-1">
+                    {activeTtModal.title}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setActiveTtModal(null)}
+                  className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="bg-slate-900 text-white p-4 rounded-xl font-mono text-xs border border-slate-800">
+                <pre className="whitespace-pre-wrap leading-relaxed text-lime-300">
+                  {activeTtModal.ttTemplate}
+                </pre>
+              </div>
+
+              <div className="flex items-center justify-between pt-2">
+                <button
+                  onClick={() => router.push(activeTtModal.route)}
+                  className="px-4 py-2 rounded-xl bg-blue-50 text-[#005696] font-bold text-xs hover:bg-blue-100 transition-colors flex items-center gap-1.5"
+                >
+                  <span>Go to Full Page</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => copyToClipboard(activeTtModal.ttTemplate, 'tt-modal')}
+                    className="px-4 py-2 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-xs shadow-xs flex items-center gap-1.5 transition-colors"
+                  >
+                    {copiedId === 'tt-modal' ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedId === 'tt-modal' ? 'Copied Template!' : 'Copy Template'}</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTtModal(null)}
+                    className="px-4 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL 2: Sidebar SOP Procedure Details */}
       <AnimatePresence>
         {activeSidebarModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
@@ -1407,8 +840,8 @@ export default function LteServicesHubPage() {
                   onClick={() => copyToClipboard(activeSidebarModal.guidelines.join('\n'), 'sop-copy')}
                   className="px-3.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-colors"
                 >
-                  {copiedText === 'sop-copy' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedText === 'sop-copy' ? 'Copied Steps!' : 'Copy Guidelines'}</span>
+                  {copiedId === 'sop-copy' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedId === 'sop-copy' ? 'Copied Steps!' : 'Copy Guidelines'}</span>
                 </button>
                 <button
                   onClick={() => setActiveSidebarModal(null)}
