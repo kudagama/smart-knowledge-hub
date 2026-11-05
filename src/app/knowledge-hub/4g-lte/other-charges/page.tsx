@@ -863,10 +863,10 @@ ACTION: Post reconnection charge of Rs. 500/=. Restore HSS/IMS profile and data 
             </Link>
 
             <Link
-              href="/knowledge-hub/4g-lte"
-              className="px-5 py-2.5 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
+              href="/knowledge-hub/4g-lte/lanka-bell"
+              className="px-5 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
             >
-              <span>Back to 4G LTE Hub</span>
+              <span>Next: Lanka Bell to SLT 4G</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

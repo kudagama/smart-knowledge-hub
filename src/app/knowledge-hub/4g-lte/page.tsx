@@ -44,7 +44,8 @@ import {
   Tag,
   Gift,
   Award,
-  ChevronRight
+  ChevronRight,
+  Repeat
 } from 'lucide-react';
 
 // ==========================================
@@ -249,6 +250,36 @@ ROUTER: CAT 4 (Rs. 2,900) / CAT 6 (Rs. 4,900) / Outdoor (Rs. 3,900)
 POSTPAID RECONNECTION: Rs. 500/=
 VOICE PAL SCHEME: Rs. 5,000 in 24 installments for mouse/lightning damage.
 CIRCULAR: 29-11-2022 Product Circular.`
+  },
+  {
+    id: 'lanka_bell',
+    title: 'Lanka Bell to SLT 4G',
+    subtitle: 'Free Migration & Number Porting',
+    badge: 'Competitor Migration',
+    badgeColor: 'bg-purple-50 text-purple-900 border-purple-200',
+    icon: Repeat,
+    gradient: 'from-purple-700 via-indigo-800 to-slate-950',
+    cardBorder: 'border-purple-200 hover:border-purple-500 hover:shadow-purple-500/15',
+    route: '/knowledge-hub/4g-lte/lanka-bell',
+    ctaText: 'Open Lanka Bell Migration',
+    priceHighlight: 'Free Connection + CPE Swap',
+    taxDate: 'Updated: 01/08/2024',
+    desc: 'Complete SOP for migrating Lanka Bell subscribers to SLT 4G LTE. Free connection with CPE swap-out, package mapping matrix (Starter to Family Max), monthly bonus data, and SME number retention.',
+    keyFeatures: [
+      'Residential Migration: 100% Free connection with Bell CPE swap-out',
+      'Starter Pack (55GB @ Rs. 1,140) ➔ Any Joy (22GB + 23GB Bonus @ Rs. 1,150)',
+      'Intro Pack (77GB @ Rs. 1,620) ➔ Any Beat (36GB + 41GB Bonus @ Rs. 1,550)',
+      'Family Pack (154GB @ Rs. 3,180) ➔ LTE Flash 5 (Save Rs. 830/mo)',
+      'Enterprise / SME: Keep Lanka Bell number (Notify manushika@slt.com.lk)'
+    ],
+    ttTemplate: `SERVICE: SLT-Mobitel 4G LTE Fixed Broadband
+ACTION: Lanka Bell to SLT 4G LTE Free Migration
+SUBSCRIBER: [CUSTOMER_NAME] (NIC: [NIC_NUMBER])
+LANKA BELL NUMBER: [011-XXXXXXXX]
+OLD BELL PACKAGE: [STARTER / INTRO / LITE / FAMILY]
+MAPPED SLT PLAN: [Any Joy / Any Beat / LTE Flash 5 / Flash 10]
+CPE SWAP: Existing Lanka Bell CPE returned. SLT LTE CPE issued Free of Charge.
+BONUS DATA: Applicable monthly bonus quota provisioned within 2 weeks.`
   }
 ];
 
