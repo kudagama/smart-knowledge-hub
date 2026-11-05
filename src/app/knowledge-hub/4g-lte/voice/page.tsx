@@ -23,104 +23,140 @@ import {
   Sparkles,
   PhoneCall,
   Zap,
-  Info
+  Info,
+  Calendar,
+  Building2,
+  Layers,
+  PhoneForwarded,
+  Signal,
+  Award
 } from 'lucide-react';
 
 const STANDARD_VOICE_PACKAGES = [
   {
+    id: 'voice_pal_single',
     planCategory: '4G Voice Pal (Single Play)',
-    name: 'Basic / Postpaid Voice Pal',
+    name: 'Voice Pal Postpaid Residential',
     rental: '310 / 499',
+    badge: 'Single Play Voice',
+    badgeStyle: 'bg-teal-100 text-teal-900 border-teal-300',
     onNetPeak: 'Rs. 1.70 / min',
     onNetLeisure: 'Rs. 1.00 / min',
     offNetPeak: 'Rs. 2.70 / min',
     offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: '100 On-Net Free Minutes (Residential)'
+    freeMinutes: '100 On-Net Free Minutes (Residential)',
+    bestFor: 'Dedicated voice telephone without fixed internet bundle.'
   },
   {
+    id: 'dp_voice',
     planCategory: 'Double Play (Voice + BB)',
     name: 'Residential Double Play Voice',
-    rental: 'Based on BB Plan',
+    rental: 'Included with BB',
+    badge: 'Bundled with BB',
+    badgeStyle: 'bg-blue-100 text-blue-900 border-blue-300',
     onNetPeak: 'Rs. 1.70 / min',
     onNetLeisure: 'Rs. 1.00 / min',
     offNetPeak: 'Rs. 2.70 / min',
     offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: 'Free VAS package bundle included'
+    freeMinutes: 'Free VAS bundle (CLI, Call Waiting, Forwarding)',
+    bestFor: 'Home subscribers pairing fixed broadband with fixed voice.'
   },
   {
+    id: 'biz_voice',
     planCategory: 'Business / Corporate',
     name: 'Business Voice Pal / DP',
     rental: '499',
-    onNetPeak: 'Rs. 1.70 (Up to 3 min) / Rs. 1.00 (>3 min)',
+    badge: 'Business Plan',
+    badgeStyle: 'bg-purple-100 text-purple-900 border-purple-300',
+    onNetPeak: 'Rs. 1.70 (1-3 min) / Rs. 1.00 (>3 min)',
     onNetLeisure: 'Rs. 1.70 / Rs. 1.00',
     offNetPeak: 'Rs. 2.70 / min',
     offNetLeisure: 'Rs. 2.00 / min',
-    freeMinutes: 'CLI, Call Waiting, Hunting, Conferencing'
+    freeMinutes: 'CLI, Hunting, 3-Party Conferencing, Absentee',
+    bestFor: 'Offices, retail counters, and corporate PBX hunt groups.'
   },
   {
-    planCategory: 'Religious',
+    id: 'religious_voice',
+    planCategory: 'Religious Institute',
     name: 'Religious Package',
-    rental: 'Concessionary rental',
-    onNetPeak: 'Concession rates apply',
-    onNetLeisure: 'Concession rates apply',
-    offNetPeak: 'Concession rates apply',
-    offNetLeisure: 'Concession rates apply',
-    freeMinutes: 'Free incoming & restricted outgoing options'
+    rental: 'Concessionary',
+    badge: 'Welfare Concession',
+    badgeStyle: 'bg-amber-100 text-amber-900 border-amber-300',
+    onNetPeak: 'Concession Rates',
+    onNetLeisure: 'Concession Rates',
+    offNetPeak: 'Concession Rates',
+    offNetLeisure: 'Concession Rates',
+    freeMinutes: 'Free incoming calls & restricted outgoing controls',
+    bestFor: 'Temples, churches, mosques, and registered religious bodies.'
   }
 ];
 
 const UNLIMITED_VOICE_PACKAGES = [
   {
+    id: 'unlimited_home',
     plan: 'Unlimited Home Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Domestic / Individual\n• SLT Staff Residential\n• Higher Education Residential',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited calls to any network in Sri Lanka',
-      'Crystal clear HD VoLTE call quality',
-      'Postpaid package billing',
-      'No unexpected high voice bills',
-      'Keep existing copper/CDMA number',
-      'No commitment period lock'
+    rental: '745',
+    category: 'Double Play Residential',
+    badge: 'Most Popular',
+    badgeStyle: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+    subCategories: 'Domestic / Individual | SLT Staff | Higher Education Residential',
+    features: [
+      'Unlimited Voice calls to ANY local network (On-net & Off-net)',
+      'Concurrent HD VoLTE audio with full 4G broadband speed',
+      'Geographical 011-2XXXXXX telephone number allocation',
+      'No peak/off-peak minute restrictions'
     ]
   },
   {
+    id: 'unlimited_office',
     plan: 'Unlimited Office Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Business / Offices\n• Government Institutions\n• SME Customers',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited calls to any network',
-      'Fixed voice clarity over LTE',
-      'Consolidated postpaid corporate billing',
-      'Dedicated hunt group support'
+    rental: '745',
+    category: 'Double Play Business',
+    badge: 'SME & Corporate',
+    badgeStyle: 'bg-blue-100 text-blue-900 border-blue-300',
+    subCategories: 'Business / Enterprise / SME / Legal / Medical Practices',
+    features: [
+      'Unlimited outgoing business calls to mobile and fixed lines island-wide',
+      'Dedicated 7-digit geographical business identity',
+      'Hunt Group and multi-extension routing compatible',
+      'Predictable fixed monthly telephony expense'
     ]
   },
   {
-    plan: 'Unlimited 4G Religious Double Play Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Temples, Churches, Mosques & Kovils\n• Registered Religious Institutions',
-    classification: '4G LTE Double Play',
-    advantages: [
-      'Unlimited any-net voice calls',
-      'Concessionary base setup and billing waiver',
-      'Reliable community communications'
+    id: 'unlimited_religious',
+    plan: 'Unlimited Religious Double Play Rs. 745',
+    rental: '745',
+    category: 'Religious Institute',
+    badge: 'Religious Trust',
+    badgeStyle: 'bg-amber-100 text-amber-900 border-amber-300',
+    subCategories: 'Registered temples, churches, kovils, and mosques',
+    features: [
+      'Unlimited calls to all Sri Lankan networks',
+      'Zero bill shock on welfare communications',
+      'Crystal clear HD VoLTE voice clarity',
+      'Concessionary administrative verification'
     ]
   },
   {
+    id: 'unlimited_voice_pal',
     plan: 'Unlimited 4G Single Play Voice Pal Rs. 745',
-    orderType: 'CREATE (New Customers) | MODIFY (Existing Migration)',
-    subCategories: '• Individual Customers\n• Business / SME\n• Government & Religious',
-    classification: '4G Voice Pal (Single Play)',
-    advantages: [
-      'Unlimited voice calling without mandatory BB data bundle',
-      'Works with standard VoLTE desk phone unit',
-      'Ideal for senior citizens & voice-centric premises'
+    rental: '745',
+    category: 'Single Play Voice',
+    badge: 'No Internet Needed',
+    badgeStyle: 'bg-teal-100 text-teal-900 border-teal-300',
+    subCategories: 'Dedicated VoLTE Desk Phone without broadband package',
+    features: [
+      'Unlimited flat-rate calling for senior citizens & domestic phone users',
+      'Works seamlessly on VoLTE fixed desk phones',
+      'CityLink CDMA number retention option',
+      'Zero broadband data commitment required'
     ]
   }
 ];
 
 export default function LteVoicePackagesPage() {
+  const [activeTab, setActiveTab] = useState<'unlimited' | 'standard'>('unlimited');
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
@@ -129,276 +165,484 @@ export default function LteVoicePackagesPage() {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const ttVoLteUnlimited = `SERVICE: SLT 4G VoLTE (Fixed Voice)
+  const ttUnlimitedHome = `SERVICE: SLT 4G VoLTE (Fixed Voice)
 PLAN: Unlimited Home Double Play Rs. 745
 SERVICE ORDER TYPE: CREATE (New Customer) / MODIFY (Migration from Copper/CDMA)
 CALL ALLOWANCE: Unlimited Calls to Any Local Network (On-net & Off-net)
 NUMBER PRESERVATION: Geographical series (011-2XXXXXX / CityLink retained)
 QUALITY: Voice over LTE (VoLTE) High-Definition Audio Codec
-RENTAL: Rs. 745 / month (Postpaid)`;
+RENTAL: Rs. 745 / month (Postpaid)
+TARGET: VOICE-PROVISIONING / FRONT-OFFICE`;
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-[#f4f7f9] overflow-y-auto select-none">
+    <div className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-y-auto select-none text-slate-800">
       
       {/* 1. TOP SHAREPOINT BAR */}
-      <div className="bg-[#005a9c] text-white px-4 py-2 flex items-center justify-between text-xs shadow-xs shrink-0">
+      <div className="bg-[#004e89] text-white px-5 py-2.5 flex items-center justify-between text-sm shadow-md shrink-0">
         <div className="flex items-center gap-3">
-          <Link href="/knowledge-hub" className="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
-            <Grid className="w-4 h-4 text-white" />
-            <span className="font-bold tracking-tight text-sm">SharePoint</span>
+          <Link
+            href="/knowledge-hub/4g-lte"
+            className="flex items-center gap-2 text-white/90 hover:text-white hover:bg-white/10 px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>4G LTE Home</span>
           </Link>
-          <span className="text-xs text-teal-200">| 4G VoLTE Voice Packages</span>
-        </div>
-        <div className="flex items-center gap-4 text-xs">
-          <span className="hidden sm:inline text-cyan-100 font-medium">SLT-Mobitel Intranet</span>
-          <div className="w-7 h-7 rounded-full bg-cyan-700 border border-cyan-400 flex items-center justify-center font-bold text-[11px] text-white">
-            CR
-          </div>
-        </div>
-      </div>
-
-      {/* 2. BREADCRUMB */}
-      <div className="bg-white border-b border-slate-200 px-6 py-2.5 flex items-center justify-between text-xs text-slate-600">
-        <div className="flex items-center gap-2">
-          <Link href="/knowledge-hub/4g-lte" className="text-[#005696] font-bold hover:underline flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" /> Back to 4G LTE Services
-          </Link>
-          <span className="text-slate-300">/</span>
-          <Link href="/knowledge-hub" className="hover:underline">Knowledge Hub</Link>
-          <span className="text-slate-300">/</span>
-          <Link href="/knowledge-hub/4g-lte" className="hover:underline">4G LTE</Link>
-          <span className="text-slate-300">/</span>
-          <span className="font-bold text-teal-800">Voice Packages (VoLTE)</span>
+          <span className="text-white/40">|</span>
+          <span className="font-semibold text-white/90 text-xs">Knowledge Hub</span>
+          <span className="text-white/40">/</span>
+          <span className="font-bold text-white text-xs">LTE Voice Packages (VoLTE)</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200 text-xs font-mono font-bold">
-            Geo Series: 011-2XXXXXX
+          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider bg-teal-500/20 text-teal-300 border border-teal-400/30">
+            HD Voice over LTE
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-white/80 border border-white/20">
+            Unlimited Plans @ Rs. 745
           </span>
         </div>
       </div>
 
-      {/* 3. HERO BANNER */}
-      <div className="relative bg-gradient-to-r from-teal-950 via-slate-900 to-indigo-950 text-white px-8 py-8 overflow-hidden border-b border-teal-800/40">
-        <div className="max-w-6xl mx-auto space-y-2 relative z-10">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-teal-400/20 text-teal-300 border border-teal-300/30">
-              VoLTE HD Voice
-            </span>
-            <span className="text-xs text-teal-200">Voice over LTE &amp; Concurrent Broadband</span>
+      {/* 2. HERO BANNER */}
+      <div className="bg-gradient-to-r from-[#004d40] via-[#00695c] to-[#005696] text-white px-6 py-7 shadow-sm">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-xs font-black uppercase tracking-wider text-teal-200">
+                Crystal Clear VoLTE Telephony
+              </span>
+              <span className="px-3 py-1 bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 rounded-lg text-xs font-black">
+                Unlimited Any-Net Calling
+              </span>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white flex items-center gap-3">
+              <Phone className="w-9 h-9 text-teal-300" />
+              <span>LTE Voice Packages &amp; VoLTE Services</span>
+            </h1>
+            <p className="text-slate-200 text-sm md:text-base max-w-3xl leading-relaxed font-medium">
+              High-definition Voice over LTE tariffs and flat-rate Unlimited Voice plans (Rs. 745/mo). Geographical number series allocation (011-2XXXXXX), concurrent high-speed broadband usage, and stepped rate comparisons.
+            </p>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-black text-white flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-teal-500/20 border border-teal-400/40">
-              <Phone className="w-6 h-6 text-teal-300" />
-            </div>
-            <span>LTE Voice Packages &amp; VoLTE Services</span>
-          </h1>
-
-          <p className="text-xs text-teal-100/90 max-w-3xl font-medium leading-relaxed">
-            Standard call tariffs, Active &amp; Leisure time bands, geographical number allocation, and Unlimited Any-Net Voice plans (Rs. 745).
-          </p>
-
-          <div className="flex items-center gap-3 pt-1">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-teal-600 to-emerald-700 border border-teal-400 flex items-center justify-center font-bold text-xs text-white">
-              CR
-            </div>
-            <div className="text-xs">
-              <p className="font-bold text-white">Chathurani Rathnayake</p>
-              <p className="text-[11px] text-teal-200/90">Senior Assistant Manager (Customer Relations) - A7</p>
-            </div>
+          {/* Quick Stat Card */}
+          <div className="bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl p-4 shrink-0 text-center space-y-1">
+            <div className="text-xs uppercase tracking-wider text-teal-200 font-bold">Unlimited Any-Net</div>
+            <div className="text-3xl font-black text-white">Rs. 745</div>
+            <div className="text-[11px] font-bold text-emerald-300">Calls to Any Local Network</div>
+            <div className="text-[11px] text-white/80">Double Play &amp; Voice Pal</div>
           </div>
         </div>
       </div>
 
-      {/* 4. MAIN CONTENT */}
-      <div className="flex-1 p-6 md:p-8 space-y-6">
-        <div className="max-w-6xl mx-auto space-y-6">
-
-          {/* Service Note Banner */}
-          <div className="bg-white rounded-2xl border border-teal-200 p-5 shadow-xs flex flex-wrap items-center justify-between gap-4">
-            <div className="space-y-1">
-              <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
-                VoLTE Technological Advantage
-              </span>
-              <h3 className="text-base font-black text-slate-900">
-                Voice over LTE (VoLTE) Concurrent Operation
-              </h3>
-              <p className="text-xs text-slate-600 font-medium">
-                Allows subscribers to make high-definition voice calls while concurrently maintaining full 4G broadband data streaming on the same connection without interruption.
-              </p>
+      {/* 3. AUTHOR & METADATA BAR */}
+      <div className="bg-white border-b border-slate-200 px-6 py-2.5 text-xs text-slate-500">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-4 flex-wrap">
+            <div className="flex items-center gap-1.5 font-bold text-slate-700">
+              <Building2 className="w-3.5 h-3.5 text-teal-700" />
+              <span>Chathurani Rathnayake, Senior Assistant Manager (Customer Relations) A7</span>
             </div>
-            <div className="text-right">
-              <span className="text-[10px] font-bold text-slate-400 block uppercase">Number Allocation</span>
-              <span className="px-3 py-1 rounded-lg bg-teal-600 text-white font-mono font-black text-xs inline-block mt-0.5">
-                011-2XXXXXX Series
-              </span>
+            <span className="text-slate-300">|</span>
+            <div className="flex items-center gap-1.5 font-medium">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              <span>Published &amp; Operational Circular</span>
             </div>
           </div>
 
-          {/* Standard Voice Call Rates Table */}
-          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs space-y-2 p-5">
-            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">
-              Standard Voice Packages &amp; Call Charges Table
-            </h3>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/knowledge-hub/4g-lte/old-charges"
+              className="text-xs font-bold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-lg transition-colors flex items-center gap-1 border border-slate-300"
+            >
+              <Clock className="w-3.5 h-3.5 text-slate-600" />
+              <span>Compare Pre-2017 Rates ➔</span>
+            </Link>
+          </div>
+        </div>
+      </div>
 
-            <div className="overflow-x-auto pt-2">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="bg-slate-100 text-slate-700 border-b border-slate-200 font-black">
-                    <th className="p-3">Plan Category</th>
-                    <th className="p-3">Package Name</th>
-                    <th className="p-3">Monthly Rental (Rs.)</th>
-                    <th className="p-3">On-net (Peak / Active)</th>
-                    <th className="p-3">On-net (Off-Peak / Leisure)</th>
-                    <th className="p-3">Off-net (Peak / Active)</th>
-                    <th className="p-3">Off-net (Off-Peak / Leisure)</th>
-                    <th className="p-3">Free Minutes / Benefits</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
-                  {STANDARD_VOICE_PACKAGES.map((v, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                      <td className="p-3 font-bold text-slate-900">{v.planCategory}</td>
-                      <td className="p-3 text-slate-700">{v.name}</td>
-                      <td className="p-3 font-mono font-bold text-teal-800">{v.rental}</td>
-                      <td className="p-3 font-mono text-slate-700">{v.onNetPeak}</td>
-                      <td className="p-3 font-mono text-slate-700">{v.onNetLeisure}</td>
-                      <td className="p-3 font-mono text-slate-700">{v.offNetPeak}</td>
-                      <td className="p-3 font-mono text-slate-700">{v.offNetLeisure}</td>
-                      <td className="p-3 text-slate-600 font-medium text-[11px]">{v.freeMinutes}</td>
-                    </tr>
+      {/* 4. NAVIGATION & TAB TOOLBAR */}
+      <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3.5">
+          
+          {/* Main Switcher */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab('unlimited')}
+              className={`px-4 py-2 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5 ${
+                activeTab === 'unlimited'
+                  ? 'bg-teal-700 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Unlimited Voice Plans (Rs. 745)</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('standard')}
+              className={`px-4 py-2 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5 ${
+                activeTab === 'standard'
+                  ? 'bg-teal-700 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span>Standard Postpaid Plans &amp; Call Rates</span>
+            </button>
+          </div>
+
+          {/* Toggle View Mode */}
+          <div className="flex items-center bg-slate-100 p-1 rounded-xl shrink-0">
+            <button
+              onClick={() => setViewMode('cards')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                viewMode === 'cards' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <span>Visual Cards</span>
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                viewMode === 'table' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <span>Data Table</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 5. MAIN CONTENT */}
+      <div className="flex-1 p-6 md:p-8 space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
+
+          {/* ======================================================== */}
+          {/* TAB 1: UNLIMITED VOICE PLANS (RS. 745)                   */}
+          {/* ======================================================== */}
+          {activeTab === 'unlimited' && (
+            <div className="space-y-6">
+              
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-slate-200 pb-3">
+                <div>
+                  <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+                    <div className="p-2 bg-teal-100 rounded-xl">
+                      <Sparkles className="w-6 h-6 text-teal-700" />
+                    </div>
+                    <span>Unlimited Any-Net Voice Plans (Flat Rate Rs. 745/Month)</span>
+                  </h2>
+                  <p className="text-sm text-slate-500 font-medium mt-1">
+                    Free unlimited voice calls to any local fixed or mobile network (SLT, Mobitel, Dialog, Airtel, Hutch).
+                  </p>
+                </div>
+                <span className="px-3 py-1.5 rounded-xl bg-teal-50 text-teal-900 border border-teal-300 font-bold text-xs">
+                  Zero Peak/Off-Peak Limits
+                </span>
+              </div>
+
+              {viewMode === 'cards' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {UNLIMITED_VOICE_PACKAGES.map((pkg) => (
+                    <div
+                      key={pkg.id}
+                      className="bg-white rounded-3xl border-2 border-slate-200 hover:border-teal-500 p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${pkg.badgeStyle}`}>
+                            {pkg.badge}
+                          </span>
+                          <span className="text-xs font-bold text-slate-400">{pkg.category}</span>
+                        </div>
+
+                        <h3 className="font-black text-xl text-slate-900 group-hover:text-teal-800 transition-colors">
+                          {pkg.plan}
+                        </h3>
+
+                        {/* Price Block */}
+                        <div className="p-4 bg-teal-50/60 rounded-2xl border border-teal-100 flex items-baseline justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                              Monthly Rental
+                            </span>
+                            <div className="flex items-baseline gap-1 mt-0.5">
+                              <span className="text-sm font-bold text-slate-500">Rs.</span>
+                              <span className="text-3xl font-black text-teal-800">{pkg.rental}</span>
+                              <span className="text-xs text-slate-500 font-medium">/ month</span>
+                            </div>
+                          </div>
+                          <span className="px-3 py-1 bg-white rounded-xl border border-teal-200 text-teal-900 font-bold text-xs">
+                            Postpaid
+                          </span>
+                        </div>
+
+                        <div className="text-xs text-slate-500 font-medium bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                          <strong>Target Subscribers:</strong> {pkg.subCategories}
+                        </div>
+
+                        <ul className="space-y-2 text-xs text-slate-700 font-medium pt-1">
+                          {pkg.features.map((feat, fIdx) => (
+                            <li key={fIdx} className="flex items-start gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-slate-400">Unlimited Any-Net</span>
+                        <button
+                          onClick={() => copyToClipboard(`SERVICE: 4G VoLTE Unlimited Voice\nPLAN: ${pkg.plan}\nMONTHLY RENTAL: Rs. ${pkg.rental}\nBENEFITS: Unlimited calls to Any Local Network`, pkg.id)}
+                          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 text-slate-700 hover:text-teal-900 font-bold text-xs flex items-center gap-1.5 transition-colors border border-slate-200"
+                        >
+                          {copiedId === pkg.id ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                          <span>{copiedId === pkg.id ? 'Copied Order!' : 'Copy Order'}</span>
+                        </button>
+                      </div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                </div>
+              )}
 
-          {/* Call Time Bands */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs space-y-2">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-amber-600" />
-                <h4 className="font-black text-xs uppercase tracking-wider text-slate-900">Active Hours Time Band</h4>
-              </div>
-              <ul className="text-xs text-slate-600 space-y-1 pt-1">
-                <li className="flex items-center justify-between p-2 rounded bg-slate-50">
-                  <span className="font-bold text-slate-700">Monday to Friday:</span>
-                  <span className="font-mono font-bold text-[#005696]">07:00 hrs to 19:00 hrs</span>
-                </li>
-                <li className="flex items-center justify-between p-2 rounded bg-slate-50">
-                  <span className="font-bold text-slate-700">Saturday:</span>
-                  <span className="font-mono font-bold text-[#005696]">07:00 hrs to 14:00 hrs</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs space-y-2">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-emerald-600" />
-                <h4 className="font-black text-xs uppercase tracking-wider text-slate-900">Leisure Hours Time Band</h4>
-              </div>
-              <ul className="text-xs text-slate-600 space-y-1 pt-1">
-                <li className="flex items-center justify-between p-2 rounded bg-slate-50">
-                  <span className="font-bold text-slate-700">Monday to Friday:</span>
-                  <span className="font-mono font-bold text-emerald-700">00:00 to 07:00 &amp; 19:00 to 24:00</span>
-                </li>
-                <li className="flex items-center justify-between p-2 rounded bg-slate-50">
-                  <span className="font-bold text-slate-700">Saturday:</span>
-                  <span className="font-mono font-bold text-emerald-700">14:00 to 24:00</span>
-                </li>
-                <li className="flex items-center justify-between p-2 rounded bg-slate-50">
-                  <span className="font-bold text-slate-700">Sunday &amp; Public Holidays:</span>
-                  <span className="font-mono font-bold text-emerald-700">Full Day (24 Hours)</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Unlimited Voice Packages Section */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
-            <div className="border-b border-slate-100 pb-3 flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <h3 className="text-base font-black text-slate-900 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <span>Unlimited Voice Packages - 4G LTE (Rs. 745 Monthly Rental)</span>
-                </h3>
-                <p className="text-xs text-slate-500">
-                  Flat-rate unlimited calling to any fixed or mobile network in Sri Lanka.
-                </p>
-              </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-black text-xs">
-                Rs. 745 / mo (Postpaid)
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {UNLIMITED_VOICE_PACKAGES.map((u, uIdx) => (
-                <div key={uIdx} className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-md transition-all space-y-3">
-                  <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-2">
-                    <h4 className="font-black text-sm text-[#005696]">{u.plan}</h4>
-                    <span className="px-2 py-0.5 rounded bg-blue-50 text-[#005696] font-mono font-bold text-[9px]">
-                      {u.classification}
-                    </span>
-                  </div>
-
-                  <p className="text-[10px] text-slate-400 font-bold uppercase">{u.orderType}</p>
-
-                  <div className="text-xs text-slate-700 space-y-1">
-                    <span className="font-bold text-slate-800 block text-[11px]">Allowed Customer Sub-categories:</span>
-                    <pre className="font-sans text-xs text-slate-600 whitespace-pre-wrap">{u.subCategories}</pre>
-                  </div>
-
-                  <div className="pt-2 border-t border-slate-100 space-y-1">
-                    <span className="font-black text-[10px] text-slate-400 uppercase block mb-1">Key Advantages:</span>
-                    <ul className="text-xs text-slate-600 space-y-1">
-                      {u.advantages.map((adv, aIdx) => (
-                        <li key={aIdx} className="flex items-center gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                          <span>{adv}</span>
-                        </li>
-                      ))}
-                    </ul>
+              {viewMode === 'table' && (
+                <div className="bg-white rounded-3xl border-2 border-slate-200 overflow-hidden shadow-xs">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs border-collapse">
+                      <thead>
+                        <tr className="bg-slate-900 text-white font-black">
+                          <th className="p-4 w-1/3">Unlimited Plan Name</th>
+                          <th className="p-4">Monthly Rental</th>
+                          <th className="p-4">Sub-Categories / Target Profile</th>
+                          <th className="p-4">Call Allowance &amp; Quality</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
+                        {UNLIMITED_VOICE_PACKAGES.map((pkg) => (
+                          <tr key={pkg.id} className="hover:bg-teal-50/40 transition-colors">
+                            <td className="p-4 font-bold text-slate-900">
+                              <span className="block text-sm font-black">{pkg.plan}</span>
+                              <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full border inline-block mt-1 ${pkg.badgeStyle}`}>
+                                {pkg.badge}
+                              </span>
+                            </td>
+                            <td className="p-4 font-mono font-black text-lg text-teal-800">
+                              Rs. {pkg.rental}
+                            </td>
+                            <td className="p-4 text-slate-600 leading-relaxed">
+                              {pkg.subCategories}
+                            </td>
+                            <td className="p-4 text-slate-600 space-y-1">
+                              <span className="font-bold text-emerald-700 block">Unlimited Calls to Any Local Network</span>
+                              <span className="text-[11px] text-slate-500">HD VoLTE codec | Concurrent data</span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              ))}
+              )}
+
             </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* TAB 2: STANDARD PLANS & CALL CHARGES                     */}
+          {/* ======================================================== */}
+          {activeTab === 'standard' && (
+            <div className="space-y-6">
+              
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-slate-200 pb-3">
+                <div>
+                  <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+                    <div className="p-2 bg-blue-100 rounded-xl">
+                      <PhoneCall className="w-6 h-6 text-[#005696]" />
+                    </div>
+                    <span>Standard Voice Plans &amp; Minute Rates</span>
+                  </h2>
+                  <p className="text-sm text-slate-500 font-medium mt-1">
+                    Metered calling rates for Residential, Business, and Voice Pal subscribers.
+                  </p>
+                </div>
+              </div>
+
+              {viewMode === 'cards' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {STANDARD_VOICE_PACKAGES.map((pkg) => (
+                    <div
+                      key={pkg.id}
+                      className="bg-white rounded-3xl border-2 border-slate-200 hover:border-[#005696] p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${pkg.badgeStyle}`}>
+                            {pkg.badge}
+                          </span>
+                          <span className="text-xs font-bold text-slate-400">{pkg.planCategory}</span>
+                        </div>
+
+                        <h3 className="font-black text-xl text-slate-900 group-hover:text-[#005696] transition-colors">
+                          {pkg.name}
+                        </h3>
+
+                        {/* Rental */}
+                        <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-baseline justify-between">
+                          <span className="text-xs text-slate-500 font-bold uppercase">Monthly Rental</span>
+                          <span className="font-mono font-black text-lg text-slate-900">{pkg.rental}</span>
+                        </div>
+
+                        {/* Rate Grid */}
+                        <div className="grid grid-cols-2 gap-3 text-xs">
+                          <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-100 space-y-1">
+                            <span className="font-bold text-[#005696] block uppercase text-[10px]">On-Net Rates</span>
+                            <p className="text-slate-700">Peak: <strong>{pkg.onNetPeak}</strong></p>
+                            <p className="text-slate-700">Leisure: <strong>{pkg.onNetLeisure}</strong></p>
+                          </div>
+                          <div className="p-3 bg-purple-50/70 rounded-xl border border-purple-100 space-y-1">
+                            <span className="font-bold text-purple-900 block uppercase text-[10px]">Off-Net Rates</span>
+                            <p className="text-slate-700">Peak: <strong>{pkg.offNetPeak}</strong></p>
+                            <p className="text-slate-700">Leisure: <strong>{pkg.offNetLeisure}</strong></p>
+                          </div>
+                        </div>
+
+                        <p className="text-xs text-slate-600 font-medium">
+                          <strong>Free Benefits:</strong> {pkg.freeMinutes}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-slate-400">Postpaid Stepped Rates</span>
+                        <button
+                          onClick={() => copyToClipboard(`PACKAGE: ${pkg.name}\nRENTAL: Rs. ${pkg.rental}\nON-NET: ${pkg.onNetPeak} / ${pkg.onNetLeisure}\nOFF-NET: ${pkg.offNetPeak} / ${pkg.offNetLeisure}\nFREE MINUTES: ${pkg.freeMinutes}`, pkg.id)}
+                          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-[#005696] font-bold text-xs flex items-center gap-1.5 transition-colors border border-slate-200"
+                        >
+                          {copiedId === pkg.id ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                          <span>{copiedId === pkg.id ? 'Copied Rates!' : 'Copy Rates'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {viewMode === 'table' && (
+                <div className="bg-white rounded-3xl border-2 border-slate-200 overflow-hidden shadow-xs">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs border-collapse">
+                      <thead>
+                        <tr className="bg-slate-900 text-white font-black">
+                          <th className="p-3.5">Category / Name</th>
+                          <th className="p-3.5">Monthly Rental (Rs.)</th>
+                          <th className="p-3.5">On-Net Peak</th>
+                          <th className="p-3.5">On-Net Leisure</th>
+                          <th className="p-3.5">Off-Net Peak</th>
+                          <th className="p-3.5">Off-Net Leisure</th>
+                          <th className="p-3.5">Free Minutes / VAS</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
+                        {STANDARD_VOICE_PACKAGES.map((pkg) => (
+                          <tr key={pkg.id} className="hover:bg-slate-50 transition-colors">
+                            <td className="p-3.5 font-bold text-slate-900">
+                              <span className="block text-sm">{pkg.name}</span>
+                              <span className="text-[10px] text-slate-400">{pkg.planCategory}</span>
+                            </td>
+                            <td className="p-3.5 font-mono font-bold text-slate-800">{pkg.rental}</td>
+                            <td className="p-3.5 font-mono text-emerald-700 font-bold">{pkg.onNetPeak}</td>
+                            <td className="p-3.5 font-mono text-emerald-800">{pkg.onNetLeisure}</td>
+                            <td className="p-3.5 font-mono text-slate-800 font-bold">{pkg.offNetPeak}</td>
+                            <td className="p-3.5 font-mono text-slate-700">{pkg.offNetLeisure}</td>
+                            <td className="p-3.5 text-slate-600">{pkg.freeMinutes}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* SECTION C: CALL TIME BANDS & TECHNICAL FEATURES          */}
+          {/* ======================================================== */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Call Time Bands */}
+            <div className="bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 text-teal-800 font-black text-xs uppercase tracking-wider">
+                <Clock className="w-5 h-5 text-teal-600" />
+                <span>Call Time Bands Definition</span>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
+                  <span className="font-bold text-slate-700">Active / Peak Hours:</span>
+                  <span className="font-mono font-bold text-slate-900">08:00 hrs – 18:00 hrs</span>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
+                  <span className="font-bold text-slate-700">Leisure / Off-Peak Hours:</span>
+                  <span className="font-mono font-bold text-slate-900">18:00 hrs – 08:00 hrs &amp; Holidays</span>
+                </div>
+              </div>
+            </div>
+
+            {/* VoLTE Advantages */}
+            <div className="bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 text-[#005696] font-black text-xs uppercase tracking-wider">
+                <ShieldCheck className="w-5 h-5 text-[#005696]" />
+                <span>VoLTE Telephony Features</span>
+              </div>
+              <ul className="text-xs text-slate-600 space-y-1.5 font-medium leading-relaxed list-disc list-inside">
+                <li>Voice over LTE (VoLTE) allows crystal-clear audio codecs without degrading broadband.</li>
+                <li>Geographical telephone numbering series: <strong>011-2XXXXXX</strong> allocated based on area.</li>
+                <li>Seamless migration from copper/CDMA while preserving the existing telephone number.</li>
+              </ul>
+            </div>
+
           </div>
 
-          {/* Trouble Ticket Template */}
-          <div className="bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-sm space-y-3 text-white">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
-              <span className="font-mono text-xs font-bold text-teal-300">
-                Standard C-Log Service Order: 4G VoLTE Unlimited Voice (Rs. 745)
-              </span>
+          {/* ======================================================== */}
+          {/* SECTION D: C-LOG TEMPLATE                                */}
+          {/* ======================================================== */}
+          <div className="bg-slate-900 rounded-3xl border-2 border-slate-800 p-6 shadow-md space-y-3 text-white">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2.5">
+                <FileText className="w-5 h-5 text-teal-400" />
+                <span className="font-mono text-sm font-bold text-teal-300">
+                  C-Log Service Order: Unlimited Home Double Play Activation (Rs. 745)
+                </span>
+              </div>
               <button
-                onClick={() => copyToClipboard(ttVoLteUnlimited, 'tt-voice')}
-                className="px-3 py-1 bg-teal-600 hover:bg-teal-500 text-white text-xs rounded-lg font-bold flex items-center gap-1.5 transition-colors"
+                onClick={() => copyToClipboard(ttUnlimitedHome, 'tt-voice')}
+                className="px-4 py-2 bg-teal-600 hover:bg-teal-500 text-white text-xs rounded-xl font-bold flex items-center gap-2 transition-colors shadow-xs"
               >
-                {copiedId === 'tt-voice' ? <Check className="w-3 h-3 text-white" /> : <Copy className="w-3 h-3" />}
-                <span>{copiedId === 'tt-voice' ? 'Copied Order!' : 'Copy Order'}</span>
+                {copiedId === 'tt-voice' ? <Check className="w-4 h-4 text-white" /> : <Copy className="w-4 h-4" />}
+                <span>{copiedId === 'tt-voice' ? 'Copied Template!' : 'Copy Order Template'}</span>
               </button>
             </div>
-            <pre className="text-lime-300 font-mono text-xs leading-relaxed whitespace-pre-wrap">
-              {ttVoLteUnlimited}
+            <pre className="text-teal-200 font-mono text-xs leading-relaxed whitespace-pre-wrap p-2 bg-black/30 rounded-xl overflow-x-auto">
+              {ttUnlimitedHome}
             </pre>
           </div>
 
-          {/* Bottom Navigation */}
-          <div className="flex items-center justify-between pt-2">
+          {/* Bottom Sequential Navigation */}
+          <div className="flex items-center justify-between pt-6 border-t-2 border-slate-200">
             <Link
               href="/knowledge-hub/4g-lte/cat-6"
-              className="text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1"
+              className="text-sm font-bold text-slate-600 hover:text-slate-900 flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-2xs hover:bg-slate-50 transition-colors"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-4 h-4" />
               <span>Back to CAT 6 Charges</span>
             </Link>
 
             <Link
               href="/knowledge-hub/4g-lte/broadband"
-              className="px-4 py-2 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
             >
-              <span>Next: LTE Broadband Packages</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Next: LTE BB Packages</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -408,4 +652,3 @@ RENTAL: Rs. 745 / month (Postpaid)`;
     </div>
   );
 }
-

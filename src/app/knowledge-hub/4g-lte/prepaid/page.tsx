@@ -1248,18 +1248,18 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
           {/* Bottom Navigation */}
           <div className="flex items-center justify-between pt-6 border-t-2 border-slate-200">
             <Link
-              href="/knowledge-hub/4g-lte/broadband"
+              href="/knowledge-hub/4g-lte/old-charges"
               className="text-sm font-bold text-slate-600 hover:text-slate-900 flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-2xs hover:bg-slate-50 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back to Broadband Packages</span>
+              <span>Back to LTE Old Call Charges</span>
             </Link>
 
             <Link
-              href="/knowledge-hub/4g-lte/old-charges"
+              href="/knowledge-hub/4g-lte/other-charges"
               className="px-5 py-2.5 rounded-xl bg-[#005696] hover:bg-[#004780] text-white font-bold text-sm flex items-center gap-2 shadow-sm transition-colors"
             >
-              <span>Next: LTE Old Call Charges</span>
+              <span>Next: Other Charges – LTE</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
