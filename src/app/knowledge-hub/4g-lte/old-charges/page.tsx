@@ -194,10 +194,10 @@ BUSINESS: Rental Rs. 499 | On-net: Rs. 1.70 (1st 3 mins) / Rs. 1.00 (>3 mins) | 
             </Link>
 
             <Link
-              href="/knowledge-hub/4g-lte"
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+              href="/knowledge-hub/4g-lte/other-charges"
+              className="px-4 py-2 rounded-xl bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
             >
-              <span>Back to 4G LTE Dashboard</span>
+              <span>Next: Other Charges – LTE</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

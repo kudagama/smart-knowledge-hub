@@ -221,6 +221,34 @@ ACTION: Verify API settlement gateway with merchant bank. Credit package quota m
     ttTemplate: `SERVICE: SLT 4G LTE Historical Call Rates (Pre-20th Jan 2017)
 RESIDENTIAL: Rental Rs. 310 | On-net Active: Rs. 1.70/min | Leisure: Rs. 1.00/min | Off-net: Rs. 2.70/min | Free Min: 100 On-net
 BUSINESS: Rental Rs. 499 | On-net: Rs. 1.70 (1st 3 mins) / Rs. 1.00 (>3 mins) | Off-net: Rs. 2.70/min | Free VAS: CLI, Call Forwarding, Hunting, Conferencing.`
+  },
+  {
+    id: 'other_charges',
+    title: 'Other Charges – LTE',
+    subtitle: 'Damage Claims & Reconnection Fee',
+    badge: 'Equipment & Reconnection',
+    badgeStyle: 'bg-indigo-50 text-indigo-900 border-indigo-200',
+    icon: Wrench,
+    gradient: 'from-indigo-600 via-slate-800 to-blue-950',
+    cardBorder: 'border-indigo-200 hover:border-indigo-500 hover:shadow-indigo-500/15',
+    route: '/knowledge-hub/4g-lte/other-charges',
+    ctaText: 'Open Other Charges',
+    priceHighlight: 'Reconnection: Rs. 500/=',
+    taxDate: 'Circular: 29-11-2022',
+    desc: 'Customer responsible CPE damage claims for CAT 4 (Rs. 2,900), CAT 6 (Rs. 4,900), and Outdoor units. Postpaid line reconnection fee (Rs. 500/=) and Voice Pal mouse/lightning 24-mo scheme.',
+    keyFeatures: [
+      'Postpaid Reconnection Fee: Rs. 500/= for terminated lines',
+      'Indoor CAT 4 Complete Set: Rs. 2,900 (Unit only Rs. 2,400)',
+      'Indoor CAT 6 Complete Set: Rs. 4,900 (Unit only Rs. 4,300)',
+      'Outdoor CPE Complete Set: Rs. 3,900 (ODU unit Rs. 3,500)',
+      'Voice Pal Mouse/Lightning: Rs. 5,000 in 24 monthly installments (~Rs. 208.33/mo)'
+    ],
+    ttTemplate: `SERVICE: SLT 4G LTE Fixed Broadband
+FAULT: Customer Responsible CPE Damage Claim
+ROUTER: CAT 4 (Rs. 2,900) / CAT 6 (Rs. 4,900) / Outdoor (Rs. 3,900)
+POSTPAID RECONNECTION: Rs. 500/=
+VOICE PAL SCHEME: Rs. 5,000 in 24 installments for mouse/lightning damage.
+CIRCULAR: 29-11-2022 Product Circular.`
   }
 ];
 
