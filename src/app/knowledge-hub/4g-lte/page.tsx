@@ -177,15 +177,15 @@ ACTION: Dispatch Trouble Ticket to AREA-MTCE / RF-PLANNING for outdoor high-gain
     cardBorder: 'border-emerald-200 hover:border-emerald-500 hover:shadow-emerald-500/15',
     route: '/knowledge-hub/4g-lte/prepaid',
     ctaText: 'Open Prepaid Plans',
-    priceHighlight: 'Starter Pack: Rs. 1,400',
-    taxDate: 'Passes: 1GB to 40GB',
-    desc: 'Pay-as-you-go broadband data passes, instant SIM starter packs (Rs. 1,400), MySLT LankaQR top-ups, merchant counter reloads, grace period policies, and *123# balance check.',
+    priceHighlight: 'SIM Pack: Rs. 1,200',
+    taxDate: 'HBB Anytime: 15GB & 30GB',
+    desc: 'Pay-as-you-go broadband data passes, instant SIM starter pack (Rs. 1,200), HBB Anytime bundles (15GB @ Rs. 590 / 30GB @ Rs. 1,090), Work & Learn passes, reload validity matrix, and trouble ticketing.',
     keyFeatures: [
-      'Prepaid SIM Starter Pack: Rs. 1,400 with starter balance',
-      'Volume Passes: 1GB, 2GB, 5GB, 10GB, 20GB, 40GB',
-      'Validity options: 1, 3, 7, 14, and 30 days',
-      'Recharge Channels: MySLT, Banking Apps, Food City/Keells',
-      '90-Day inactive grace period / 180-day recycle policy'
+      'Prepaid SIM Starter Pack: Rs. 1,200 (eff. 08/04/2024)',
+      'HBB Anytime Packs: 15GB (Rs. 590) & 30GB (Rs. 1,090)',
+      'Add-ons: Work & Learn (20GB - Rs. 295), YouTube (10GB - Rs. 395)',
+      'Reload Validity Matrix: Tier 1 to 8 (Min. physical reload Rs. 500)',
+      '50 Free On-Net Minutes on 30-day Home Package with Data Rollover'
     ],
     ttTemplate: `SERVICE: SLT 4G LTE Prepaid Recharge
 FAULT: Prepaid Recharge Not Credited to Account
