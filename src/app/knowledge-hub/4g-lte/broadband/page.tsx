@@ -44,7 +44,12 @@ import {
   Flame,
   CheckSquare,
   XCircle,
-  Laptop
+  Laptop,
+  PhoneCall,
+  ShieldAlert,
+  Headphones,
+  CheckCircle,
+  Ban
 } from 'lucide-react';
 
 // =========================================================================
@@ -60,9 +65,9 @@ const NEW_HBB_ANYTIME_PACKAGES = [
     volumeNum: 50,
     rentalWithoutTax: '1,290',
     rentalWithTax: '1,593.15', // 23.5% tax
-    midnightThriller: 'Yes (12am - 7am Free Unlimited)',
+    midnightThriller: '12am - 7am Free Unlimited Data',
     billingMode: 'Advanced Billing',
-    staticIp: 'Not Supported',
+    staticIpEligible: false,
     badge: 'Entry Anytime',
     badgeStyle: 'bg-emerald-100 text-emerald-800 border-emerald-300',
     desc: '50GB pure anytime data without day/night restrictions + Free Midnight Thriller (12am-7am).'
@@ -74,9 +79,9 @@ const NEW_HBB_ANYTIME_PACKAGES = [
     volumeNum: 85,
     rentalWithoutTax: '1,890',
     rentalWithTax: '2,334.15',
-    midnightThriller: 'Yes (12am - 7am Free Unlimited)',
+    midnightThriller: '12am - 7am Free Unlimited Data',
     billingMode: 'Advanced Billing',
-    staticIp: 'Not Supported',
+    staticIpEligible: false,
     badge: 'Everyday Household',
     badgeStyle: 'bg-blue-100 text-blue-800 border-blue-300',
     desc: '85GB anytime quota with advance billing. Ideal for active households and study from home.'
@@ -88,9 +93,9 @@ const NEW_HBB_ANYTIME_PACKAGES = [
     volumeNum: 115,
     rentalWithoutTax: '2,590',
     rentalWithTax: '3,198.65',
-    midnightThriller: 'Yes (12am - 7am Free Unlimited)',
+    midnightThriller: '12am - 7am Free Unlimited Data',
     billingMode: 'Advanced Billing',
-    staticIp: 'Not Supported',
+    staticIpEligible: false,
     badge: 'Most Popular Anytime',
     badgeStyle: 'bg-indigo-100 text-indigo-800 border-indigo-300',
     desc: '115GB anytime data. Excellent value for regular streaming, gaming, and remote workstations.',
@@ -103,9 +108,9 @@ const NEW_HBB_ANYTIME_PACKAGES = [
     volumeNum: 200,
     rentalWithoutTax: '3,990',
     rentalWithTax: '4,927.65',
-    midnightThriller: 'Yes (12am - 7am Free Unlimited)',
+    midnightThriller: '12am - 7am Free Unlimited Data',
     billingMode: 'Advanced Billing',
-    staticIp: 'Not Supported',
+    staticIpEligible: false,
     badge: 'Heavy Streaming',
     badgeStyle: 'bg-purple-100 text-purple-800 border-purple-300',
     desc: '200GB high-capacity anytime volume + free midnight downloads for power users.'
@@ -117,11 +122,11 @@ const NEW_HBB_ANYTIME_PACKAGES = [
     volumeNum: 400,
     rentalWithoutTax: '7,990',
     rentalWithTax: '9,867.65',
-    midnightThriller: 'Yes (12am - 7am Free Unlimited)',
+    midnightThriller: '12am - 7am Free Unlimited Data',
     billingMode: 'Advanced Billing',
-    staticIp: 'Static IP Supported (Only Package)',
+    staticIpEligible: true,
     badge: 'Static IP Eligible',
-    badgeStyle: 'bg-amber-100 text-amber-900 border-amber-300 ring-1 ring-amber-400',
+    badgeStyle: 'bg-amber-100 text-amber-900 border-amber-300 ring-2 ring-amber-400/50',
     desc: '400GB enterprise anytime capacity. The ONLY HBB Anytime package eligible for Static IP.',
     highlight: true
   }
@@ -417,6 +422,52 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
         ]}
       />
 
+      {/* ========================================================================= */}
+      {/* 🚨 LIVE CALL CX ASSISTANT BANNER: CRITICAL MUST-KNOW CHEAT SHEET          */}
+      {/* ========================================================================= */}
+      <div className="bg-gradient-to-r from-red-950 via-slate-900 to-amber-950 text-white px-6 py-3 border-b-2 border-amber-500 shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-red-600/30 border border-red-400 flex items-center justify-center shrink-0">
+              <Headphones className="w-5 h-5 text-amber-300 animate-pulse" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-red-600 text-white">
+                  Customer On Call (Live Triage)
+                </span>
+                <span className="text-xs font-bold text-amber-300">
+                  Critical Mistake &amp; Dispute Prevention Guide
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-300 mt-0.5 font-medium">
+                Verify these 4 rules before confirming any order to avoid billing disputes and customer escalations:
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Critical Pills */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] font-bold">
+            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
+              <span className="text-amber-300 block">🛑 ANYTIME DATE</span>
+              <span className="text-white">Select Next Bill Date</span>
+            </div>
+            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
+              <span className="text-cyan-300 block">🌐 STATIC IP</span>
+              <span className="text-white">400GB Plan ONLY</span>
+            </div>
+            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
+              <span className="text-emerald-300 block">🌙 MIDNIGHT</span>
+              <span className="text-white">12am-7am Free Uncapped</span>
+            </div>
+            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
+              <span className="text-rose-300 block">⚠️ DOWNDGRADE</span>
+              <span className="text-white">Rs. 250/= Fee Applies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 4. SUB-NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3 sticky top-0 z-20 shadow-xs">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3">
@@ -562,40 +613,72 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'new_hbb' && (
             <div className="space-y-6">
 
-              {/* Banner Notice */}
-              <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-blue-500/10 border-2 border-emerald-300 rounded-3xl p-6 space-y-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white">
-                    Available from 3rd April 2025
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-[#005696] border border-blue-200">
-                    Total Tax on BB = 23.5%
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-900 border border-purple-200">
-                    Advance Billing Mode
-                  </span>
+              {/* HIGH VISIBILITY LIVE-CALL INSTRUCTION BOX */}
+              <div className="bg-red-50 border-4 border-red-500 rounded-3xl p-6 shadow-md space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <ShieldAlert className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-red-600 text-white">
+                        🚨 DO NOT MISS ON CALL: ADVANCE BILLING TRANSFER RULES
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-400 text-amber-950">
+                        CRITICAL CRM ACTION
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-black text-red-950">
+                      Mandatory Business Rules for Package Transfers to HBB Anytime
+                    </h3>
+                  </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-slate-900">
-                  New LTE Postpaid Home Broadband Anytime Packages
-                </h3>
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-medium">
-                  Official next-generation pure anytime packages. Zero day/night restriction, pure anytime quota + <strong>FREE Midnight Thriller (12 Midnight to 7 AM Free Unlimited Data)</strong> on every plan! Available for New Connections, Package Upgrades/Downgrades, Reconnections, and Copper to LTE Migrations.
-                </p>
-              </div>
 
-              {/* Mandatory Business Rules Box */}
-              <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 space-y-2 text-xs text-amber-950">
-                <div className="flex items-center gap-2 font-black text-sm text-amber-900">
-                  <AlertTriangle className="w-4 h-4 text-amber-600" />
-                  <span>Mandatory Business Rules for Package Transfers (Advanced Billing)</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  
+                  {/* Step 1 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-red-200 shadow-2xs space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-red-600 text-white text-xs font-black flex items-center justify-center">1</span>
+                      <span className="font-black text-sm text-slate-900">MANDATORY DATE SELECTION</span>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed font-semibold">
+                      When transferring packages within HBB Anytime or from HBB Anytime to another plan, you <span className="text-red-700 font-black underline">MUST SELECT THE NEXT BILL DATE</span> in CRM.
+                    </p>
+                    <div className="p-2 bg-red-100/70 rounded-lg text-[11px] text-red-900 font-bold">
+                      ⚠️ Never select "Same Day" unless customer explicitly agrees to lose already paid advance rental!
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-red-200 shadow-2xs space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-red-600 text-white text-xs font-black flex items-center justify-center">2</span>
+                      <span className="font-black text-sm text-slate-900">NO REFUND / NO REVERSAL</span>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed font-semibold">
+                      The already billed rental for the following month under in-advance billing <span className="text-red-700 font-black underline">CANNOT BE REVERSED OR REFUNDED</span> under any circumstances!
+                    </p>
+                    <div className="p-2 bg-amber-100/70 rounded-lg text-[11px] text-amber-950 font-bold">
+                      🗣️ Tell CX: "Already billed advance rental portion will not be refunded if changed mid-cycle."
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-red-200 shadow-2xs space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-red-600 text-white text-xs font-black flex items-center justify-center">3</span>
+                      <span className="font-black text-sm text-slate-900">STATIC IP ELIGIBILITY</span>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed font-semibold">
+                      Static IP will be given <span className="text-red-700 font-black underline">ONLY TO HBB ANYTIME 400GB (Rs. 7,990)</span>.
+                    </p>
+                    <div className="p-2 bg-slate-100 rounded-lg text-[11px] text-slate-800 font-bold">
+                      ❌ Do NOT promise Static IP for 50GB, 85GB, 115GB, or 200GB plans!
+                    </div>
+                  </div>
+
                 </div>
-                <ul className="list-disc list-inside space-y-1 font-medium leading-relaxed text-amber-900">
-                  <li><strong>Check Existing Profile:</strong> Before changing the 4G BB Package, check whether customer is on HBB Anytime (Advance Billing) or general (Arrears Billing).</li>
-                  <li><strong>Mandatory Date Selection:</strong> For package changes <em>within new HBB Anytime Packages</em> or <em>from new HBB Anytime to any other packages</em>, <strong>it is mandatory to select the transfer date as the Next Bill Date</strong>.</li>
-                  <li><strong>No Refund/Reversal:</strong> Violation of this rule causes duplicated rental. The already billed rental for the following month under in-advance billing will <strong>NOT be reversed or refunded under any circumstances</strong>.</li>
-                  <li><strong>Mid-Cycle Override:</strong> If a customer strongly demands change before next bill date, it must be done <em>only</em> upon obtaining explicit consent regarding non-reversal of already billed rental.</li>
-                  <li><strong>Static IP:</strong> Static IP is provided <strong>strictly for HBB Anytime 400GB Package ONLY</strong>.</li>
-                </ul>
               </div>
 
               {/* Cards Mode */}
@@ -632,18 +715,24 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           <div className="pt-2 border-t border-slate-200">
                             <span className="text-[9px] font-bold text-slate-400 uppercase block">Rental (Without Tax)</span>
                             <span className="text-xl font-black text-slate-900">Rs. {pkg.rentalWithoutTax}</span>
-                            <span className="text-[10px] text-slate-500 block">With Tax (23.5%): Rs. {pkg.rentalWithTax}</span>
+                            <span className="text-[10px] text-slate-500 block">With Tax (23.5%): <strong>Rs. {pkg.rentalWithTax}</strong></span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-slate-100 mt-3 space-y-1 text-[11px]">
-                        <div className="flex items-center gap-1 text-purple-700 font-bold">
-                          <Moon className="w-3 h-3" />
-                          <span>12am - 7am Unlimited Data</span>
+                      <div className="pt-3 border-t border-slate-100 mt-3 space-y-2 text-[11px]">
+                        <div className="flex items-center gap-1.5 text-purple-800 font-bold bg-purple-50 p-2 rounded-xl border border-purple-200">
+                          <Moon className="w-3.5 h-3.5 shrink-0 text-purple-600" />
+                          <span>12am - 7am Free Unlimited</span>
                         </div>
-                        <div className="text-[10px] text-slate-500">
-                          Static IP: <strong className={pkg.id === 'hbb-400' ? 'text-amber-800' : 'text-slate-400'}>{pkg.staticIp}</strong>
+                        
+                        {/* Static IP Badge */}
+                        <div className={`p-2 rounded-xl font-bold text-center text-[10px] border ${
+                          pkg.staticIpEligible
+                            ? 'bg-amber-100 text-amber-950 border-amber-300 font-black'
+                            : 'bg-slate-100 text-slate-500 border-slate-200'
+                        }`}>
+                          {pkg.staticIpEligible ? '🌟 STATIC IP AVAILABLE' : '❌ NO STATIC IP'}
                         </div>
                       </div>
                     </div>
@@ -662,7 +751,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           <th className="p-3.5">Anytime Data</th>
                           <th className="p-3.5">Rental (Without Tax)</th>
                           <th className="p-3.5">Rental With Tax (23.5%)</th>
-                          <th className="p-3.5">Midnight Thriller (12am-7am)</th>
+                          <th className="p-3.5">Midnight Thriller</th>
                           <th className="p-3.5">Billing Mode</th>
                           <th className="p-3.5">Static IP Eligibility</th>
                         </tr>
@@ -673,10 +762,16 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                             <td className="p-3.5 font-bold text-slate-900">{pkg.name}</td>
                             <td className="p-3.5 font-black text-emerald-700 text-sm">{pkg.volume}</td>
                             <td className="p-3.5 font-black text-slate-900 text-sm">Rs. {pkg.rentalWithoutTax}</td>
-                            <td className="p-3.5 text-slate-600 font-semibold">Rs. {pkg.rentalWithTax}</td>
-                            <td className="p-3.5 text-purple-800 font-semibold">FREE Unlimited (12am - 7am)</td>
+                            <td className="p-3.5 text-slate-700 font-bold">Rs. {pkg.rentalWithTax}</td>
+                            <td className="p-3.5 text-purple-800 font-bold">FREE Unlimited (12am - 7am)</td>
                             <td className="p-3.5 font-bold text-blue-800">{pkg.billingMode}</td>
-                            <td className="p-3.5 font-bold text-amber-800">{pkg.staticIp}</td>
+                            <td className="p-3.5 font-black">
+                              <span className={`px-2 py-0.5 rounded-md text-[10px] ${
+                                pkg.staticIpEligible ? 'bg-amber-100 text-amber-950 font-black border border-amber-300' : 'text-slate-400'
+                              }`}>
+                                {pkg.staticIpEligible ? '✅ Static IP Supported' : '❌ No Static IP'}
+                              </span>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -694,18 +789,34 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'legacy_anytime' && (
             <div className="space-y-6">
 
-              <div className="bg-amber-50 border-2 border-amber-300 rounded-3xl p-6 space-y-2">
-                <span className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-600 text-white inline-block">
-                  Discontinued from 1st May 2025
-                </span>
-                <h3 className="text-xl font-black text-slate-900">
-                  Anytime BB Packages (LTE)
-                </h3>
-                <p className="text-xs text-slate-700 leading-relaxed font-medium">
-                  The "Anytime" Series of Broadband Packages (Any Joy to Any Xtreme) will be <strong>discontinued from 1st May 2025</strong> for New Connections, Package Changes, Copper to LTE, Reconnections, and Relocations. Existing customers can continue or migrate to New HBB Anytime.
-                </p>
-                <div className="text-[11px] font-bold text-purple-800 bg-purple-50 p-2.5 rounded-xl border border-purple-200">
-                  🌙 <strong>Midnight Thriller Active:</strong> FREE UNLIMITED INTERNET every day from 12 midnight - 7am (Active since 1st Jan 2024).
+              {/* LIVE CALL INSTRUCTION BOX */}
+              <div className="bg-amber-50 border-4 border-amber-400 rounded-3xl p-6 shadow-md space-y-3">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Clock className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-rose-600 text-white inline-block">
+                      🚨 CALL ADVISORY: DISCONTINUED FROM 1ST MAY 2025
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900">
+                      Handling Inquiries for Old Anytime Series (Any Joy to Any Xtreme)
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
+                  <div className="p-4 bg-white rounded-2xl border-2 border-amber-200 space-y-1.5 font-semibold text-slate-700">
+                    <span className="text-amber-950 font-black block text-sm">🗣️ What to Tell Existing Customers:</span>
+                    <p>• "Your package will continue as normal. You also receive <strong>FREE UNLIMITED INTERNET every day from 12 Midnight to 7 AM</strong>."</p>
+                    <p>• "If you wish to change packages, we recommend our <strong>New HBB Anytime (April 2025) series</strong> which provides more data at attractive rates."</p>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-2xl border-2 border-amber-200 space-y-1.5 font-semibold text-slate-700">
+                    <span className="text-rose-950 font-black block text-sm">❌ What CANNOT Be Done (Rules):</span>
+                    <p>• New customer connections <span className="text-rose-700 font-bold">CANNOT</span> choose these packages after 1st May 2025.</p>
+                    <p>• Package upgrades/downgrades to this series are blocked after 1st May 2025. Must offer New HBB Anytime instead!</p>
+                  </div>
                 </div>
               </div>
 
@@ -720,7 +831,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                         <th className="p-3.5">Monthly Rental (Rs.)</th>
                         <th className="p-3.5">Prior Rental (Rs.)</th>
                         <th className="p-3.5">Midnight Thriller</th>
-                        <th className="p-3.5">Status</th>
+                        <th className="p-3.5">Frontline Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -732,7 +843,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           <td className="p-3.5 text-slate-400 line-through">Rs. {pkg.priorRental}</td>
                           <td className="p-3.5 text-purple-700 font-semibold">12am - 7am Free Unlimited</td>
                           <td className="p-3.5">
-                            <span className="text-[10px] font-bold bg-rose-50 text-rose-800 px-2 py-0.5 rounded-md border border-rose-200">
+                            <span className="text-[10px] font-black bg-rose-100 text-rose-800 px-2 py-0.5 rounded-md border border-rose-300">
                               Discontinued from 01/05/2025
                             </span>
                           </td>
@@ -752,31 +863,67 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'volume_based' && (
             <div className="space-y-6">
 
-              <div className="bg-orange-50 border-2 border-orange-300 rounded-3xl p-6 space-y-2">
-                <span className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-orange-600 text-white inline-block">
-                  Discontinued from 15th February 2025
-                </span>
-                <h3 className="text-xl font-black text-slate-900">
-                  LTE Volume Based BB Packages (Day / Night Split)
-                </h3>
-                <p className="text-xs text-slate-700 leading-relaxed font-medium">
-                  Time-based packages (Web Starter to Web Premier &amp; SLT Share Holder) will not be available after <strong>15th February 2025</strong> for New Connections, Package Changes, Copper to LTE, Reconnections, or Relocations. Total tax amount on BB = 23.5%.
-                </p>
-              </div>
+              {/* LIVE CALL INSTRUCTION BOX */}
+              <div className="bg-orange-50 border-4 border-orange-400 rounded-3xl p-6 shadow-md space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-orange-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Sun className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-orange-600 text-white inline-block">
+                      🚨 CX CALL SCRIPT: SPEED THROTTLING &amp; UPSELL GUIDELINES
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900">
+                      Handling Speed Complaints on Volume-Based Packages (Web Starter to Premier)
+                    </h3>
+                  </div>
+                </div>
 
-              {/* Technical Specifications Strip */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-1 shadow-2xs">
-                  <span className="font-bold text-slate-800 block">🌙 Free Midnight Thriller:</span>
-                  <p className="text-slate-600">FREE UNLIMITED INTERNET every day from <strong>12 midnight - 7am</strong> (since 1st Jan 2024).</p>
-                </div>
-                <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-1 shadow-2xs">
-                  <span className="font-bold text-slate-800 block">⚡ Speeds &amp; Throttling:</span>
-                  <p className="text-slate-600">Average 8 Mbps Download / 1 Mbps Upload. Throttled to <strong>64 kbps</strong> when total quota is exhausted.</p>
-                </div>
-                <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-1 shadow-2xs">
-                  <span className="font-bold text-slate-800 block">📦 Additional Extra GB:</span>
-                  <p className="text-slate-600">1GB: Rs. 250/= | 2GB: Rs. 500/= | 5GB: Rs. 750/= | &gt;5GB: Rs. 150/= per GB.</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+                  
+                  {/* Warning 1 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-orange-200 space-y-2 shadow-2xs font-semibold text-slate-700">
+                    <div className="flex items-center gap-2 text-rose-700 font-black">
+                      <AlertTriangle className="w-4 h-4 shrink-0" />
+                      <span>64 KBPS THROTTLING PENALTY</span>
+                    </div>
+                    <p>
+                      When a customer exhausts their total volume, speed throttles to <span className="text-rose-700 font-black underline">64 kbps</span> (almost unusable).
+                    </p>
+                    <div className="p-2 bg-orange-100/70 rounded-lg text-[11px] text-orange-950 font-bold">
+                      💡 If peak data is over but free time (night) remains, they can still access at normal speed during free hours!
+                    </div>
+                  </div>
+
+                  {/* Warning 2 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-orange-200 space-y-2 shadow-2xs font-semibold text-slate-700">
+                    <div className="flex items-center gap-2 text-blue-700 font-black">
+                      <CreditCard className="w-4 h-4 shrink-0" />
+                      <span>EXTRA GB RELOAD CHARGES</span>
+                    </div>
+                    <p>Inform customer of additional top-up rates:</p>
+                    <div className="p-2 bg-slate-50 rounded-lg space-y-0.5 text-[11px] font-bold text-slate-800">
+                      <p>• 1 GB: <strong>Rs. 250/=</strong></p>
+                      <p>• 2 GB: <strong>Rs. 500/=</strong></p>
+                      <p>• 5 GB: <strong>Rs. 750/=</strong></p>
+                      <p>• &gt; 5 GB: <strong>Rs. 150/= per GB</strong></p>
+                    </div>
+                  </div>
+
+                  {/* Warning 3 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-orange-200 space-y-2 shadow-2xs font-semibold text-slate-700">
+                    <div className="flex items-center gap-2 text-emerald-700 font-black">
+                      <Sparkles className="w-4 h-4 shrink-0" />
+                      <span>BEST UPGRADE RECOMMENDATION</span>
+                    </div>
+                    <p>
+                      Upsell customer to <strong>LTE FLASH 5 (Rs. 2,350)</strong> or <strong>HBB Anytime 50GB (Rs. 1,290)</strong>.
+                    </p>
+                    <div className="p-2 bg-emerald-100/70 rounded-lg text-[11px] text-emerald-950 font-bold">
+                      🗣️ "On Flash plans, you never throttle to 64kbps; you get 1 Mbps uncapped even after quota!"
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
@@ -793,6 +940,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                         <th className="p-3.5">Prior Total</th>
                         <th className="p-3.5">Rental (Rs.)</th>
                         <th className="p-3.5">Prior Rental</th>
+                        <th className="p-3.5">Throttled Speed</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -805,6 +953,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           <td className="p-3.5 text-slate-400 line-through">{pkg.priorTotal}</td>
                           <td className="p-3.5 font-black text-[#005696] text-sm">Rs. {pkg.rental}</td>
                           <td className="p-3.5 text-slate-400 line-through">Rs. {pkg.priorRental}</td>
+                          <td className="p-3.5 font-bold text-rose-700">64 kbps</td>
                         </tr>
                       ))}
                     </tbody>
@@ -821,19 +970,53 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'unlimited_res' && (
             <div className="space-y-6">
 
-              <div className="bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-900 text-white rounded-3xl p-6 shadow-md space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white/20 text-emerald-200 border border-white/20">
-                    Unlimited Residential LTE
-                  </span>
-                  <span className="text-xs text-emerald-100">Total Tax on BB = 23.5% | Upload Speed = Download Speed</span>
+              {/* LIVE CALL INSTRUCTION BOX */}
+              <div className="bg-emerald-50 border-4 border-emerald-400 rounded-3xl p-6 shadow-md space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Zap className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-700 text-white inline-block">
+                      🚨 CX CALL VERIFICATION: ADD-ON RESTRICTIONS &amp; TRANSFER FEES
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900">
+                      Critical Operating Rules for Residential Flash 5 &amp; Flash 10
+                    </h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-black tracking-tight">
-                  LTE Unlimited &amp; Flash Packages (Residential)
-                </h3>
-                <p className="text-xs text-emerald-100/90 max-w-3xl leading-relaxed">
-                  High-speed constant uncapped plans (2 Mbps, 4 Mbps, 8 Mbps) and Flash daily high-speed quota (5GB / 10GB) with unmetered 1 Mbps browsing afterwards.
-                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
+                  
+                  {/* Allowed vs Disallowed */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-emerald-200 space-y-2 shadow-2xs font-semibold text-slate-700">
+                    <span className="text-rose-950 font-black text-sm block">🚫 STRICT RESTRICTION: MEET BUNDLES ARE BLOCKED!</span>
+                    <div className="p-2.5 bg-rose-50 border border-rose-300 rounded-xl text-rose-900 text-[11px] font-bold">
+                      ❌ <strong>Meet Lite &amp; Meet Max are NOT allowed</strong> on Residential Flash 5 and Flash 10!
+                    </div>
+                    <p className="text-[11px] text-slate-600">
+                      If customer requires heavy MS Teams / Zoom for remote work, <strong>DO NOT</strong> activate residential Flash. Offer <strong>SME Flash 5/10</strong> where Meet Bundle is 100% UNLIMITED!
+                    </p>
+                    <div className="p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-950 text-[11px] font-bold">
+                      ✅ <strong>ALLOWED ADD-ONS:</strong> YouTube, Messenger, PeoTV Go, Entertainment Combo, Youth Add-on, Gamer Lite/Premium, LMS Lite/Max.
+                    </div>
+                  </div>
+
+                  {/* Transfer Fees */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-emerald-200 space-y-2 shadow-2xs font-semibold text-slate-700">
+                    <span className="text-[#005696] font-black text-sm block">💰 EXACT PACKAGE TRANSFER CHARGES (TELL CX UPFRONT):</span>
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1 font-mono text-[11px] text-slate-800 font-bold">
+                      <p>• General / Anytime to Unlimited: <span className="text-rose-700 font-black">Rs. 500/= fee charged</span></p>
+                      <p>• Unlimited Lower to Higher: <span className="text-emerald-700 font-black">FREE (Rs. 0)</span></p>
+                      <p>• Unlimited Higher to Lower: <span className="text-rose-700 font-black">Rs. 250/= penalty fee</span></p>
+                      <p>• Unlimited to Normal Higher: <span className="text-emerald-700 font-black">No charge</span></p>
+                    </div>
+                    <p className="text-[11px] text-slate-500">
+                      Upload speed on LTE is equal to Download speed for 4G customers.
+                    </p>
+                  </div>
+
+                </div>
               </div>
 
               {/* Cards View */}
@@ -894,40 +1077,6 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                 ))}
               </div>
 
-              {/* Data Add-On Permissions Box */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3 text-xs">
-                <h4 className="font-bold text-slate-900 text-sm">Flash 5 &amp; Flash 10 Data Add-On Policy:</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-3 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-1">
-                    <span className="font-black text-emerald-900 flex items-center gap-1.5">
-                      <CheckSquare className="w-4 h-4 text-emerald-600" />
-                      <span>Allowed Data Add-Ons:</span>
-                    </span>
-                    <p className="text-emerald-800 leading-relaxed">
-                      Entertainment Combo Pack, Youth Add-on, Gamer Lite, Gamer Premium, Streamer Premium, PeoTV Go, Messenger, YouTube, LMS Lite (Onetime &amp; Recurrent), LMS Max (Onetime &amp; Recurrent).
-                    </p>
-                  </div>
-
-                  <div className="p-3 bg-rose-50/70 border border-rose-200 rounded-xl space-y-1">
-                    <span className="font-black text-rose-900 flex items-center gap-1.5">
-                      <XCircle className="w-4 h-4 text-rose-600" />
-                      <span>NOT Allowed Add-Ons:</span>
-                    </span>
-                    <p className="text-rose-800 leading-relaxed">
-                      <strong>Meet Lite</strong> (Both Onetime &amp; Recurrent) and <strong>Meet Max</strong> (Both Onetime &amp; Recurrent) are strictly restricted on residential Flash packages.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl space-y-1 text-slate-700">
-                  <span className="font-bold text-[#005696] block">Package Transfer Fees (Unlimited):</span>
-                  <p>• Any package (Time-based or Anytime) to Unlimited: <strong>Rs. 500/=</strong></p>
-                  <p>• Unlimited lower to Unlimited higher: <strong>FREE</strong></p>
-                  <p>• Unlimited higher to Unlimited lower: <strong>Rs. 250/=</strong></p>
-                  <p>• Unlimited to Normal higher: <strong>No charge</strong></p>
-                </div>
-              </div>
-
             </div>
           )}
 
@@ -937,18 +1086,61 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'unlimited_sme' && (
             <div className="space-y-6">
 
-              <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-md space-y-2">
-                <span className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-purple-500 text-white inline-block">
-                  SME &amp; Micro Business Exclusive
-                </span>
-                <h3 className="text-2xl font-black tracking-tight">
-                  SLT LTE Unlimited Flash Packages for Business
-                </h3>
-                <p className="text-xs text-purple-100/90 max-w-3xl leading-relaxed">
-                  Opened for <strong>Registered Business (SME Regional)</strong>, <strong>Registered Business (Micro Business)</strong>, and <strong>Individual (Micro Business)</strong>. Includes unmetered zero-rated MEET Bundle for Teams, Zoom, WebEx, Google Meet, and Skype!
-                </p>
+              {/* LIVE CALL INSTRUCTION BOX */}
+              <div className="bg-purple-50 border-4 border-purple-400 rounded-3xl p-6 shadow-md space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-700 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Briefcase className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-purple-700 text-white inline-block">
+                      🚨 CX CALL SCRIPT: BUSINESS ELIGIBILITY &amp; FREE MEET BENEFIT
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900">
+                      Unlimited Flash for SME &amp; Micro Business Customers
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs font-semibold text-slate-700">
+                  
+                  {/* Perk 1 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-purple-200 space-y-2 shadow-2xs">
+                    <span className="text-emerald-800 font-black text-sm block">🌟 ZERO DEDUCTION MEET BUNDLE</span>
+                    <p className="text-[11px] leading-relaxed">
+                      <strong>MS Teams, Zoom, WebEx, Google Meet, Skype &amp; SLT Lynked</strong> are 100% UNLIMITED at normal LTE speed!
+                    </p>
+                    <div className="p-2 bg-emerald-100/70 rounded-lg text-emerald-950 font-black text-[11px]">
+                      🗣️ "Your video conferencing never eats up your 5GB/10GB daily quota!"
+                    </div>
+                  </div>
+
+                  {/* Perk 2 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-purple-200 space-y-2 shadow-2xs">
+                    <span className="text-purple-900 font-black text-sm block">🏢 WHO CAN GET THIS (ELIGIBILITY)</span>
+                    <p className="text-[11px] leading-relaxed">Available ONLY for:</p>
+                    <div className="p-2 bg-slate-50 rounded-lg text-[10px] space-y-0.5 font-bold text-slate-800">
+                      <p>• Registered Business – SME Regional</p>
+                      <p>• Registered Business – Micro Business</p>
+                      <p>• Individual – Micro Business (Self-employed)</p>
+                    </div>
+                  </div>
+
+                  {/* Perk 3 */}
+                  <div className="bg-white p-4 rounded-2xl border-2 border-purple-200 space-y-2 shadow-2xs">
+                    <span className="text-rose-900 font-black text-sm block">⚠️ COMMITMENT &amp; RESTRICTIONS</span>
+                    <p className="text-[11px] leading-relaxed">
+                      • <strong>12 Months commitment period</strong>. Early termination fee: <strong>Rs. 5,000/- fixed</strong>.
+                    </p>
+                    <p className="text-[11px] text-rose-700 font-bold">
+                      • Customer CANNOT purchase Extra GB. No Static IP. No loyalty data.
+                    </p>
+                  </div>
+
+                </div>
               </div>
 
+              {/* Cards View */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {UNLIMITED_SME_PACKAGES.map((pkg) => (
                   <div key={pkg.id} className="bg-white rounded-3xl border-2 border-purple-200 p-6 shadow-xs space-y-4">
@@ -981,10 +1173,10 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                       </p>
                     </div>
 
-                    <div className="space-y-1.5 text-xs text-slate-600">
+                    <div className="space-y-1.5 text-xs text-slate-600 font-semibold">
                       <p><strong>Daily Quota:</strong> {pkg.fup}</p>
                       <p><strong>Commitment:</strong> {pkg.commitment}</p>
-                      <p><strong>Restrictions:</strong> No Extra GB purchase, no Static IP, not entitled for sltgo/loyalty data.</p>
+                      <p className="text-rose-700"><strong>Restrictions:</strong> No Extra GB purchase, no Static IP, not entitled for sltgo/loyalty data.</p>
                     </div>
                   </div>
                 ))}
@@ -999,19 +1191,30 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
           {activeTab === 'prabath_rules' && (
             <div className="space-y-6">
 
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-2">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                    <ArrowUpDown className="w-5 h-5 text-[#005696]" />
-                    <span>4G LTE Broadband Package Changes Relevant Information</span>
-                  </h3>
-                  <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-xl">
-                    Prepared by Mr. Prabath Herath - PR CC
-                  </span>
+              {/* LIVE CALL INSTRUCTION BOX */}
+              <div className="bg-blue-50 border-4 border-blue-400 rounded-3xl p-6 shadow-md space-y-3">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-700 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <ArrowUpDown className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-700 text-white inline-block">
+                      🚨 FRONT-OFFICE CRM RULE: PREVENT BILL COMPLAINTS
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900">
+                      Understanding "Bill Complaint: Yes vs No"
+                    </h3>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-500">
-                  Official rule matrix determining whether package modifications execute on the same day or Next Bill Date, fee applicability, and bill complaint creation rules.
-                </p>
+
+                <div className="p-4 bg-white rounded-2xl border-2 border-blue-200 text-xs font-semibold text-slate-700 leading-relaxed space-y-2">
+                  <p>
+                    • <strong>Bill Complaint: No</strong> = System allows same-day execution without billing conflicts (e.g. Volume/Unlimited to HBB Anytime).
+                  </p>
+                  <p>
+                    • <strong>Bill Complaint: Yes</strong> = If modified on any random date, customer will receive duplicated rentals and will file a valid bill complaint! <strong>Therefore, you MUST select Next Bill Date</strong>!
+                  </p>
+                </div>
               </div>
 
               <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs">
@@ -1024,7 +1227,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                         <th className="p-3.5">Package Changing Date</th>
                         <th className="p-3.5">Modification Type</th>
                         <th className="p-3.5">Package Change Fee</th>
-                        <th className="p-3.5">Bill Complaint</th>
+                        <th className="p-3.5">Bill Complaint Risk</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -1032,7 +1235,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                         <tr key={idx} className="hover:bg-slate-50 transition-colors">
                           <td className="p-3.5 font-bold text-slate-900">{rule.current}</td>
                           <td className="p-3.5 font-medium text-slate-700">{rule.requesting}</td>
-                          <td className="p-3.5 font-semibold text-slate-800">{rule.date}</td>
+                          <td className="p-3.5 font-black text-blue-900">{rule.date}</td>
                           <td className="p-3.5">
                             <span className={`px-2 py-0.5 rounded-md font-semibold text-[11px] ${
                               rule.modType.includes('Higher to Lower') ? 'bg-amber-100 text-amber-900' : 'bg-blue-50 text-blue-800'
@@ -1041,9 +1244,11 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                             </span>
                           </td>
                           <td className={`p-3.5 ${rule.feeColor}`}>{rule.fee}</td>
-                          <td className="p-3.5 font-bold">
-                            <span className={rule.billComplaint === 'Yes' ? 'text-amber-700 font-black' : 'text-slate-500'}>
-                              {rule.billComplaint}
+                          <td className="p-3.5 font-black">
+                            <span className={`px-2.5 py-1 rounded-lg text-xs ${
+                              rule.billComplaint === 'Yes' ? 'bg-rose-100 text-rose-800 border border-rose-300' : 'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {rule.billComplaint === 'Yes' ? '⚠️ High Risk (Use Next Bill Date)' : '✅ Safe (Same Day)'}
                             </span>
                           </td>
                         </tr>
@@ -1099,13 +1304,13 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
                     <span className="font-bold text-slate-900 text-sm block">LTE BB Username Format:</span>
                     <p>Format of International Numbers: e.g., <code>94113XXXXXX</code> or <code>94YZ3XXXXXX</code>.</p>
-                    <p className="text-[11px] text-slate-500">No password is required for internet access. Password provided by SLT is used ONLY for registration to the ISP VAS portal.</p>
+                    <p className="text-[11px] text-slate-500 font-semibold">No password is required for internet access. Password provided by SLT is used ONLY for registration to the ISP VAS portal.</p>
                   </div>
 
                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
                     <span className="font-bold text-slate-900 text-sm block">Connecting via SLT Wi-Fi Hotspots:</span>
                     <p>Username: <code>941136XXXXX</code> | Password: <code>BB Password</code></p>
-                    <p className="text-[11px] text-slate-500">LTE customers can obtain Static IPs by placing a formal service request via the Regional Telecom Office (RTOM).</p>
+                    <p className="text-[11px] text-slate-500 font-semibold">LTE customers can obtain Static IPs by placing a formal service request via the Regional Telecom Office (RTOM).</p>
                   </div>
                 </div>
               </div>
