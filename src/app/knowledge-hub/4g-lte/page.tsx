@@ -380,12 +380,12 @@ export default function LteServicesHubPage() {
                   <span className="font-bold text-[#005696]">Rs. 4,695 (2024) / Rs. 7,990 (2023)</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] p-1.5 bg-slate-50 rounded-md">
-                  <span className="text-slate-600">CAT 6 Advanced:</span>
-                  <span className="font-bold text-amber-700">Rs. 13,990 / 19,900</span>
+                  <span className="text-slate-600">CAT 6 Advanced (With Tax):</span>
+                  <span className="font-bold text-amber-700">Rs. 13,990 (New) / Rs. 6,990 (Refurb) / Rs. 19,900 (Full)</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] p-1.5 bg-slate-50 rounded-md">
                   <span className="text-slate-600">Unlimited VoLTE:</span>
-                  <span className="font-bold text-teal-700">Rs. 747 / mo</span>
+                  <span className="font-bold text-teal-700">Rs. 1,060.89 With Tax (Rs. 747 Base)</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] p-1.5 bg-slate-50 rounded-md">
                   <span className="text-slate-600">Lanka Bell / CDMA:</span>
