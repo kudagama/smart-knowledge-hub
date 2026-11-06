@@ -44,7 +44,9 @@ import {
   Coins,
   BadgePercent,
   XCircle,
-  BookOpen
+  BookOpen,
+  Headphones,
+  ShieldAlert
 } from 'lucide-react';
 
 // Popular Standard Storage Packages
@@ -168,6 +170,48 @@ ACTION: Terminate active monthly subscription in storage.slt.lk operator portal.
         ]}
       />
 
+      {/* ========================================================================= */}
+      {/* 🚨 LIVE CALL CX ASSISTANT BANNER: CRITICAL MUST-KNOW CHEAT SHEET          */}
+      {/* ========================================================================= */}
+      <div className="bg-gradient-to-r from-cyan-950 via-slate-900 to-blue-950 text-white px-6 py-3 border-b-2 border-cyan-400 shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-cyan-600/30 border border-cyan-400 flex items-center justify-center shrink-0">
+              <Headphones className="w-5 h-5 text-cyan-300 animate-pulse" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-cyan-600 text-white">
+                  Customer On Call (Live Triage)
+                </span>
+                <span className="text-xs font-bold text-cyan-300">
+                  SLT Eazy Storage Cloud Live Cheat Sheet
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-300 font-medium">
+                Instant operational rules for Contact Centre associates and Teleshop officers while on call with subscribers.
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Triage Pills */}
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center gap-1.5 text-emerald-200 font-bold">
+              <span>🚀 100% DATA-FREE: Zero GB Quota Deduction on SLT BB</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center gap-1.5 text-cyan-200 font-bold">
+              <span>🎁 FREE TRIAL: 5 GB Always Free (Rs. 0 Reg Fee)</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-blue-500/20 border border-blue-400/50 flex items-center gap-1.5 text-blue-200 font-bold">
+              <span>💳 POSTPAID: Added to Monthly Bill (VAS Portal Login)</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center gap-1.5 text-amber-200 font-bold">
+              <span>⏳ CANCEL: 30-Day File Retention Before Purge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 4. NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3.5">
@@ -270,6 +314,80 @@ ACTION: Terminate active monthly subscription in storage.slt.lk operator portal.
       {/* 5. MAIN CONTENT */}
       <div className="flex-1 p-6 md:p-8 space-y-10">
         <div className="max-w-6xl mx-auto space-y-10">
+
+          {/* ======================================================== */}
+          {/* 🚨 LIVE-CALL FRONTLINE AGENT CHEAT SHEET & SCRIPT        */}
+          {/* ======================================================== */}
+          <div className="bg-gradient-to-br from-cyan-950 via-slate-900 to-indigo-950 rounded-3xl p-6 md:p-7 text-white border-2 border-cyan-400 shadow-xl space-y-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-cyan-500/30 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 border-2 border-cyan-400 flex items-center justify-center shrink-0">
+                  <ShieldAlert className="w-6 h-6 text-cyan-300" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-500 text-slate-950">
+                      Frontline Operational Rules
+                    </span>
+                    <span className="text-xs font-bold text-cyan-300">
+                      Live Call Verification &amp; Customer Scripts
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black text-white mt-1">
+                    What Agents Must Confirm While Live On Call With Customer
+                  </h3>
+                </div>
+              </div>
+              <div className="px-3.5 py-1.5 rounded-xl bg-cyan-400/10 border border-cyan-400/30 text-cyan-200 text-xs font-bold shrink-0">
+                <span>Circular: PGW-BP-POS-02 (Sales Commission Eligible)</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Rule 1: Zero Data Deduction */}
+              <div className="p-4 rounded-2xl bg-slate-800/80 border border-emerald-500/40 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-black uppercase tracking-wide">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>1. 100% Data-Free On SLT BB</span>
+                </div>
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  Uploading/downloading files, photos, or video backups to Eazy Storage does <strong>NOT deduct any GB from customer’s broadband data package</strong>.
+                </p>
+                <div className="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-700/50 text-[11px] text-emerald-300 font-semibold">
+                  🗣️ <em>&quot;Sir, meka SLT broadband connection eken use karanakota oyaage monthly data quota eken 1 byte ekakwath kapenne na, 100% data-free.&quot;</em>
+                </div>
+              </div>
+
+              {/* Rule 2: Postpaid vs Prepaid Billing Mode */}
+              <div className="p-4 rounded-2xl bg-slate-800/80 border border-blue-500/40 space-y-2">
+                <div className="flex items-center gap-2 text-blue-400 text-xs font-black uppercase tracking-wide">
+                  <CreditCard className="w-4 h-4 shrink-0" />
+                  <span>2. Billing Mode Authentication</span>
+                </div>
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  <strong>Postpaid SLT BB:</strong> Monthly rental is added to SLT bill. Customer registers using broadband portal credentials or 011 telephone number.<br />
+                  <strong>Prepaid/Other ISP:</strong> Must use Credit Card recurring payment.
+                </p>
+                <div className="p-2.5 rounded-xl bg-blue-950/60 border border-blue-700/50 text-[11px] text-blue-300 font-semibold">
+                  🗣️ <em>&quot;SLT bill ekata add karaganna puluwan. Wena network nam Credit Card eken recurring payment karanna puluwan.&quot;</em>
+                </div>
+              </div>
+
+              {/* Rule 3: Cancellation & 30-Day Retention */}
+              <div className="p-4 rounded-2xl bg-slate-800/80 border border-amber-500/40 space-y-2">
+                <div className="flex items-center gap-2 text-amber-400 text-xs font-black uppercase tracking-wide">
+                  <Clock className="w-4 h-4 shrink-0" />
+                  <span>3. Cancellation &amp; File Retention</span>
+                </div>
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  When a customer cancels/unsubscribes, files are <strong>NOT deleted immediately</strong>. SLT provides a <strong>30-day grace period</strong> to download their data before permanent purge.
+                </p>
+                <div className="p-2.5 rounded-xl bg-amber-950/60 border border-amber-700/50 text-[11px] text-amber-300 font-semibold">
+                  🗣️ <em>&quot;Subscription eka cancel karath davas 30k athulatha files tika download karaganna puluwan.&quot;</em>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* ======================================================== */}
           {/* SECTION 1: CORE VALUE PROPOSITION & PDF GUIDELINES       */}
