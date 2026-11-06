@@ -614,6 +614,159 @@ TARGET: BROADBAND-PROVISIONING / FRONT-OFFICE`;
           )}
 
           {/* ======================================================== */}
+          {/* SECTION B.2: TAX BREAKDOWN & EARLY TERMINATION MATRICES  */}
+          {/* ======================================================== */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* 1. Tax Structure Matrix (Effective 4th June) */}
+            <div className="bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <Tag className="w-5 h-5 text-blue-700" />
+                  <div>
+                    <h3 className="font-black text-base text-slate-900">
+                      Tax Structure on Reconnection, Rental &amp; Usage
+                    </h3>
+                    <span className="text-[10px] text-slate-500 font-bold">
+                      Effective 4th June (All Levies &amp; Taxes Included)
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 bg-blue-50 text-blue-900 rounded-lg text-[11px] font-black border border-blue-200">
+                  SLT Policy
+                </span>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs border-collapse">
+                  <thead>
+                    <tr className="bg-slate-900 text-white font-bold text-[11px]">
+                      <th className="p-2.5">Component</th>
+                      <th className="p-2.5 text-center">SP Voice</th>
+                      <th className="p-2.5 text-center">SP BB</th>
+                      <th className="p-2.5 text-center">Double Play (V+BB)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-[11px] font-medium text-slate-700">
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-slate-900">Reconnection Tax</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                      <td className="p-2.5 text-center font-mono font-bold text-blue-700 bg-blue-50/50">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-slate-900">Access Bearer Tax</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">42.02% <span className="text-[9px] text-slate-400 block line-through">38.41%</span></td>
+                      <td className="p-2.5 text-center text-slate-400 font-mono">—</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-blue-700 bg-blue-50/50">42.02% <span className="text-[9px] text-slate-400 block line-through">38.41%</span></td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-slate-900">BB Rental Tax</td>
+                      <td className="p-2.5 text-center text-slate-400 font-mono">—</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                      <td className="p-2.5 text-center font-mono font-bold text-blue-700 bg-blue-50/50">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-slate-900">Voice Usage Tax</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">42.02% <span className="text-[9px] text-slate-400 block line-through">38.41%</span></td>
+                      <td className="p-2.5 text-center text-slate-400 font-mono">—</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-blue-700 bg-blue-50/50">42.02% <span className="text-[9px] text-slate-400 block line-through">38.41%</span></td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-2.5 font-bold text-slate-900">BB Usage Tax</td>
+                      <td className="p-2.5 text-center text-slate-400 font-mono">—</td>
+                      <td className="p-2.5 text-center font-mono font-bold text-slate-900">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                      <td className="p-2.5 text-center font-mono font-bold text-blue-700 bg-blue-50/50">23.50% <span className="text-[9px] text-slate-400 block line-through">20.36%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-[11px] text-slate-500 font-medium">
+                💡 Reconnection fee is Rs. 500/= across all categories. Applicable taxes apply at reconnection time.
+              </p>
+            </div>
+
+            {/* 2. Early Termination & Discontinued Installment Matrix */}
+            <div className="space-y-4">
+              
+              {/* Early Termination Table */}
+              <div className="bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-xs space-y-3">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2">
+                    <ShieldAlert className="w-5 h-5 text-rose-600" />
+                    <div>
+                      <h3 className="font-black text-base text-slate-900">
+                        Concessionary Early Termination Fees
+                      </h3>
+                      <span className="text-[10px] text-rose-600 font-bold">
+                        Effective from 24th August 2022 | 1-Year Commitment
+                      </span>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 bg-rose-50 text-rose-900 rounded-lg text-[11px] font-black border border-rose-200">
+                    Mandatory Fee
+                  </span>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-slate-200">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-slate-900 text-white font-bold text-[11px]">
+                        <th className="p-2.5">Package Type</th>
+                        <th className="p-2.5">Monthly Termination Fee</th>
+                        <th className="p-2.5">Formula / Fixed Charge</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 text-[11px] font-medium text-slate-700">
+                      <tr className="hover:bg-slate-50">
+                        <td className="p-2.5 font-bold text-slate-900">CAT 4 Single Play (Voice or BB)</td>
+                        <td className="p-2.5 font-mono font-black text-rose-700 text-sm">Rs. 600/= / month</td>
+                        <td className="p-2.5 text-slate-600">Rs. 600 × Remaining Months (Base penalty Rs. 3,500 / 5,000)</td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="p-2.5 font-bold text-slate-900">CAT 4 Double Play (BB + Voice)</td>
+                        <td className="p-2.5 font-mono font-black text-rose-700 text-sm">Rs. 1,200/= / month</td>
+                        <td className="p-2.5 text-slate-600">Rs. 1,200 (600×2) × Remaining Months (Base penalty Rs. 3,500 / 5,000)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[11px] text-rose-800 font-semibold bg-rose-50 p-2.5 rounded-xl border border-rose-200">
+                  ⚠️ Applicable for terminations within the first 12 months. After 12 months, ownership is transferred with zero penalty.
+                </p>
+              </div>
+
+              {/* Historical Installment Box (Discontinued) */}
+              <div className="bg-slate-50 rounded-3xl border-2 border-slate-300 p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                    <Flame className="w-4 h-4 text-slate-500" />
+                    <span>Historical Installment Plan Option</span>
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-200 text-slate-700 border border-slate-400">
+                    DISCONTINUED / NOT AVAILABLE NOW
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+                  <strong>Notice:</strong> <em>"The installment payment option is not available now."</em> Historical reference records:
+                </p>
+                <div className="grid grid-cols-2 gap-3 text-xs pt-1">
+                  <div className="p-2.5 bg-white rounded-xl border border-slate-200 font-mono">
+                    <span className="text-[10px] font-bold text-slate-400 block uppercase">Single Play (Old)</span>
+                    <span className="font-bold text-slate-800">900 + 800 * 2</span>
+                  </div>
+                  <div className="p-2.5 bg-white rounded-xl border border-slate-200 font-mono">
+                    <span className="text-[10px] font-bold text-slate-400 block uppercase">Double Play (Old)</span>
+                    <span className="font-bold text-slate-800">800 + 600 * 2</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* ======================================================== */}
           {/* SECTION C: SPEEDS, BILLING CYCLES & TECHNICAL RULES      */}
           {/* ======================================================== */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
