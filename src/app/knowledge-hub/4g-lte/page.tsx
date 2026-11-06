@@ -377,7 +377,7 @@ export default function LteServicesHubPage() {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-[11px] p-1.5 bg-slate-50 rounded-md">
                   <span className="text-slate-600">CAT 4 Double Play:</span>
-                  <span className="font-bold text-[#005696]">Rs. 4,695 (Tax inc.)</span>
+                  <span className="font-bold text-[#005696]">Rs. 4,695 (2024) / Rs. 7,990 (2023)</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] p-1.5 bg-slate-50 rounded-md">
                   <span className="text-slate-600">CAT 6 Advanced:</span>

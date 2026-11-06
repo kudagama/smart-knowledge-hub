@@ -421,25 +421,57 @@ TARGET: BROADBAND-PROVISIONING / FRONT-OFFICE`;
           {/* ======================================================== */}
           {/* FRONTLINE MANDATORY PAYMENT & OPERATIONAL NOTICE         */}
           {/* ======================================================== */}
-          <div className="bg-amber-50 border-2 border-amber-300 rounded-3xl p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 font-black mt-0.5">
-                <CreditCard className="w-5 h-5" />
+          <div className="space-y-3">
+            {/* 7,990 vs 4,695 Clarification Alert */}
+            <div className="bg-blue-50 border-3 border-blue-600 rounded-3xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#005696] text-white flex items-center justify-center shrink-0 font-black mt-0.5 shadow-xs">
+                  <Tag className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-black text-[#005696] text-sm block">
+                      📌 Price Revision Clarification: Rs. 7,990/= vs Rs. 4,695/= (With Tax)
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-amber-950">
+                      OFFICIAL SHAREPOINT RATE COMPARISON
+                    </span>
+                  </div>
+                  <p className="text-slate-700 font-semibold leading-relaxed">
+                    • <strong>Rs. 7,990/= (With Tax):</strong> Standard price updated on <strong>01/06/2023</strong> (Base Without Tax: Rs. 6,469.64). Many systems &amp; staff refer to this.<br />
+                    • <strong>Rs. 4,695/= (With Tax):</strong> New revised concessionary tariff effective from <strong>01/08/2024</strong> (Base Without Tax: Rs. 3,900/=) for Double Play &amp; Single Play BB.<br />
+                    • <strong>Rs. 5,400/= (With Tax):</strong> Revised tariff for Single Play <em>Voice Pal</em> &amp; <em>Biz Pal</em> (was Rs. 7,990/=).
+                  </p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <span className="font-black text-amber-950 text-sm block">
-                  Mandatory Payment &amp; Operational Directives (Updated 02/05/2024):
-                </span>
-                <p className="text-amber-900 font-semibold leading-relaxed">
-                  • <strong>Paid to Counter:</strong> New Connection Charges with tax <strong>must be paid directly to the counter and will NOT be added to the monthly bill</strong>.<br />
-                  • <strong>Reconnection Fee:</strong> Terminated LTE postpaid reconnection fee is strictly <strong>Rs. 500/=</strong> (confirmed 22/02/2024).<br />
-                  • <strong>No Virusara Discounts:</strong> There are no special discounts for LTE services under <em>Virusara Varapprasada</em> (Standard initiation &amp; rentals apply).
-                </p>
+              <div className="shrink-0 bg-white p-3.5 rounded-2xl border-2 border-blue-200 text-center font-bold text-slate-900 shadow-2xs">
+                <span className="text-[10px] text-blue-800 uppercase block font-black">Counter Collection</span>
+                <span className="text-xs text-slate-500">New (01/08/2024): <strong className="text-emerald-700 text-sm">Rs. 4,695</strong></span>
+                <span className="text-xs text-slate-400 block">Prior (01/06/2023): <strong className="text-slate-700">Rs. 7,990</strong></span>
               </div>
             </div>
-            <div className="shrink-0 bg-white p-3 rounded-2xl border border-amber-200 text-center font-bold text-amber-950">
-              <span className="text-[10px] text-slate-400 block uppercase">Ownership Transfer</span>
-              <span className="font-mono text-sm font-black text-slate-900">New: 12 Mos | Refurb: 6 Mos</span>
+
+            {/* Counter Payment & Reconnection Notice */}
+            <div className="bg-amber-50 border-2 border-amber-300 rounded-3xl p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 font-black mt-0.5">
+                  <CreditCard className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <span className="font-black text-amber-950 text-sm block">
+                    Mandatory Payment &amp; Operational Directives (Updated 02/05/2024):
+                  </span>
+                  <p className="text-amber-900 font-semibold leading-relaxed">
+                    • <strong>Paid to Counter:</strong> New Connection Charges with tax <strong>must be paid directly to the counter and will NOT be added to the monthly bill</strong>.<br />
+                    • <strong>Reconnection Fee:</strong> Terminated LTE postpaid reconnection fee is strictly <strong>Rs. 500/=</strong> (confirmed 22/02/2024).<br />
+                    • <strong>No Virusara Discounts:</strong> There are no special discounts for LTE services under <em>Virusara Varapprasada</em> (Standard initiation &amp; rentals apply).
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0 bg-white p-3 rounded-2xl border border-amber-200 text-center font-bold text-amber-950">
+                <span className="text-[10px] text-slate-400 block uppercase">Ownership Transfer</span>
+                <span className="font-mono text-sm font-black text-slate-900">New: 12 Mos | Refurb: 6 Mos</span>
+              </div>
             </div>
           </div>
 
@@ -478,36 +510,48 @@ TARGET: BROADBAND-PROVISIONING / FRONT-OFFICE`;
                       </span>
                     </div>
 
-                    {/* Price Block */}
-                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-baseline justify-between">
-                      <div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                          Charge With Tax (eff. 01/08/2024)
-                        </span>
-                        <div className="flex items-baseline gap-1 mt-0.5">
-                          {item.isFree ? (
-                            <span className="text-3xl font-black text-emerald-600">FREE</span>
-                          ) : (
-                            <>
-                              <span className="text-sm font-bold text-slate-500">Rs.</span>
-                              <span className="text-3xl font-black text-slate-900">{item.withTax}</span>
-                            </>
-                          )}
+                    {/* Price Block: Showing Both 4,695 & 7,990 */}
+                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2.5">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                            With Tax (eff. 01/08/2024)
+                          </span>
+                          <div className="flex items-baseline gap-1 mt-0.5">
+                            {item.isFree ? (
+                              <span className="text-3xl font-black text-emerald-600">FREE</span>
+                            ) : (
+                              <>
+                                <span className="text-sm font-bold text-slate-500">Rs.</span>
+                                <span className="text-3xl font-black text-emerald-700">{item.withTax}</span>
+                              </>
+                            )}
+                          </div>
                         </div>
+
+                        {item.priorWithTax && (
+                          <div className="text-right bg-blue-50/80 px-2.5 py-1.5 rounded-xl border border-blue-200">
+                            <span className="text-[9px] font-black text-blue-900 uppercase block">
+                              Standard / 2023 Rate
+                            </span>
+                            <span className="font-mono text-xs font-black text-slate-800">
+                              Rs. {item.priorWithTax}
+                            </span>
+                            <span className="text-[9px] text-slate-400 block font-medium">With Tax</span>
+                          </div>
+                        )}
                       </div>
 
-                      <div className="text-right">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                          Without Tax
-                        </span>
-                        <span className="font-mono text-sm font-bold text-slate-600">
-                          {item.withoutTax === 'Free' ? 'Free' : `Rs. ${item.withoutTax}`}
-                        </span>
-                        {item.priorWithoutTax && (
-                          <span className="text-[10px] text-slate-400 line-through block">
-                            (was Rs. {item.priorWithoutTax})
-                          </span>
-                        )}
+                      <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600 font-semibold">
+                        <span>Without Tax:</span>
+                        <div className="font-mono">
+                          <strong className="text-slate-900">{item.withoutTax === 'Free' ? 'Free' : `Rs. ${item.withoutTax}`}</strong>
+                          {item.priorWithoutTax && (
+                            <span className="text-[10px] text-slate-400 ml-1.5 line-through">
+                              (was {item.priorWithoutTax})
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
 
@@ -567,41 +611,45 @@ TARGET: BROADBAND-PROVISIONING / FRONT-OFFICE`;
               <div className="overflow-x-auto rounded-2xl border border-slate-200">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
-                    <tr className="bg-slate-900 text-white font-black">
-                      <th className="p-3.5 w-1/4">Package (CAT 4 Basic CPE Model)</th>
-                      <th className="p-3.5">Without Tax (Rs)<br/><span className="text-[10px] text-slate-400 font-normal">(eff. 01/08/2024)</span></th>
-                      <th className="p-3.5 text-emerald-300">With Tax (Rs)<br/><span className="text-[10px] text-emerald-400 font-normal">(eff. 01/08/2024)</span></th>
-                      <th className="p-3.5">Prior Price</th>
-                      <th className="p-3.5">Available Facilities</th>
-                      <th className="p-3.5">Commitment &amp; Warranty Rules</th>
+                    <tr className="bg-slate-900 text-white font-black text-xs">
+                      <th className="p-3 w-1/4">Package (CAT 4 Basic CPE Model)</th>
+                      <th className="p-3 text-emerald-300">With Tax (Rs)<br/><span className="text-[10px] text-emerald-400 font-normal">New (eff. 01/08/2024)</span></th>
+                      <th className="p-3 text-blue-200">With Tax (Rs)<br/><span className="text-[10px] text-blue-300 font-normal">Standard (01/06/2023)</span></th>
+                      <th className="p-3">Without Tax (Rs)<br/><span className="text-[10px] text-slate-400 font-normal">New (eff. 01/08/2024)</span></th>
+                      <th className="p-3">Without Tax (Rs)<br/><span className="text-[10px] text-slate-400 font-normal">Prior Rate</span></th>
+                      <th className="p-3">Available Facilities</th>
+                      <th className="p-3">Commitment &amp; Warranty Rules</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
                     {filteredPackages.map((item) => (
                       <tr key={item.id} className="hover:bg-slate-50 transition-colors">
-                        <td className="p-3.5 font-bold text-slate-900">
+                        <td className="p-3 font-bold text-slate-900">
                           <span className="block text-sm font-black">{item.name}</span>
                           <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full border inline-block mt-1 ${item.badgeStyle}`}>
                             {item.badge}
                           </span>
                         </td>
-                        <td className="p-3.5 font-mono font-bold text-slate-800">
-                          {item.withoutTax === 'Free' ? 'Free' : `Rs. ${item.withoutTax}`}
-                        </td>
-                        <td className="p-3.5 font-mono font-black text-base text-emerald-700">
+                        <td className="p-3 font-mono font-black text-base text-emerald-700 bg-emerald-50/30">
                           {item.withTax === 'FREE' ? (
                             <span className="px-2.5 py-0.5 bg-emerald-100 text-emerald-900 rounded-full font-black text-xs">FREE</span>
                           ) : (
                             `Rs. ${item.withTax}`
                           )}
                         </td>
-                        <td className="p-3.5 font-mono text-slate-400 line-through">
+                        <td className="p-3 font-mono font-black text-slate-900 bg-blue-50/30">
                           {item.priorWithTax ? `Rs. ${item.priorWithTax}` : '—'}
                         </td>
-                        <td className="p-3.5 text-slate-700">
+                        <td className="p-3 font-mono font-bold text-slate-800">
+                          {item.withoutTax === 'Free' ? 'Free' : `Rs. ${item.withoutTax}`}
+                        </td>
+                        <td className="p-3 font-mono text-slate-400">
+                          {item.priorWithoutTax ? `Rs. ${item.priorWithoutTax}` : '—'}
+                        </td>
+                        <td className="p-3 text-slate-700 text-[11px]">
                           {item.facilities}
                         </td>
-                        <td className="p-3.5 text-slate-600 leading-relaxed text-[11px]">
+                        <td className="p-3 text-slate-600 leading-relaxed text-[11px]">
                           <div>• {item.warranty}</div>
                           <div>• {item.commitment}</div>
                         </td>
