@@ -48,6 +48,7 @@ const UNLIMITED_VOICE_PACKAGES = [
     id: 'unltd_home_dp',
     name: 'Unltd LTE Home Double Play Rs.747',
     rental: '747',
+    rentalWithTax: '1,060.89',
     orderType: 'CREATE (New Customers) | MODIFY (Existing Migrations)',
     phoneClass: '4G LTE Double Play',
     allowedCategories: [
@@ -74,6 +75,7 @@ const UNLIMITED_VOICE_PACKAGES = [
     id: 'unltd_office_dp',
     name: 'Unltd LTE Office Double Play Rs.747',
     rental: '747',
+    rentalWithTax: '1,060.89',
     orderType: 'CREATE (New Customers) | MODIFY (Existing Migrations)',
     phoneClass: '4G LTE Double Play',
     allowedCategories: [
@@ -100,6 +102,7 @@ const UNLIMITED_VOICE_PACKAGES = [
     id: 'unltd_dp_religious',
     name: 'Unltd 4G DP Religious Rs.747',
     rental: '747',
+    rentalWithTax: '1,060.89',
     orderType: 'CREATE (New Customers) | MODIFY (Existing Migrations)',
     phoneClass: '4G LTE Double Play',
     allowedCategories: [
@@ -120,6 +123,7 @@ const UNLIMITED_VOICE_PACKAGES = [
     id: 'unltd_biz_pal_religious',
     name: 'Unltd 4G Biz Pal Religious Rs.747',
     rental: '747',
+    rentalWithTax: '1,060.89',
     orderType: 'CREATE (New Customers) | MODIFY (Existing Migrations)',
     phoneClass: '4G LTE Biz Pal',
     allowedCategories: [
@@ -140,6 +144,7 @@ const UNLIMITED_VOICE_PACKAGES = [
     id: 'unltd_voice_pal_basic',
     name: 'Unltd 4G Voice Pal Basic Rs.747',
     rental: '747',
+    rentalWithTax: '1,060.89',
     orderType: 'CREATE (New Customers) | MODIFY (Existing Migrations)',
     phoneClass: '4G Voice Pal (Single Play Voice)',
     allowedCategories: [
@@ -176,6 +181,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: '4G Voice Pal (Single Play)',
     pkg: 'Basic (Effective from 05/09/2022)',
     rental: '479',
+    rentalWithTax: '680.28',
     oldRental: '399',
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.25',
@@ -194,6 +200,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: '4G Voice Pal (Single Play)',
     pkg: 'Premium (Effective from 05/09/2022)',
     rental: '999',
+    rentalWithTax: '1,418.78',
     oldRental: null,
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '3.90 per minute',
@@ -212,6 +219,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: '4G Net Pal (Single Play)',
     pkg: 'Net Pal (Data Only)',
     rental: 'Free',
+    rentalWithTax: 'Free',
     oldRental: null,
     priceOverriding: 'NA',
     onNetActive: 'NA',
@@ -230,6 +238,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Double Play (Voice & BB)',
     pkg: 'Residential (Effective from 05/09/2022)',
     rental: '370 (Voice Rental)',
+    rentalWithTax: '525.47 (Voice)',
     oldRental: '310',
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.70 (1-3 min) / 1.50 (>3 min)',
@@ -248,6 +257,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Double Play (Voice & BB)',
     pkg: 'Business',
     rental: '599 (Voice Rental)',
+    rentalWithTax: '850.70 (Voice)',
     oldRental: '499',
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.70 (1-3 min) / 1.50 (>3 min)',
@@ -266,6 +276,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Double Play (Voice & BB)',
     pkg: 'Religious (Effective from 05/09/2022)',
     rental: '60 (Voice Rental)',
+    rentalWithTax: '85.21 (Voice)',
     oldRental: '50',
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.70 (1-3 min) / 1.50 (>3 min)',
@@ -284,6 +295,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Biz Pal',
     pkg: 'Business',
     rental: '499',
+    rentalWithTax: '708.68',
     oldRental: null,
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.90 (1-3 min) / 1.50 (>3 min)',
@@ -302,6 +314,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Biz Pal',
     pkg: 'Religious',
     rental: '50',
+    rentalWithTax: '71.01',
     oldRental: null,
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.90 (1-3 min) / 1.50 (>3 min)',
@@ -320,6 +333,7 @@ const STANDARD_VOICE_PACKAGES_MATRIX = [
     category: 'Smart Dial / Smart Dial Plus',
     pkg: 'Smart Dial / Plus',
     rental: '0',
+    rentalWithTax: '0',
     oldRental: null,
     priceOverriding: 'Min: 0 | Max: 1000',
     onNetActive: '1.90 (1-3 min) / 1.50 (>3 min)',
@@ -379,6 +393,7 @@ const VAS_BUNDLES = [
   {
     name: 'Double Play VAS Bundle',
     rental: 'Rs. 50 /= per month',
+    rentalWithTax: 'Rs. 71.01 (With Tax 42.02%)',
     features: [
       'CLI (Caller Line Identification)',
       'Call Forwarding',
@@ -392,6 +407,7 @@ const VAS_BUNDLES = [
   {
     name: 'Triple Play VAS Bundle',
     rental: 'Rs. 100 /= per month',
+    rentalWithTax: 'Rs. 142.02 (With Tax 42.02%)',
     features: [
       'CLI (Caller Line Identification)',
       'Call Forwarding',
@@ -454,8 +470,8 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
         authorRole="Senior Assistant Manager (Customer Relations)-A7 | Published: 11/4/2024"
         icon={Phone}
         stats={[
-          { label: 'Unlimited Any-Net', value: 'Rs. 747', sub: 'Flat Rate Monthly (Any Network)' },
-          { label: 'Voice Pal Basic', value: 'Rs. 479', sub: '300 On-Net Mins + 200MB' },
+          { label: 'Unlimited Any-Net', value: 'Rs. 1,060.89', sub: 'With Tax 42.02% (Base Rs. 747)' },
+          { label: 'Voice Pal Basic', value: 'Rs. 680.28', sub: 'With Tax 42.02% (Base Rs. 479)' },
           { label: 'Number Series', value: '011-3XXXXXX', sub: 'LTE Geographical VoLTE' },
           { label: 'Technology', value: '100% VoLTE', sub: 'Active Since March 2017' }
         ]}
@@ -652,21 +668,25 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
                             </span>
                           </div>
 
-                          {/* Price Block */}
-                          <div className="p-3.5 bg-teal-50/70 rounded-2xl border border-teal-100 flex items-baseline justify-between">
-                            <div>
-                              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
-                                Monthly Rental
+                          {/* Price Block: Customer Pays With Tax Prominent */}
+                          <div className="p-4 bg-teal-50/80 rounded-2xl border-2 border-teal-200 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300">
+                                Customer Pays (With Tax 42.02%)
                               </span>
-                              <div className="flex items-baseline gap-1 mt-0.5">
-                                <span className="text-sm font-bold text-slate-500">Rs.</span>
-                                <span className="text-3xl font-black text-teal-800">{pkg.rental}</span>
-                                <span className="text-xs text-slate-500 font-medium">/ month</span>
-                              </div>
+                              <span className="px-2.5 py-0.5 bg-white rounded-xl border border-teal-200 text-teal-900 font-black text-[11px]">
+                                Postpaid
+                              </span>
                             </div>
-                            <span className="px-2.5 py-1 bg-white rounded-xl border border-teal-200 text-teal-900 font-black text-[11px]">
-                              Postpaid
-                            </span>
+                            <div className="flex items-baseline gap-1 mt-0.5">
+                              <span className="text-sm font-bold text-teal-900">Rs.</span>
+                              <span className="text-3xl font-black text-teal-950 tracking-tight">{pkg.rentalWithTax}</span>
+                              <span className="text-xs text-teal-800 font-bold">/ month</span>
+                            </div>
+                            <div className="pt-2 border-t border-teal-200/60 flex items-center justify-between text-xs font-semibold text-slate-600">
+                              <span>Base Without Tax:</span>
+                              <span className="font-mono font-bold text-slate-900">Rs. {pkg.rental} / mo</span>
+                            </div>
                           </div>
 
                           {/* Allowed Customer Subcategories */}
@@ -723,7 +743,8 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
                       <thead>
                         <tr className="bg-slate-900 text-white font-black">
                           <th className="p-3.5">Price Plan Name</th>
-                          <th className="p-3.5">Monthly Rental</th>
+                          <th className="p-3.5 text-teal-300">Monthly With Tax (42.02%)<br/><span className="text-[10px] text-teal-400 font-normal">Customer Pays</span></th>
+                          <th className="p-3.5">Without Tax (Rs)</th>
                           <th className="p-3.5">Service Order Type</th>
                           <th className="p-3.5">Voice Class / LTE Package</th>
                           <th className="p-3.5">Allowed Customer Subcategories</th>
@@ -739,7 +760,10 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
                                 {pkg.badge}
                               </span>
                             </td>
-                            <td className="p-3.5 font-mono font-black text-base text-teal-800">
+                            <td className="p-3.5 font-mono font-black text-base text-emerald-800 bg-emerald-50/70">
+                              Rs. {pkg.rentalWithTax}
+                            </td>
+                            <td className="p-3.5 font-mono font-bold text-slate-700 text-sm">
                               Rs. {pkg.rental}
                             </td>
                             <td className="p-3.5 font-bold text-slate-700">
@@ -801,11 +825,12 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
                     <thead>
                       <tr className="bg-slate-900 text-white font-black">
                         <th className="p-3.5">Category / Package</th>
-                        <th className="p-3.5">Monthly Rental (Rs)</th>
-                        <th className="p-3.5">On-Net (Active Hrs)</th>
-                        <th className="p-3.5">On-Net (Leisure Hrs)</th>
-                        <th className="p-3.5">Off-Net (Active Hrs)</th>
-                        <th className="p-3.5">Off-Net (Leisure Hrs)</th>
+                        <th className="p-3.5 text-teal-300">Monthly With Tax (42.02%)<br/><span className="text-[10px] text-teal-400 font-normal">Customer Pays</span></th>
+                        <th className="p-3.5">Without Tax (Rs)</th>
+                        <th className="p-3.5">On-Net (Active)</th>
+                        <th className="p-3.5">On-Net (Leisure)</th>
+                        <th className="p-3.5">Off-Net (Active)</th>
+                        <th className="p-3.5">Off-Net (Leisure)</th>
                         <th className="p-3.5">Free Minutes</th>
                         <th className="p-3.5">Included Data</th>
                       </tr>
@@ -822,7 +847,10 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
                               {row.badge}
                             </span>
                           </td>
-                          <td className="p-3.5 font-mono font-black text-sm text-slate-900">
+                          <td className="p-3.5 font-mono font-black text-sm text-emerald-800 bg-emerald-50/70">
+                            {row.rentalWithTax === 'Free' || row.rentalWithTax === '0' ? row.rentalWithTax : `Rs. ${row.rentalWithTax}`}
+                          </td>
+                          <td className="p-3.5 font-mono font-bold text-slate-700 text-sm">
                             Rs. {row.rental}
                             {row.oldRental && (
                               <span className="text-slate-400 font-normal line-through ml-1.5 text-xs">
@@ -1072,11 +1100,18 @@ TARGET: VOICE-PAL-FULFILLMENT / RTOM`;
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {VAS_BUNDLES.map((vas, vIdx) => (
                   <div key={vIdx} className="bg-white rounded-3xl border-2 border-indigo-200 p-6 shadow-xs space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-start justify-between gap-3">
                       <span className="text-xs font-black uppercase tracking-wider text-indigo-900 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
                         {vas.name}
                       </span>
-                      <span className="font-mono font-black text-base text-indigo-700">{vas.rental}</span>
+                      <div className="text-right">
+                        <span className="font-mono font-black text-sm text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200 block">
+                          {vas.rentalWithTax}
+                        </span>
+                        <span className="text-[10px] text-slate-500 font-bold block mt-0.5">
+                          Base: {vas.rental}
+                        </span>
+                      </div>
                     </div>
 
                     <div className="space-y-2">

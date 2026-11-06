@@ -244,33 +244,33 @@ const NEW_HBB_ANYTIME_PACKAGES = [
 
 // Table 4: LTE Volume Based BB packages (Time-based packages discontinued from 15th February 2025)
 const VOLUME_BASED_PACKAGES = [
-  { id: 'starter', name: 'Web Starter', rental: '950', priorRental: '740', peak: '10 GB (was 11)', offPeak: '10 GB (was 17)', total: '20 GB', priorTotal: '28 GB' },
-  { id: 'pal', name: 'Web Pal', rental: '1,250', priorRental: '990', peak: '16 GB (was 18)', offPeak: '16 GB (was 27)', total: '32 GB', priorTotal: '45 GB' },
-  { id: 'family-plus', name: 'Web Family Plus', rental: '1,790', priorRental: '1,490', peak: '33 GB (was 36)', offPeak: '33 GB (was 54)', total: '66 GB', priorTotal: '90 GB' },
-  { id: 'family-active', name: 'Web Family Active', rental: '2,390', priorRental: '1,990', peak: '45 GB', offPeak: '65 GB', total: '110 GB', priorTotal: '110 GB' },
-  { id: 'family-xtra', name: 'Web Family Xtra', rental: '3,090', priorRental: '2,690', peak: '55 GB (was 60)', offPeak: '55 GB (was 90)', total: '110 GB', priorTotal: '150 GB' },
-  { id: 'booster', name: 'Web Booster', rental: '4,050', priorRental: '3,490', peak: '75 GB', offPeak: '110 GB', total: '185 GB', priorTotal: '185 GB' },
-  { id: 'pro', name: 'Web Pro', rental: '5,650', priorRental: '4,890', peak: '85 GB (was 95)', offPeak: '85 GB (was 140)', total: '170 GB', priorTotal: '235 GB' },
-  { id: 'master', name: 'Web Master', rental: '9,750', priorRental: '8,890', peak: '155 GB (was 170)', offPeak: '155 GB (was 255)', total: '310 GB', priorTotal: '425 GB' },
-  { id: 'champ', name: 'Web Champ', rental: '15,090', priorRental: '13,690', peak: '245 GB (was 270)', offPeak: '245 GB (was 405)', total: '490 GB', priorTotal: '675 GB' },
-  { id: 'life', name: 'Web Life', rental: '21,890', priorRental: '19,890', peak: '360 GB (was 400)', offPeak: '360 GB (was 600)', total: '720 GB', priorTotal: '1000 GB' },
-  { id: 'inspire', name: 'Web Inspire', rental: '34,650', priorRental: '33,000', peak: '610 GB (was 700)', offPeak: '610 GB (was 1000)', total: '1220 GB', priorTotal: '1700 GB' },
-  { id: 'premier', name: 'Web Premier', rental: '60,900', priorRental: '58,000', peak: '1100 GB (was 1250)', offPeak: '1100 GB (was 1750)', total: '2200 GB', priorTotal: '3000 GB' },
-  { id: 'shareholder', name: 'SLT Share Holder Package', rental: '499', priorRental: '499', peak: '7 GB (was 8)', offPeak: '14 GB (was 16)', total: '21 GB', priorTotal: '24 GB' }
+  { id: 'starter', name: 'Web Starter', rental: '950', rentalWithTax: '1,173.25', priorRental: '740', peak: '10 GB (was 11)', offPeak: '10 GB (was 17)', total: '20 GB', priorTotal: '28 GB' },
+  { id: 'pal', name: 'Web Pal', rental: '1,250', rentalWithTax: '1,543.75', priorRental: '990', peak: '16 GB (was 18)', offPeak: '16 GB (was 27)', total: '32 GB', priorTotal: '45 GB' },
+  { id: 'family-plus', name: 'Web Family Plus', rental: '1,790', rentalWithTax: '2,210.65', priorRental: '1,490', peak: '33 GB (was 36)', offPeak: '33 GB (was 54)', total: '66 GB', priorTotal: '90 GB' },
+  { id: 'family-active', name: 'Web Family Active', rental: '2,390', rentalWithTax: '2,951.65', priorRental: '1,990', peak: '45 GB', offPeak: '65 GB', total: '110 GB', priorTotal: '110 GB' },
+  { id: 'family-xtra', name: 'Web Family Xtra', rental: '3,090', rentalWithTax: '3,816.15', priorRental: '2,690', peak: '55 GB (was 60)', offPeak: '55 GB (was 90)', total: '110 GB', priorTotal: '150 GB' },
+  { id: 'booster', name: 'Web Booster', rental: '4,050', rentalWithTax: '5,001.75', priorRental: '3,490', peak: '75 GB', offPeak: '110 GB', total: '185 GB', priorTotal: '185 GB' },
+  { id: 'pro', name: 'Web Pro', rental: '5,650', rentalWithTax: '6,977.75', priorRental: '4,890', peak: '85 GB (was 95)', offPeak: '85 GB (was 140)', total: '170 GB', priorTotal: '235 GB' },
+  { id: 'master', name: 'Web Master', rental: '9,750', rentalWithTax: '12,041.25', priorRental: '8,890', peak: '155 GB (was 170)', offPeak: '155 GB (was 255)', total: '310 GB', priorTotal: '425 GB' },
+  { id: 'champ', name: 'Web Champ', rental: '15,090', rentalWithTax: '18,636.15', priorRental: '13,690', peak: '245 GB (was 270)', offPeak: '245 GB (was 405)', total: '490 GB', priorTotal: '675 GB' },
+  { id: 'life', name: 'Web Life', rental: '21,890', rentalWithTax: '27,034.15', priorRental: '19,890', peak: '360 GB (was 400)', offPeak: '360 GB (was 600)', total: '720 GB', priorTotal: '1000 GB' },
+  { id: 'inspire', name: 'Web Inspire', rental: '34,650', rentalWithTax: '42,792.75', priorRental: '33,000', peak: '610 GB (was 700)', offPeak: '610 GB (was 1000)', total: '1220 GB', priorTotal: '1700 GB' },
+  { id: 'premier', name: 'Web Premier', rental: '60,900', rentalWithTax: '75,211.50', priorRental: '58,000', peak: '1100 GB (was 1250)', offPeak: '1100 GB (was 1750)', total: '2200 GB', priorTotal: '3000 GB' },
+  { id: 'shareholder', name: 'SLT Share Holder Package', rental: '499', rentalWithTax: '616.27', priorRental: '499', peak: '7 GB (was 8)', offPeak: '14 GB (was 16)', total: '21 GB', priorTotal: '24 GB' }
 ];
 
 // Table 5: Anytime BB packages (LTE) (Discontinued from 1st May 2025)
 const LEGACY_ANYTIME_PACKAGES = [
-  { id: 'any-joy', name: 'Any Joy', volume: '22 GB', rental: '1,150', priorRental: '890', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-beat', name: 'Any Beat', volume: '36 GB', rental: '1,550', priorRental: '1,290', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-flix', name: 'Any Flix', volume: '53 GB', rental: '2,150', priorRental: '1,790', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-blaze', name: 'Any Blaze', volume: '72 GB', rental: '2,990', priorRental: '2,490', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-tide', name: 'Any Tide', volume: '100 GB', rental: '3,890', priorRental: '3,390', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-spike', name: 'Any Spike', volume: '130 GB', rental: '5,050', priorRental: '4,390', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-storm', name: 'Any Storm', volume: '200 GB', rental: '7,490', priorRental: '6,790', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-glam', name: 'Any Glam', volume: '350 GB', rental: '12,990', priorRental: '11,790', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-delight', name: 'Any Delight', volume: '500 GB', rental: '18,490', priorRental: '16,790', badge: 'Discontinued 01/05/2025' },
-  { id: 'any-xtreme', name: 'Any Xtreme', volume: '750 GB', rental: '26,250', priorRental: '25,000', badge: 'Discontinued 01/05/2025' }
+  { id: 'any-joy', name: 'Any Joy', volume: '22 GB', rental: '1,150', rentalWithTax: '1,420.25', priorRental: '890', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-beat', name: 'Any Beat', volume: '36 GB', rental: '1,550', rentalWithTax: '1,914.25', priorRental: '1,290', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-flix', name: 'Any Flix', volume: '53 GB', rental: '2,150', rentalWithTax: '2,655.25', priorRental: '1,790', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-blaze', name: 'Any Blaze', volume: '72 GB', rental: '2,990', rentalWithTax: '3,692.65', priorRental: '2,490', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-tide', name: 'Any Tide', volume: '100 GB', rental: '3,890', rentalWithTax: '4,804.15', priorRental: '3,390', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-spike', name: 'Any Spike', volume: '130 GB', rental: '5,050', rentalWithTax: '6,236.75', priorRental: '4,390', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-storm', name: 'Any Storm', volume: '200 GB', rental: '7,490', rentalWithTax: '9,250.15', priorRental: '6,790', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-glam', name: 'Any Glam', volume: '350 GB', rental: '12,990', rentalWithTax: '16,042.65', priorRental: '11,790', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-delight', name: 'Any Delight', volume: '500 GB', rental: '18,490', rentalWithTax: '22,835.15', priorRental: '16,790', badge: 'Discontinued 01/05/2025' },
+  { id: 'any-xtreme', name: 'Any Xtreme', volume: '750 GB', rental: '26,250', rentalWithTax: '32,418.75', priorRental: '25,000', badge: 'Discontinued 01/05/2025' }
 ];
 
 // Table 6: Unlimited BB Packages (Residential)
@@ -280,6 +280,7 @@ const UNLIMITED_RESIDENTIAL_PACKAGES = [
     name: 'LTE Unlimited 2',
     speed: '2 Mbps Constant',
     rental: '2,950',
+    rentalWithTax: '3,643.25',
     priorRental: '2,250',
     dataOffering: 'Unlimited 24/7',
     badge: '2 Mbps Unlimited',
@@ -291,6 +292,7 @@ const UNLIMITED_RESIDENTIAL_PACKAGES = [
     name: 'LTE Unlimited 4',
     speed: '4 Mbps Constant',
     rental: '5,150',
+    rentalWithTax: '6,360.25',
     priorRental: '3,950',
     dataOffering: 'Unlimited 24/7',
     badge: '4 Mbps Unlimited',
@@ -302,6 +304,7 @@ const UNLIMITED_RESIDENTIAL_PACKAGES = [
     name: 'LTE Unlimited 8',
     speed: '8 Mbps Constant',
     rental: '7,090',
+    rentalWithTax: '8,756.15',
     priorRental: '5,450',
     dataOffering: 'Unlimited 24/7',
     badge: '8 Mbps Uncapped',
@@ -313,6 +316,7 @@ const UNLIMITED_RESIDENTIAL_PACKAGES = [
     name: 'Unlimited LTE Flash 5',
     speed: 'Normal LTE Speed (Daily First 5GB) -> Throttled to 1 Mbps',
     rental: '2,350',
+    rentalWithTax: '2,902.25',
     priorRental: '1,950',
     dataOffering: 'Daily First 5GB @ full LTE speed, then 1 Mbps afterwards',
     midnightThriller: 'FREE UNLIMITED INTERNET at normal speed every day (12 midnight - 7am)',
@@ -326,6 +330,7 @@ const UNLIMITED_RESIDENTIAL_PACKAGES = [
     name: 'Unlimited LTE Flash 10',
     speed: 'Normal LTE Speed (Daily First 10GB) -> Throttled to 1 Mbps',
     rental: '4,090',
+    rentalWithTax: '5,051.15',
     priorRental: '3,550',
     dataOffering: 'Daily First 10GB @ full LTE speed, then 1 Mbps afterwards',
     midnightThriller: 'FREE UNLIMITED INTERNET at normal speed every day (12 midnight - 7am)',
@@ -342,6 +347,7 @@ const UNLIMITED_SME_PACKAGES = [
     id: 'sme-flash-5',
     name: 'LTE Flash 5 (SME & Micro Business)',
     rental: '2,350',
+    rentalWithTax: '2,902.25',
     priorRental: '1,950',
     transferFee: 'Rs. 500/= (from general packages to Unlimited)',
     fup: 'Daily First 5GB at normal LTE speed, afterwards throttling to 1 Mbps for that day',
@@ -354,6 +360,7 @@ const UNLIMITED_SME_PACKAGES = [
     id: 'sme-flash-10',
     name: 'LTE Flash 10 (SME & Micro Business)',
     rental: '4,090',
+    rentalWithTax: '5,051.15',
     priorRental: '3,550',
     transferFee: 'Rs. 500/= (from general packages to Unlimited)',
     fup: 'Daily First 10GB at normal LTE speed, afterwards throttling to 1 Mbps for that day',
@@ -814,8 +821,8 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                       <thead className="bg-slate-900 text-white font-bold">
                         <tr>
                           <th className="p-3.5">Package Name</th>
-                          <th className="p-3.5">Rental (Without Tax)</th>
-                          <th className="p-3.5 text-emerald-400">Rental With Tax (23.5%)</th>
+                          <th className="p-3.5 text-emerald-300">Rental With Tax (23.5%)<br/><span className="text-[10px] text-emerald-400 font-normal">Customer Charge</span></th>
+                          <th className="p-3.5">Rental (Without Tax)<br/><span className="text-[10px] text-slate-400 font-normal">Base Tariff</span></th>
                           <th className="p-3.5">Anytime Data (GB)</th>
                           <th className="p-3.5">Midnight Thriller</th>
                           <th className="p-3.5">Billing Mode</th>
@@ -831,8 +838,8 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                                 {pkg.badge}
                               </span>
                             </td>
-                            <td className="p-3.5 font-mono font-black text-slate-900 text-sm">Rs. {pkg.rentalWithoutTax}</td>
-                            <td className="p-3.5 font-mono font-black text-emerald-700 text-sm">Rs. {pkg.rentalWithTax}</td>
+                            <td className="p-3.5 font-mono font-black text-emerald-800 bg-emerald-50/70 text-base">Rs. {pkg.rentalWithTax}</td>
+                            <td className="p-3.5 font-mono font-bold text-slate-700 text-sm">Rs. {pkg.rentalWithoutTax}</td>
                             <td className="p-3.5 font-black text-slate-900 text-base">{pkg.volume}</td>
                             <td className="p-3.5 text-purple-700 font-bold">Yes (Midnight to 7am Free Unlimited)</td>
                             <td className="p-3.5 font-bold text-blue-900">{pkg.billingMode}</td>
@@ -874,15 +881,22 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           </p>
                         </div>
 
-                        <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+                        <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
                           <div className="flex items-baseline justify-between">
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Anytime Quota</span>
-                            <span className="text-2xl font-black text-emerald-700">{pkg.volume}</span>
+                            <span className="text-2xl font-black text-slate-900">{pkg.volume}</span>
                           </div>
-                          <div className="pt-2 border-t border-slate-200">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase block">Rental (Without Tax)</span>
-                            <span className="text-xl font-black text-slate-900">Rs. {pkg.rentalWithoutTax}</span>
-                            <span className="text-[10px] text-slate-500 block">With Tax (23.5%): <strong>Rs. {pkg.rentalWithTax}</strong></span>
+                          
+                          <div className="p-2.5 bg-emerald-50 rounded-xl border border-emerald-300">
+                            <span className="text-[9px] font-black text-emerald-900 uppercase block">
+                              Rental With Tax (23.5%)
+                            </span>
+                            <span className="text-2xl font-black text-emerald-700">Rs. {pkg.rentalWithTax}</span>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs text-slate-600 font-semibold pt-1">
+                            <span>Without Tax (Base):</span>
+                            <span className="font-mono font-bold text-slate-900">Rs. {pkg.rentalWithoutTax}</span>
                           </div>
                         </div>
                       </div>
@@ -974,7 +988,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div>
                     <h4 className="font-black text-base text-slate-900">LTE Unlimited Packages (Residential)</h4>
-                    <span className="text-xs text-slate-500 font-medium">New rentals effective from 5th September 2022 | Uploading Speed = Download Speed</span>
+                    <span className="text-xs text-slate-500 font-medium">New rentals effective from 5th September 2022 | Total tax amount on BB = 23.5%</span>
                   </div>
                   <span className="px-3 py-1 bg-blue-50 text-blue-900 rounded-xl text-xs font-black border border-blue-200">
                     Residential Plans
@@ -987,7 +1001,8 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                       <tr>
                         <th className="p-3">Package Name</th>
                         <th className="p-3">Bandwidth / Speed</th>
-                        <th className="p-3">Monthly Rental (Rs.)</th>
+                        <th className="p-3 text-emerald-300">Monthly With Tax (23.5%)<br/><span className="text-[10px] text-emerald-400 font-normal">Customer Pays</span></th>
+                        <th className="p-3">Without Tax (Rs)<br/><span className="text-[10px] text-slate-400 font-normal">Base Rental</span></th>
                         <th className="p-3">Data Offering / FUP</th>
                         <th className="p-3">Remarks &amp; Add-on Eligibility</th>
                       </tr>
@@ -1002,7 +1017,10 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                             </span>
                           </td>
                           <td className="p-3 font-mono font-bold text-slate-700">{pkg.speed}</td>
-                          <td className="p-3 font-mono font-black text-slate-900 text-sm">
+                          <td className="p-3 font-mono font-black text-emerald-800 bg-emerald-50/70 text-base">
+                            Rs. {pkg.rentalWithTax}
+                          </td>
+                          <td className="p-3 font-mono font-bold text-slate-700 text-sm">
                             Rs. {pkg.rental} <span className="text-[10px] text-slate-400 font-normal line-through block">(was Rs. {pkg.priorRental})</span>
                           </td>
                           <td className="p-3 font-semibold text-slate-800">
@@ -1026,7 +1044,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                 <div className="flex items-center justify-between border-b border-purple-100 pb-3">
                   <div>
                     <h4 className="font-black text-base text-purple-950">SLT LTE Unlimited Flash Packages (for SME and Micro Business)</h4>
-                    <span className="text-xs text-purple-700 font-semibold">12-Month Commitment (Rs. 5,000 Early Termination Fee) | Extra GB Purchase NOT Allowed</span>
+                    <span className="text-xs text-purple-700 font-semibold">12-Month Commitment (Rs. 5,000 Early Termination Fee) | Total tax amount on BB = 23.5%</span>
                   </div>
                   <span className="px-3 py-1 bg-purple-100 text-purple-950 rounded-xl text-xs font-black border border-purple-300">
                     SME / Micro Only
@@ -1038,7 +1056,8 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                     <thead className="bg-slate-900 text-white font-bold">
                       <tr>
                         <th className="p-3">Package Name</th>
-                        <th className="p-3">Monthly Rental (Rs.)</th>
+                        <th className="p-3 text-emerald-300">Monthly With Tax (23.5%)<br/><span className="text-[10px] text-emerald-400 font-normal">Customer Pays</span></th>
+                        <th className="p-3">Without Tax (Base)</th>
                         <th className="p-3">Transfer Fee</th>
                         <th className="p-3">Daily FUP &amp; Throttling</th>
                         <th className="p-3 text-emerald-400">MEET Bundle (Zero Quota Deduction)</th>
@@ -1054,7 +1073,10 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                               {pkg.badge}
                             </span>
                           </td>
-                          <td className="p-3 font-mono font-black text-purple-950 text-sm">
+                          <td className="p-3 font-mono font-black text-emerald-800 bg-emerald-50/70 text-base">
+                            Rs. {pkg.rentalWithTax}
+                          </td>
+                          <td className="p-3 font-mono font-bold text-slate-700 text-sm">
                             Rs. {pkg.rental} <span className="text-[10px] text-slate-400 font-normal line-through block">(was Rs. {pkg.priorRental})</span>
                           </td>
                           <td className="p-3 font-mono text-slate-700">{pkg.transferFee}</td>
@@ -1134,11 +1156,12 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                     <thead className="bg-slate-900 text-white font-bold">
                       <tr>
                         <th className="p-3">Package Name</th>
-                        <th className="p-3">Standard Usage (8am-12 midnight)</th>
-                        <th className="p-3">Off-peak Usage (7am-8am)</th>
-                        <th className="p-3">Total Volume (GB)</th>
-                        <th className="p-3">Rental (Rs) eff. 05/09/2022</th>
-                        <th className="p-3">Prior Rental</th>
+                        <th className="p-3">Standard (8am-12am)</th>
+                        <th className="p-3">Off-peak (7am-8am)</th>
+                        <th className="p-3">Total Volume</th>
+                        <th className="p-3 text-emerald-300">Monthly With Tax (23.5%)<br/><span className="text-[10px] text-emerald-400 font-normal">Customer Pays</span></th>
+                        <th className="p-3">Without Tax (Rs)<br/><span className="text-[10px] text-slate-400 font-normal">eff. 05/09/2022</span></th>
+                        <th className="p-3">Prior Without Tax</th>
                         <th className="p-3">Midnight Thriller</th>
                         <th className="p-3">Status</th>
                       </tr>
@@ -1150,7 +1173,8 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                           <td className="p-3 text-amber-800 font-bold">{pkg.peak}</td>
                           <td className="p-3 text-indigo-800 font-bold">{pkg.offPeak}</td>
                           <td className="p-3 font-black text-slate-900 text-sm">{pkg.total} <span className="text-[10px] text-slate-400 line-through">({pkg.priorTotal})</span></td>
-                          <td className="p-3 font-mono font-black text-[#005696] text-sm">Rs. {pkg.rental}</td>
+                          <td className="p-3 font-mono font-black text-emerald-800 bg-emerald-50/70 text-base">Rs. {pkg.rentalWithTax}</td>
+                          <td className="p-3 font-mono font-bold text-slate-700 text-sm">Rs. {pkg.rental}</td>
                           <td className="p-3 font-mono text-slate-400 line-through">Rs. {pkg.priorRental}</td>
                           <td className="p-3 text-purple-700 font-bold">FREE 12am-7am</td>
                           <td className="p-3">
@@ -1212,8 +1236,9 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                       <tr>
                         <th className="p-3.5">Package Name</th>
                         <th className="p-3.5">Total Volume (GB)</th>
-                        <th className="p-3.5">Monthly Rental (Rs.) (eff. 05/09/2022)</th>
-                        <th className="p-3.5">Prior Rental (Rs.)</th>
+                        <th className="p-3.5 text-emerald-300">Monthly With Tax (23.5%)<br/><span className="text-[10px] text-emerald-400 font-normal">Customer Pays</span></th>
+                        <th className="p-3.5">Without Tax (Rs.)<br/><span className="text-[10px] text-slate-400 font-normal">eff. 05/09/2022</span></th>
+                        <th className="p-3.5">Prior Without Tax</th>
                         <th className="p-3.5">Midnight Thriller</th>
                         <th className="p-3.5">Status</th>
                       </tr>
@@ -1222,8 +1247,9 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                       {filteredLegacyAnytime.map((pkg) => (
                         <tr key={pkg.id} className="hover:bg-slate-50 transition-colors">
                           <td className="p-3.5 font-bold text-slate-900">{pkg.name}</td>
-                          <td className="p-3.5 font-black text-emerald-700 text-sm">{pkg.volume}</td>
-                          <td className="p-3.5 font-mono font-black text-slate-900 text-sm">Rs. {pkg.rental}</td>
+                          <td className="p-3.5 font-black text-slate-900 text-base">{pkg.volume}</td>
+                          <td className="p-3.5 font-mono font-black text-emerald-800 bg-emerald-50/70 text-base">Rs. {pkg.rentalWithTax}</td>
+                          <td className="p-3.5 font-mono font-bold text-slate-700 text-sm">Rs. {pkg.rental}</td>
                           <td className="p-3.5 font-mono text-slate-400 line-through">Rs. {pkg.priorRental}</td>
                           <td className="p-3.5 text-purple-700 font-bold">FREE 12am - 7am</td>
                           <td className="p-3.5">
