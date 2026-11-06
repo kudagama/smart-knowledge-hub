@@ -45,7 +45,6 @@ import {
   BadgePercent,
   XCircle,
   BookOpen,
-  Headphones,
   ShieldAlert
 } from 'lucide-react';
 
@@ -170,48 +169,6 @@ ACTION: Terminate active monthly subscription in storage.slt.lk operator portal.
         ]}
       />
 
-      {/* ========================================================================= */}
-      {/* 🚨 LIVE CALL CX ASSISTANT BANNER: CRITICAL MUST-KNOW CHEAT SHEET          */}
-      {/* ========================================================================= */}
-      <div className="bg-gradient-to-r from-cyan-950 via-slate-900 to-blue-950 text-white px-6 py-3 border-b-2 border-cyan-400 shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-cyan-600/30 border border-cyan-400 flex items-center justify-center shrink-0">
-              <Headphones className="w-5 h-5 text-cyan-300 animate-pulse" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-cyan-600 text-white">
-                  Customer On Call (Live Triage)
-                </span>
-                <span className="text-xs font-bold text-cyan-300">
-                  SLT Eazy Storage Cloud Live Cheat Sheet
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-300 font-medium">
-                Instant operational rules for Contact Centre associates and Teleshop officers while on call with subscribers.
-              </p>
-            </div>
-          </div>
-
-          {/* Quick Triage Pills */}
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center gap-1.5 text-emerald-200 font-bold">
-              <span>🚀 100% DATA-FREE: Zero GB Quota Deduction on SLT BB</span>
-            </div>
-            <div className="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center gap-1.5 text-cyan-200 font-bold">
-              <span>🎁 FREE TRIAL: 5 GB Always Free (Rs. 0 Reg Fee)</span>
-            </div>
-            <div className="px-3 py-1.5 rounded-xl bg-blue-500/20 border border-blue-400/50 flex items-center gap-1.5 text-blue-200 font-bold">
-              <span>💳 POSTPAID: Added to Monthly Bill (VAS Portal Login)</span>
-            </div>
-            <div className="px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center gap-1.5 text-amber-200 font-bold">
-              <span>⏳ CANCEL: 30-Day File Retention Before Purge</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* 4. NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3.5">
@@ -330,11 +287,11 @@ ACTION: Terminate active monthly subscription in storage.slt.lk operator portal.
                       Frontline Operational Rules
                     </span>
                     <span className="text-xs font-bold text-cyan-300">
-                      Live Call Verification &amp; Customer Scripts
+                      Operational Verification &amp; Customer Scripts
                     </span>
                   </div>
                   <h3 className="text-xl font-black text-white mt-1">
-                    What Agents Must Confirm While Live On Call With Customer
+                    What Frontline Officers Must Confirm for Eazy Storage Subscribers
                   </h3>
                 </div>
               </div>

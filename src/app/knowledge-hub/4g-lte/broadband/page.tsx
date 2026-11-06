@@ -47,7 +47,6 @@ import {
   Laptop,
   PhoneCall,
   ShieldAlert,
-  Headphones,
   CheckCircle,
   Ban
 } from 'lucide-react';
@@ -422,52 +421,6 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
         ]}
       />
 
-      {/* ========================================================================= */}
-      {/* 🚨 LIVE CALL CX ASSISTANT BANNER: CRITICAL MUST-KNOW CHEAT SHEET          */}
-      {/* ========================================================================= */}
-      <div className="bg-gradient-to-r from-red-950 via-slate-900 to-amber-950 text-white px-6 py-3 border-b-2 border-amber-500 shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-red-600/30 border border-red-400 flex items-center justify-center shrink-0">
-              <Headphones className="w-5 h-5 text-amber-300 animate-pulse" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-red-600 text-white">
-                  Customer On Call (Live Triage)
-                </span>
-                <span className="text-xs font-bold text-amber-300">
-                  Critical Mistake &amp; Dispute Prevention Guide
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-300 mt-0.5 font-medium">
-                Verify these 4 rules before confirming any order to avoid billing disputes and customer escalations:
-              </p>
-            </div>
-          </div>
-
-          {/* Quick Critical Pills */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] font-bold">
-            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
-              <span className="text-amber-300 block">🛑 ANYTIME DATE</span>
-              <span className="text-white">Select Next Bill Date</span>
-            </div>
-            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
-              <span className="text-cyan-300 block">🌐 STATIC IP</span>
-              <span className="text-white">400GB Plan ONLY</span>
-            </div>
-            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
-              <span className="text-emerald-300 block">🌙 MIDNIGHT</span>
-              <span className="text-white">12am-7am Free Uncapped</span>
-            </div>
-            <div className="bg-white/10 border border-white/15 px-2.5 py-1.5 rounded-xl text-center">
-              <span className="text-rose-300 block">⚠️ DOWNDGRADE</span>
-              <span className="text-white">Rs. 250/= Fee Applies</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* 4. SUB-NAVIGATION TOOLBAR */}
       <div className="bg-white border-b border-slate-300 px-6 py-3 sticky top-0 z-20 shadow-xs">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3">
@@ -622,7 +575,7 @@ TARGET: SME-FULFILLMENT / REGIONAL-SALES`;
                   <div className="space-y-1 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-red-600 text-white">
-                        🚨 DO NOT MISS ON CALL: ADVANCE BILLING TRANSFER RULES
+                        🚨 MANDATORY ADVANCE BILLING TRANSFER RULES
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-400 text-amber-950">
                         CRITICAL CRM ACTION
