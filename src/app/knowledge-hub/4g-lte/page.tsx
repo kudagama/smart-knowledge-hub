@@ -32,6 +32,26 @@ import {
 // ==========================================
 const LTE_MAIN_CARDS = [
   {
+    id: 'prepaid',
+    title: '4G LTE Prepaid Services',
+    badge: 'Prepaid Plans',
+    badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    icon: CreditCard,
+    gradient: 'from-emerald-600 via-teal-700 to-cyan-900',
+    cardBorder: 'border-slate-200 hover:border-emerald-600 hover:shadow-emerald-500/15',
+    route: '/knowledge-hub/4g-lte/prepaid'
+  },,
+  {
+    id: 'postpaid',
+    title: '4G LTE Postpaid Packages',
+    badge: 'Monthly Rentals',
+    badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    icon: CreditCard,
+    gradient: 'from-indigo-700 via-blue-800 to-slate-900',
+    cardBorder: 'border-slate-200 hover:border-indigo-700 hover:shadow-indigo-500/15',
+    route: '/knowledge-hub/4g-lte/postpaid'
+  },
+  {
     id: 'cat4',
     title: 'New Connection Charges (CAT 4)',
     badge: 'Basic CPE',
@@ -63,7 +83,7 @@ const LTE_MAIN_CARDS = [
   },
   {
     id: 'broadband',
-    title: 'LTE Broadband (BB) Packages',
+    title: 'LTE Broadband Rules & Details',
     badge: 'Data Plans',
     badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200',
     icon: Globe,
@@ -81,16 +101,7 @@ const LTE_MAIN_CARDS = [
     cardBorder: 'border-slate-200 hover:border-slate-600 hover:shadow-slate-500/15',
     route: '/knowledge-hub/4g-lte/old-charges'
   },
-  {
-    id: 'prepaid',
-    title: '4G LTE Prepaid Services',
-    badge: 'Prepaid Plans',
-    badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    icon: CreditCard,
-    gradient: 'from-emerald-600 via-teal-700 to-cyan-900',
-    cardBorder: 'border-slate-200 hover:border-emerald-600 hover:shadow-emerald-500/15',
-    route: '/knowledge-hub/4g-lte/prepaid'
-  },
+
   {
     id: 'other_charges',
     title: 'Other Charges – LTE',
@@ -215,7 +226,7 @@ export default function LteServicesHubPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search topic (CAT 4, VoLTE, Prepaid...)"
+                placeholder="Search Prepaid, Postpaid, CAT 4, VoLTE..."
                 className="w-full bg-white text-slate-800 text-xs pl-8 pr-7 py-2 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-400 shadow-xs"
               />
               {searchQuery && (
