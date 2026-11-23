@@ -57,10 +57,7 @@ const postpaid = [
   ...STANDARD_VOICE_PACKAGES_MATRIX.map(row => normalize(row, 'postpaid', 'voice'))
 ];
 
-export function GET(request: NextRequest) {
-  const params = request.nextUrl.searchParams;
-  const section = params.get('section')?.toLowerCase() ?? 'all';
-  const search = params.get('search')?.toLowerCase().trim() ?? '';
+export function getFourGSection(section: string, search = '') {
   const valid = ['all','prepaid','postpaid','connection','validity'];
   if (!valid.includes(section)) {
     return NextResponse.json({success:false,error:'Invalid section',validSections:valid},{status:400});
@@ -71,6 +68,7 @@ export function GET(request: NextRequest) {
     success: true,
     meta: {
       source: 'Smart Knowledge Hub 4G LTE page catalog',
+      category: section,
       note: 'Rates mirror repository content. Verify current tariffs before quoting customers.',
       generatedAt: new Date().toISOString()
     }
@@ -80,4 +78,9 @@ export function GET(request: NextRequest) {
   if (section === 'all' || section === 'connection') result.connectionCharges = PREPAID_CONNECTION_CHARGES;
   if (section === 'all' || section === 'validity') result.reloadValidity = RELOAD_VALIDITY_MATRIX;
   return NextResponse.json(result, {headers:{'Cache-Control':'public, s-maxage=300, stale-while-revalidate=3600'}});
+}
+
+export function GET(request: NextRequest) {
+  const params = request.nextUrl.searchParams;
+  return getFourGSection(params.get('section')?.toLowerCase() ?? 'all',params.get('search')?.toLowerCase().trim() ?? '');
 }
