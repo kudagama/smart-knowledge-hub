@@ -138,7 +138,10 @@ export default function LteServicesHubPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCards = LTE_MAIN_CARDS.filter((card) => {
+  const primaryCards = LTE_MAIN_CARDS.filter(card => card.id === 'prepaid' || card.id === 'postpaid');
+  const utilityCards = LTE_MAIN_CARDS.filter(card => card.id !== 'prepaid' && card.id !== 'postpaid');
+  const [showOtherTopics, setShowOtherTopics] = useState(false);
+  const filteredCards = (showOtherTopics ? LTE_MAIN_CARDS : primaryCards).filter((card) => {
     if (!searchQuery) return true;
     const q = searchQuery.toLowerCase();
     return card.title.toLowerCase().includes(q) || card.badge.toLowerCase().includes(q);
@@ -244,7 +247,7 @@ export default function LteServicesHubPage() {
             SLT-Mobitel 4G LTE - Service Navigation Hub
           </h1>
           <p className="text-xs text-cyan-100/90 max-w-3xl font-medium leading-relaxed">
-            Select any service topic below to redirect directly to its complete tariffs, connection charges, packages, and technical operational procedures.
+            Choose Prepaid or Postpaid to view the matching packages, prices and data plans separately. Other technical topics are available in a secondary section.
           </p>
 
           {/* Publisher Metadata */}
@@ -266,12 +269,12 @@ export default function LteServicesHubPage() {
           <div className="flex items-center gap-2">
             <span className="font-black text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-[#005696]" />
-              <span>4G LTE Navigation Cards ({filteredCards.length} Topics)</span>
+              <span>4G LTE — Prepaid / Postpaid</span>
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-slate-500 font-semibold text-[11px]">
-            <span>Click any card to open dedicated page</span>
+            <span>Choose a service type to see only its packages</span>
             <span>•</span>
             <span className="text-emerald-700 font-bold">Revised with Tax: 01/08/2024</span>
           </div>
@@ -287,15 +290,15 @@ export default function LteServicesHubPage() {
             <div>
               <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
                 <Layers className="w-6 h-6 text-[#005696]" />
-                <span>4G LTE Service Topics</span>
+                <span>Choose Your 4G LTE Service</span>
               </h2>
               <p className="text-xs md:text-sm text-slate-500 font-medium mt-1">
-                Select any topic card below to open its dedicated tariffs, package options, and technical procedures.
+                Prepaid and Postpaid are separate. Each opens its own dedicated package and price page.
               </p>
             </div>
 
             <span className="text-xs font-bold text-[#005696] bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-200 w-fit">
-              {filteredCards.length} Modules Available
+              {showOtherTopics ? filteredCards.length : 2} Categories
             </span>
           </div>
 
@@ -334,6 +337,15 @@ export default function LteServicesHubPage() {
                 </motion.div>
               );
             })}
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <button type="button" onClick={() => setShowOtherTopics(!showOtherTopics)}
+              className="flex w-full items-center justify-between rounded-xl bg-slate-100 px-5 py-3 text-sm font-bold text-slate-800 hover:bg-slate-200">
+              <span>{showOtherTopics ? 'Hide additional technical topics' : 'Show other 4G technical topics (CAT 4, CAT 6, voice, charges...)'}</span>
+              <ChevronDown className={`h-4 w-4 transition-transform ${showOtherTopics ? 'rotate-180' : ''}`} />
+            </button>
+            <p className="mt-2 text-xs text-slate-500">Package prices are separated into Prepaid and Postpaid above; additional topics are optional reference material.</p>
           </div>
 
           {/* Reference Footer Strip: Speeds, Taxes, and Frontline Summary */}
