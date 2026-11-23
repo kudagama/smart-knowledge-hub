@@ -40,7 +40,7 @@ const LTE_MAIN_CARDS = [
     gradient: 'from-emerald-600 via-teal-700 to-cyan-900',
     cardBorder: 'border-slate-200 hover:border-emerald-600 hover:shadow-emerald-500/15',
     route: '/knowledge-hub/4g-lte/prepaid'
-  },,
+  },
   {
     id: 'postpaid',
     title: '4G LTE Postpaid Packages',
