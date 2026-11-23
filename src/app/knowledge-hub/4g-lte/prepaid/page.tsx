@@ -112,6 +112,14 @@ ACTION: Check HSS / IMS voice profile provisioning for prepaid MSISDN. Restore v
           { label: 'SIM Only (BYOD)', value: 'Rs. 1,200/=', sub: 'Zero Commitment' }
         ]}
       />
+      <div className="border-b border-emerald-200 bg-emerald-50 px-6 py-3">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm">
+          <span className="font-bold text-emerald-900">Viewing 4G LTE Prepaid Packages</span>
+          <Link href="/knowledge-hub/4g-lte/postpaid" className="rounded-xl bg-indigo-700 px-4 py-2 font-bold text-white hover:bg-indigo-800">
+            View Postpaid Packages →
+          </Link>
+        </div>
+      </div>
 
       {/* 4. INTERACTIVE TOOLBAR & CONTROLS */}
       <div className="bg-white border-b border-slate-300 px-6 py-3.5 sticky top-0 z-20 shadow-xs">
